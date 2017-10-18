@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="opengl_learn" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/opengl_learn" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/opengl_learn" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Linker>
+			<Add library="opengl32" />
+			<Add library="glu32" />
+			<Add library="glut32" />
+			<Add library="libs/DevIL.lib" />
+			<Add library="libs/ILU.lib" />
+			<Add library="libs/ILUT.lib" />
+		</Linker>
+		<Unit filename="U_ask_mode.cpp" />
+		<Unit filename="U_ask_mode.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="basik_classes.cpp" />
+		<Unit filename="basik_classes.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="choose_lab.cpp" />
+		<Unit filename="choose_lab.h" />
+		<Unit filename="delete_mode_reaction.cpp" />
+		<Unit filename="delete_mode_reaction.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="element_type.cpp" />
+		<Unit filename="element_type.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="feel_draw.cpp" />
+		<Unit filename="feel_draw.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="feel_reaction.cpp" />
+		<Unit filename="feel_reaction.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="get_power.cpp" />
+		<Unit filename="get_power.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="global_vars.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="includes.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="input_info.cpp" />
+		<Unit filename="input_info.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="input_text.cpp" />
+		<Unit filename="input_text.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="lab_mode.cpp" />
+		<Unit filename="lab_mode.h" />
+		<Unit filename="load_textures.cpp" />
+		<Unit filename="load_textures.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="main.cpp" />
+		<Unit filename="main_menu.cpp" />
+		<Unit filename="main_menu.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="object_menu_draw.cpp" />
+		<Unit filename="object_menu_draw.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="object_menu_reaction.cpp" />
+		<Unit filename="object_menu_reaction.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="potential_mode.cpp" />
+		<Unit filename="potential_mode.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="read_write.cpp" />
+		<Unit filename="read_write.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="undo_redo.cpp" />
+		<Unit filename="undo_redo.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="window_message.cpp" />
+		<Unit filename="window_message.h">
+			<Option compile="1" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

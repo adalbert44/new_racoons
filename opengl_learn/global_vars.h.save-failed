@@ -1,0 +1,19 @@
+#ifndef GLOBAL_VARS_H_INCLUDED
+#define GLOBAL_VARS_H_INCLUDED
+
+    #include <bits/stdc++.h>
+
+    extern float WinWid;
+    extern float WinHei;
+
+    extern float speed_scrol=1.05;
+    extern float speed_move=20.0;
+    extern float startx=0;
+    extern float starty=0;
+    extern float feel_seg_size=100;
+    extern float feel_size=30;
+    extern float scrol=1.0;
+    extern float mousex, mousey;
+
+
+#endif // GLOBAL_VARS_H_INCLUDED

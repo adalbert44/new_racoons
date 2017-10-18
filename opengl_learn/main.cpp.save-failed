@@ -1,0 +1,104 @@
+#include <bits/stdc++.h>
+#include <time.h>
+#include <cstdlib>
+#include <GL/glut.h>
+
+
+using namespace std;
+
+
+float WinWid=400.0;
+float WinHei=400.0;
+
+class circle
+{
+    public: double x,y,r,alpha;
+    circle(double x_=0.0, double y_=0.0, double r_=10.0, double alpha_=1.0)
+    {
+        x=x_;
+        y=y_;
+        r=r_;
+        alpha=alpha_;
+    }
+    void draw();
+
+};
+void circle :: draw()
+{
+    glColor4f(1.0,0.0,0.0,alpha);
+    glEnable(GL_ALPHA);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glBegin(GL_LINE_LOOP);
+        for (double i=0.0;i<=2.0*acos(-1);i+=0.001)
+        {
+            glVertex2f(x+r*sin(i),y+r*cos(i));
+        }
+
+    glEnd();
+    glDisable(GL_BLEND);
+    glDisable(GL_ALPHA);
+}
+vector<circle> vec;
+
+void Draw()
+{
+
+
+
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    for (int i=0;i<vec.size();i++)
+    {
+        vec[i].draw();
+        vec[i].r++;
+        vec[i].alpha/=1.05;
+        if (vec[i].alpha<0.05)
+            vec.erase(vec.begin()+i);
+    }
+    //cout<<vec.size()<<'\n';
+    glutSwapBuffers();
+}
+
+void Timer(int value)
+{
+    glColor3f(1.0,0.0,0.0);
+	glutPostRedisplay();
+	glutTimerFunc(50, Timer, rand() % 2);
+}
+
+void timer2(int)
+{
+    vec.push_back(circle(rand()%int(WinWid)-WinWid/2.0,rand()%int(WinHei)-WinHei/2.0,rand()%20+1.0,1.0));
+    glutTimerFunc(600,timer2,0);
+}
+
+void Initialize()
+{
+	glClearColor(0.0, 0.0, 0.0, 1.0);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(-WinWid/2, WinWid/2, -WinHei/2, WinHei/2, -200.0, 200.0);
+	glMatrixMode(GL_MODELVIEW);
+}
+
+int main(int argc, char** argv)
+{
+    srand(time(0));
+    for (int i=1;i<=2+rand()%5;i++)
+    {
+        vec.push_back(circle(rand()%int(WinWid)-WinWid/2.0,rand()%int(WinHei)-WinHei/2.0,rand()%20+1.0,1.0));
+    }
+
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
+	glutInitWindowSize(WinWid, WinHei);
+	glutInitWindowPosition(100, 200);
+	glutCreateWindow("Lesson 03");
+	glutDisplayFunc(Draw);
+	glutTimerFunc(50, Timer, 0);//Анимация
+	glutTimerFunc(600,timer2,0);
+	Initialize();
+	glutMainLoop();
+	return 0;
+}

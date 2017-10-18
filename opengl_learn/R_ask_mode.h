@@ -1,0 +1,6 @@
+#ifndef R_ASK_MODE_H_INCLUDED
+#define R_ASK_MODE_H_INCLUDED
+
+
+
+#endif // R_ASK_MODE_H_INCLUDED
