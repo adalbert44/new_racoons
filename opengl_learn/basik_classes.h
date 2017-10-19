@@ -206,9 +206,12 @@
     extern string now_file_name;
     extern Button_do answer_lab;
     extern int last_ans;
+    extern vector<string> lab_ask[16];
 
     extern bool input_text_mode;
     extern Button_do save;
+    extern string input_info_ask;
+    extern string input_text_ask;
 
 
 #endif // BASIK_CLASSES_H_INCLUDED

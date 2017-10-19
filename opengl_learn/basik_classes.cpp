@@ -16,8 +16,10 @@ double kx;
 //GLuint key_close_horizontal=Load("textures/key_hor.png");
 //GLuint key_close_vertical=Load("textures/key_ver.png");
 
-
+string input_info_ask;
+string input_text_ask;
 vector<ld> lab_ans[16];
+vector<string> lab_ask[16];
 GLuint rotate_tex;
 GLuint ok_tex;
 GLuint bad_tex;

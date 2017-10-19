@@ -10,6 +10,7 @@ void input_text_draw()
     input_bad.draw_state();
 
     drawstring(input_feel.x1,input_feel.y2,1.0,info_name);
+    drawstring(input_feel.x1,input_feel.y2-30,1.0,input_text_ask);
 }
 
 void input_text_reaction(int button, int state)

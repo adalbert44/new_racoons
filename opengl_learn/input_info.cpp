@@ -10,6 +10,7 @@ void input_info_draw()
     input_bad.draw_state();
 
     drawstring(input_feel.x1,input_feel.y2,1.0,info_zn);
+    drawstring(input_feel.x1,input_feel.y2-30,1.0,input_info_ask);
 }
 
 void input_info_R_draw()

@@ -429,6 +429,11 @@ void feel_mouse_pressed(int button, int state)
             }
         }
 
+        if (rezistor(taken))
+            input_info_ask="Enter R:";
+        if (energy(taken))
+            input_info_ask="Enter U:";
+
         return;
     }
 

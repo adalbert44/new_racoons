@@ -70,6 +70,7 @@ int choose_lab_select()
 int create_new_file()
 {
     input_text_mode=1;
+    input_text_ask="Enter new file name:";
     input_ok.to_do=&create;
     input_bad.to_do=&not_create;
 }
@@ -93,6 +94,7 @@ int load()
 int load_old_file()
 {
     input_text_mode=1;
+    input_text_ask="Enter old file name:";
     input_ok.to_do=&load;
     input_bad.to_do=&not_create;
 }

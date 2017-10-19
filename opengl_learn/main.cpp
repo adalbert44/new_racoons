@@ -231,8 +231,32 @@ void creat_feel()
     ld mx_power=0.001;
     main_menu_create();
 
-    for (int i=0;i<16;i++)
+    lab_ans[0]={2,1,1,1};
+    lab_ask[0]={"R","I1","I2","I3"};
+    lab_ans[1]={1,1,1,3};
+    lab_ask[1]={"U1","U2","U3","R"};
+    lab_ans[2]={1,0};
+    lab_ask[2]={"R","I1"};
+    lab_ans[3]={1};
+    lab_ask[3]={"I1"};
+    lab_ans[4]={1};
+    lab_ask[4]={"R"};
+    lab_ans[5]={1};
+    lab_ask[5]={"R"};
+    lab_ans[6]={5};
+    lab_ask[6]={"R"};
+    lab_ans[7]={5,8};
+    lab_ask[7]={"R1","R2"};
+    lab_ans[8]={3,12};
+    lab_ask[8]={"R1","R2"};
+    lab_ans[9]={44/15,3};
+    lab_ask[9]={"R1","R2"};
+    for (int i=10;i<16;i++)
+    {
         lab_ans[i].pb(0);
+        lab_ask[i].pb("");
+    }
+
 }
 
 
