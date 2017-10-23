@@ -834,11 +834,11 @@
 1507448909 source:c:\users\user\documents\github\racoons\opengl_learn\choose_lab.cpp
 	"choose_lab.h"
 
-1508423489 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.cpp
+1508759850 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.cpp
 	"basik_classes.h"
 	"object_menu_reaction.h"
 
-1508423579 c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
+1508759772 c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
 	"includes.h"
 
 1508418784 c:\users\admin\desktop\new_racoons\opengl_learn\includes.h
@@ -874,7 +874,7 @@
 	"includes.h"
 	"feel_reaction.h"
 
-1508423579 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
+1508759772 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
 	"includes.h"
 
 1508418784 source:c:\users\admin\desktop\new_racoons\opengl_learn\choose_lab.cpp
@@ -983,7 +983,7 @@
 1508418784 source:c:\users\admin\desktop\new_racoons\opengl_learn\load_textures.h
 	"includes.h"
 
-1508420691 source:c:\users\admin\desktop\new_racoons\opengl_learn\main.cpp
+1508759394 source:c:\users\admin\desktop\new_racoons\opengl_learn\main.cpp
 	"includes.h"
 	"load_textures.h"
 	"basik_classes.h"
@@ -1012,7 +1012,7 @@
 	"element_type.h"
 	"input_info.h"
 
-1508418784 c:\users\admin\desktop\new_racoons\opengl_learn\read_write.h
+1508760554 c:\users\admin\desktop\new_racoons\opengl_learn\read_write.h
 	"includes.h"
 
 1508418784 c:\users\admin\desktop\new_racoons\opengl_learn\u_ask_mode.h
@@ -1028,7 +1028,7 @@
 	"read_write.h"
 	"get_power.h"
 
-1508418784 source:c:\users\admin\desktop\new_racoons\opengl_learn\main_menu.cpp
+1508657769 source:c:\users\admin\desktop\new_racoons\opengl_learn\main_menu.cpp
 	"main_menu.h"
 	"choose_lab.h"
 
@@ -1064,11 +1064,17 @@
 	"includes.h"
 	"element_type.h"
 
-1508418784 source:c:\users\admin\desktop\new_racoons\opengl_learn\read_write.cpp
+1508760414 source:c:\users\admin\desktop\new_racoons\opengl_learn\read_write.cpp
 	"read_write.h"
 	<fstream>
+	<fstream>
+	<iostream>
+	<string>
+	<array>
+	<vector>
+	<iterator>
 
-1508418784 source:c:\users\admin\desktop\new_racoons\opengl_learn\read_write.h
+1508760554 source:c:\users\admin\desktop\new_racoons\opengl_learn\read_write.h
 	"includes.h"
 
 1508418784 source:c:\users\admin\desktop\new_racoons\opengl_learn\u_ask_mode.cpp

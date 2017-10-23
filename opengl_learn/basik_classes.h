@@ -100,6 +100,14 @@
         void press_up();
     };
 
+    class Color
+    {
+    public:
+        int R,G,B;
+        Color();
+        Color(int r, int g, int b);
+    };
+
 
 
     class Event

@@ -536,3 +536,10 @@ Reb :: Reb (int x1_, int y1_, int x2_, int y2_)
     x2=x2_;
     y2=y2_;
 }
+
+Color :: Color(int r, int g, int b)
+{
+    R=r;
+    G=g;
+    B=b;
+}
