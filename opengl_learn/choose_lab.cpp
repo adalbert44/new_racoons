@@ -2,8 +2,16 @@
 
 void choose_lab_draw()
 {
+    back_to_main.watch();
     for (int i=0;i<16;i++)
+    {
+        if (back_to_main.light>0.0001)
+            choose_lab[i].light=0.0; else
+            choose_lab[i].watch();
         choose_lab[i].draw_state();
+    }
+
+
     back_to_main.draw_state();
 }
 

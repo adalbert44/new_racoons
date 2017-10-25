@@ -6,6 +6,9 @@ void input_info_draw()
     window_shade.draw_state();
     input_info_background.draw_state();
     input_feel.draw_state();
+    input_ok.watch();
+    input_bad.watch();
+
     input_ok.draw_state();
     input_bad.draw_state();
 

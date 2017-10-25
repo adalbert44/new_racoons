@@ -113,6 +113,14 @@ void main_menu_draw()
         return;
     }
 
+    if (!input_text_mode && !choose_lab_mode)
+    {
+        new_file.watch();
+        old_file.watch();
+        lab.watch();
+        photo.watch();
+        exit_b.watch();
+    }
 
 
     new_file.draw_state();
@@ -128,6 +136,7 @@ void main_menu_draw()
 
 void main_menu_reaction(int button, int state)
 {
+
     if (choose_lab_mode)
     {
         choose_lab_reaction(button,state);

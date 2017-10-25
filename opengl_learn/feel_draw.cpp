@@ -216,6 +216,8 @@ void draw_feel()
 
     if (lab_mode_used)
         lab_mode_draw();
+
+    back_to_main.watch();
     back_to_main.draw_state();
 }
 
@@ -227,6 +229,22 @@ void draw_left_menu()
         left_menu_horizontal[i].draw_state();
         left_menu_vertical[i].draw_state();
     }
+
+
+    if (!point_mode_used && !line_mode_used && !move_mode_used && !delete_mode_used && !U_ask_mode_used && !potential_mode_used)
+    {
+        point_mode.watch();
+        line_mode.watch();
+        move_mode.watch();
+        delete_mode.watch();
+        undo_button.watch();
+        redo_button.watch();
+        U_ask_mode.watch();
+        potential_mode.watch();
+        save.watch();
+    }
+
+
     point_mode.draw_state();
     line_mode.draw_state();
     move_mode.draw_state();

@@ -61,6 +61,7 @@ GLuint text_line;
 GLuint close_hor;
 GLuint close_ver;
 GLuint redo_tex;
+GLuint window_light;
 Figure window_shade;
 Figure object_info;
 Figure input_info_background;
@@ -423,26 +424,15 @@ Button :: Button(Figure f_, vector<bool*> change_)
 
 void Button :: draw_state()
 {
-    f.draw_state();
-
-    glPushMatrix();
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glColor4f(0, 0, 0, shade);
+     f.draw_state();
 
 
+    Figure fig=Figure(f.x1,f.x2,f.y1,f.y2,window_shade.tex,shade);
+    fig.draw_state();
 
-    glBegin(GL_QUADS);
-        glVertex2f(f.x1, f.y1);
-        glVertex2f(f.x2, f.y1);
-        glVertex2f(f.x2, f.y2);
-        glVertex2f(f.x1, f.y2);
-    glEnd();
-
-    glDisable(GL_BLEND);
-
-    glPopMatrix();
+    fig.tex=window_light;
+    fig.alpha=light;
+    fig.draw_state();
 }
 
 void Button :: press_down()
@@ -462,13 +452,27 @@ void Button :: press_up()
 
 }
 
+void Button :: watch()
+{
+    if (pressed!=NULL || pressed_do!=NULL)
+    {
+        light=0.0;
+        return;
+    }
+
+    if (f.in() && shade<0.0001)
+        light=0.15; else
+        light=0.0;
+}
+
 Button_do :: Button_do()
 {
-
+    light=0;
 }
 
 Button_do :: Button_do(Figure f_, int (*to_do_)())
 {
+    light=0;
     f=f_;
     to_do=to_do_;
 }
@@ -477,17 +481,29 @@ void Button_do :: draw_state()
 {
     f.draw_state();
 
-    if (f.tex!=ok_tex && f.tex!=bad_tex)
-    {
-        Figure fig=Figure(f.x1,f.x2,f.y1,f.y2,window_shade.tex,shade);
-        fig.draw_state();
-    } else
-    {
-        Figure fig=Figure(f.x1,f.x2,f.y1,f.y2,connection_point,shade);
-        fig.draw_state();
-    }
+
+    Figure fig=Figure(f.x1,f.x2,f.y1,f.y2,window_shade.tex,shade);
+    fig.draw_state();
+
+    fig.tex=window_light;
+    fig.alpha=light;
+    fig.draw_state();
+
 }
 
+void Button_do :: watch()
+{
+
+    if (pressed!=NULL || pressed_do!=NULL)
+    {
+        light=0.0;
+        return;
+    }
+
+    if (f.in() && shade<0.0001)
+        light=0.15; else
+        light=0.0;
+}
 
 void Button_do :: press_down()
 {

@@ -2,6 +2,8 @@
 
 void lab_mode_draw()
 {
+    statement_show.watch();
+    answer_lab.watch();
     statement_show.draw_state();
     answer_lab.draw_state();
 }

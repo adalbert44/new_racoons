@@ -73,6 +73,7 @@ void load_all()
     photo_tex=Load("textures/photo_tex.png");
     new_file_tex=Load("textures/new_file_tex.png");
     old_file_tex=Load("textures/old_file_tex.png");
+    window_light=Load("textures/window_light.png");
 
     for (int i=0;i<16;i++)
     {

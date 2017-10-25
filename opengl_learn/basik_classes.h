@@ -31,7 +31,6 @@
         void draw();
         void draw_state();
         void resize_(double siz);
-
     };
 
     struct Reb
@@ -77,12 +76,14 @@
         Figure f;
         vector<bool*> change;
         double shade=0;
+        double light=0;
         bool used=0;
         Button();
         Button(Figure f_, vector<bool*> change);
         void draw_state();
         void press_down();
         void press_up();
+        void watch();
     };
 
 
@@ -92,12 +93,14 @@
         Figure f;
         int (*to_do)();
         double shade=0;
+        double light=0;
 
         Button_do();
         Button_do(Figure f_, int (*to_do_)());
         void draw_state();
         void press_down();
         void press_up();
+        void watch();
     };
 
     class Color
@@ -164,6 +167,7 @@
     extern bool window_picture_used;
     extern vector<Figure> window_picture;
     extern GLuint choose_lab_mode_tex[16];
+    extern GLuint window_light;
 
     extern long double start[30][30][30][30];
     extern long double len[30][30][30][30];
