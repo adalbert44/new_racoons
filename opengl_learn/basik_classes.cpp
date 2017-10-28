@@ -553,6 +553,11 @@ Reb :: Reb (int x1_, int y1_, int x2_, int y2_)
     y2=y2_;
 }
 
+Color :: Color()
+{
+
+}
+
 Color :: Color(int r, int g, int b)
 {
     R=r;

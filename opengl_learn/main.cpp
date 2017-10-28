@@ -432,8 +432,6 @@ int main(int argc, char** argv)
     glutPassiveMotionFunc(mouse_motion);
     glutFullScreen();
 
-    string s="textures/black_circle.bmp";
-    readBMP(s);
     glutMainLoop();
 
 	return 0;

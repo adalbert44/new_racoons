@@ -81,12 +81,54 @@ void write(string way)
     out.close();
 }
 
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <array>
-#include <vector>
-#include <iterator>
+
+vector<vector<bool> > read_pic(string file)
+{
+    vector<vector<Color> > vec=readBMP(file);
+    int mn=1e9;
+    Color rmn;
+    int mx=-1;
+    Color rmx;
+
+    for (auto i:vec)
+        for (auto j:i)
+        {
+            if (sqr(j.R)+sqr(j.G)+sqr(j.B)<mn)
+            {
+
+                mn=sqr(j.R)+sqr(j.G)+sqr(j.B);
+                rmn=j;
+            }
+        }
+
+
+    for (auto i:vec)
+        for (auto j:i)
+            if (sqr(j.R)+sqr(j.G)+sqr(j.B)>mx)
+            {
+                mx=sqr(j.R)+sqr(j.G)+sqr(j.B);
+                rmx=j;
+            }
+
+    vector<vector<bool> > res;
+
+    cout<<rmn.B<<' '<<rmn.G<<' '<<rmn.R<<'\n';
+    cout<<rmx.B<<' '<<rmx.G<<' '<<rmx.R<<'\n';
+
+    for (auto i:vec)
+    {
+        res.pb({});
+        for (auto j:i)
+        {
+            if ((sqr(rmn.R - j.R) + sqr(rmn.G - j.G) + sqr(rmn.B - j.B)) <
+                (sqr(rmx.R - j.R) + sqr(rmx.G - j.G) + sqr(rmx.B - j.B)))
+                res.back().pb(0); else
+                res.back().pb(1);
+        }
+    }
+
+    return(res);
+}
 
 vector<vector<Color> > readBMP(string file)
 {
@@ -113,29 +155,31 @@ vector<vector<Color> > readBMP(string file)
     bmp.read(img.data(), img.size());
 
     auto dataSize = ((width * 3 + 3) & (~3)) * height;
-    img.resize(dataSize);
+    img.resize(dataSize+4);
     bmp.read(img.data(), img.size());
 
     char temp = 0;
 
-    for (auto i = dataSize - 4; i >= 5; i -= 3)
+    for (auto i = dataSize - 4; i >= 3; i -= 3)
     {
         temp = img[i];
         img[i] = img[i+2];
         img[i+2] = temp;
 
-        //std::cout << "R: " << int(img[i] & 0xff) << " G: " << int(img[i+1] & 0xff) << " B: " << int(img[i+2] & 0xff) << std::endl;
     }
 
-    vector<vector<Color> > res;
+    vector<vector<Color> > res(height);
 
     for (int i=0;i<height;i++)
     {
-        vector<Color> now;
-        for (int j=0;j<width;j++)
-            now.pb(Color(img[i*width+j],img[i*width+j+1],img[i*width+j+2]));
-        res.pb(now);
-    }
 
+        for (int j=0;j<width*3;j+=3)
+        {
+
+            res[i].pb(Color(img[i*width*3+j] & 0xff,img[i*width*3+j+1] & 0xff,img[i*width*3+j+2] & 0xff));
+        }
+
+
+    }
     return(res);
 }

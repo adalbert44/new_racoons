@@ -9,6 +9,7 @@
     void add_all_files(string st);
     int save_do();
     vector<vector<Color>  > readBMP(string file);
+    vector<vector<bool>  > read_pic(string file);
 
 #endif // READ_WRITE_H_INCLUDED
 
