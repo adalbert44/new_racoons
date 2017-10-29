@@ -15,6 +15,7 @@
 #include "main_menu.h"
 #include "input_text.h"
 #include "lab_mode.h"
+#include "scan.h"
 
 void Draw()
 {
@@ -431,6 +432,8 @@ int main(int argc, char** argv)
     glutMotionFunc(mouse_pressed_motion);
     glutPassiveMotionFunc(mouse_motion);
     glutFullScreen();
+
+    comp_pic("textures/square1.bmp");
 
     glutMainLoop();
 

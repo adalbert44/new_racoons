@@ -82,104 +82,50 @@ void write(string way)
 }
 
 
-vector<vector<bool> > read_pic(string file)
-{
-    vector<vector<Color> > vec=readBMP(file);
-    int mn=1e9;
-    Color rmn;
-    int mx=-1;
-    Color rmx;
-
-    for (auto i:vec)
-        for (auto j:i)
-        {
-            if (sqr(j.R)+sqr(j.G)+sqr(j.B)<mn)
-            {
-
-                mn=sqr(j.R)+sqr(j.G)+sqr(j.B);
-                rmn=j;
-            }
-        }
-
-
-    for (auto i:vec)
-        for (auto j:i)
-            if (sqr(j.R)+sqr(j.G)+sqr(j.B)>mx)
-            {
-                mx=sqr(j.R)+sqr(j.G)+sqr(j.B);
-                rmx=j;
-            }
-
-    vector<vector<bool> > res;
-
-    cout<<rmn.B<<' '<<rmn.G<<' '<<rmn.R<<'\n';
-    cout<<rmx.B<<' '<<rmx.G<<' '<<rmx.R<<'\n';
-
-    for (auto i:vec)
-    {
-        res.pb({});
-        for (auto j:i)
-        {
-            if ((sqr(rmn.R - j.R) + sqr(rmn.G - j.G) + sqr(rmn.B - j.B)) <
-                (sqr(rmx.R - j.R) + sqr(rmx.G - j.G) + sqr(rmx.B - j.B)))
-                res.back().pb(0); else
-                res.back().pb(1);
-        }
-    }
-
-    return(res);
-}
 
 vector<vector<Color> > readBMP(string file)
 {
-    static constexpr size_t HEADER_SIZE = 54;
+    char *filename = new char[file.length() + 1];
+    strcpy(filename, file.c_str());
 
-    std::ifstream bmp(file, std::ios::binary);
+    int i;
+    FILE* f = fopen(filename, "rb");
 
-    std::array<char, HEADER_SIZE> header;
-    bmp.read(header.data(), header.size());
+    if(f == NULL)
+        throw "Argument Exception";
 
-    auto fileSize = *reinterpret_cast<uint32_t *>(&header[2]);
-    auto dataOffset = *reinterpret_cast<uint32_t *>(&header[10]);
-    auto width = *reinterpret_cast<uint32_t *>(&header[18]);
-    auto height = *reinterpret_cast<uint32_t *>(&header[22]);
-    auto depth = *reinterpret_cast<uint16_t *>(&header[28]);
+    unsigned char info[54];
+    fread(info, sizeof(unsigned char), 54, f); // read the 54-byte header
 
-    std::cout << "fileSize: " << fileSize << std::endl;
-    std::cout << "dataOffset: " << dataOffset << std::endl;
-    std::cout << "width: " << width << std::endl;
-    std::cout << "height: " << height << std::endl;
-    std::cout << "depth: " << depth << "-bit" << std::endl;
+    // extract image height and width from header
+    int width = *(int*)&info[18];
+    int height = *(int*)&info[22];
 
-    std::vector<char> img(dataOffset - HEADER_SIZE);
-    bmp.read(img.data(), img.size());
+    cout << endl;
+    cout << "  Name: " << filename << endl;
+    cout << " Width: " << width << endl;
+    cout << "Height: " << height << endl;
 
-    auto dataSize = ((width * 3 + 3) & (~3)) * height;
-    img.resize(dataSize+4);
-    bmp.read(img.data(), img.size());
-
-    char temp = 0;
-
-    for (auto i = dataSize - 4; i >= 3; i -= 3)
-    {
-        temp = img[i];
-        img[i] = img[i+2];
-        img[i+2] = temp;
-
-    }
-
+    int row_padded = (width*3 + 3) & (~3);
+    unsigned char* data = new unsigned char[row_padded];
+    unsigned char tmp;
     vector<vector<Color> > res(height);
-
-    for (int i=0;i<height;i++)
+    for(int i = 0; i < height; i++)
     {
-
-        for (int j=0;j<width*3;j+=3)
+        fread(data, sizeof(unsigned char), row_padded, f);
+        for(int j = 0; j < width*3; j += 3)
         {
+            // Convert (B, G, R) to (R, G, B)
+            tmp = data[j];
+            data[j] = data[j+2];
+            data[j+2] = tmp;
 
-            res[i].pb(Color(img[i*width*3+j] & 0xff,img[i*width*3+j+1] & 0xff,img[i*width*3+j+2] & 0xff));
+            res[i].pb(Color((int)data[j],(int)data[j+1],(int)data[j+2]));
         }
-
-
     }
+
+    fclose(f);
+
+
     return(res);
 }
