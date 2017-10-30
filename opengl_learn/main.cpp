@@ -432,8 +432,8 @@ int main(int argc, char** argv)
     glutMotionFunc(mouse_pressed_motion);
     glutPassiveMotionFunc(mouse_motion);
     glutFullScreen();
-    cout<<'#';
-    comp_pic("textures/asd1.bmp");
+
+    comp_pic("textures/square1.bmp");
 
     glutMainLoop();
 
