@@ -5,5 +5,6 @@
     #include "read_write.h"
 
     vector<vector<int> > comp_pic(string file);
+    void scan(string file);
 
 #endif // SCAN_H_INCLUDED
