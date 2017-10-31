@@ -70,7 +70,6 @@ vector<vector<bool> > read_pic(string file)
     int x1, y1, x2, y2;
     cout<<"do";
 
-  //рассчитываем интегральное изображение
     integral_image = new unsigned long [width*height*sizeof(unsigned long*)];
 
     for (int i = 0; i < width; i++) {
@@ -94,7 +93,6 @@ vector<vector<bool> > read_pic(string file)
     vector<vector<bool> > res(vec1.size());
 
 
-//находим границы для локальные областей
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
         index = j * width + i;
@@ -242,6 +240,44 @@ void check_square(vector<pair<int,int> > vec)
     try_add(mnx,mny,mxx,mxy,vec);
 }
 
+void check_circle(vector<pair<int,int> > vec)
+{
+    pt mnx,mny,mxx,mxy;
+    mnx.x=1e9;
+    mxx.x=-1e9;
+    mny.y=1e9;
+    mxy.y=-1e9;
+
+    for (auto i:vec)
+    {
+        if (i.fir>mxx.x)
+            mxx=pt(i.fir,i.sec);
+        if (i.fir<mnx.x)
+            mnx=pt(i.fir,i.sec);
+        if (i.sec>mxy.y)
+            mxy=pt(i.fir,i.sec);
+        if (i.sec<mny.y)
+            mny=pt(i.fir,i.sec);
+    }
+
+    pt O=pt((mxx.x+mnx.x)/2.0,(mny.y+mxy.y)/2.0);
+    ld r=0;
+
+    for (auto i:vec)
+    {
+        r=max(r,ld(dist_pt(O,pt(i.fir,i.sec))));
+    }
+
+    int cnt=0;
+    for (int i=int(O.x-r);i<=int(O.x+r+1);i++)
+        for (int j=int(O.y-r);j<=int(O.y+r+1);j++)
+            if (dist_pt(pt(i,j),O)<=r)
+            cnt++;
+
+    if (75*cnt<=100*vec.size())
+        cout<<"circle"<<colour[vec[0].fir][vec[0].sec]<<'\n';
+}
+
 vector<vector<int> > comp_pic(string file)
 {
 
@@ -266,6 +302,7 @@ vector<vector<int> > comp_pic(string file)
                 visited_points.clear();
                 bfs(i,j,++cnt);
                 check_square(visited_points);
+                check_circle(visited_points);
             }
 
     freopen("koko","w",stdout);
