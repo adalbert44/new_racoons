@@ -190,13 +190,13 @@ ld angle(pt p1, pt p2, pt p3)
 
 void try_add(pt p1_, pt p2_, pt p3_, pt p4_, vector<pair<int,int> > &vec)
 {
-    if (abs(angle(p1_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/18.0)
+    if (abs(angle(p1_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/12.0)
         return;
-    if (abs(angle(p4_,p1_,p3_)-acos(-1)/2.0)>acos(-1)/18.0)
+    if (abs(angle(p4_,p1_,p3_)-acos(-1)/2.0)>acos(-1)/12.0)
         return;
-    if (abs(angle(p2_,p3_,p1_)-acos(-1)/2.0)>acos(-1)/18.0)
+    if (abs(angle(p2_,p3_,p1_)-acos(-1)/2.0)>acos(-1)/12.0)
         return;
-    if (abs(angle(p3_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/18.0)
+    if (abs(angle(p3_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/12.0)
         return;
 
     int cnt_good=0;
@@ -207,72 +207,39 @@ void try_add(pt p1_, pt p2_, pt p3_, pt p4_, vector<pair<int,int> > &vec)
         if (abs(area(now,p1_,p2_)+area(now,p2_,p3_)+area(now,p3_,p4_)+area(now,p4_,p1_)-area(p1_,p2_,p3_)-area(p1_,p3_,p4_))<EPS)
             cnt_good++;
     }
-    if (cnt_good*10>=vec.size()*9 && cnt_good*10>=8*int(area(p1_,p2_,p3_)+area(p1_,p3_,p4_)))
+
+    int all=0;
+
+    if (cnt_good*10>=vec.size()*9 && cnt_good*10>=9*int(area(p1_,p2_,p3_)+area(p1_,p3_,p4_)))
         cout<<'#'<<colour[vec[0].fir][vec[0].sec]<<'\n';
 }
 
 
 void check_square(vector<pair<int,int> > vec)
 {
-    int mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9;
+    pt mnx,mny,mxx,mxy;
+    mnx.x=1e9;
+    mxx.x=-1e9;
+    mny.y=1e9;
+    mxy.y=-1e9;
 
-    for (int i=0;i<vec.size();i++)
-    {
-        mnx=min(mnx,vec[i].fir);
-        mxx=max(mxx,vec[i].fir);
-        mny=min(mny,vec[i].sec);
-        mxy=max(mxy,vec[i].sec);
-    }
 
-    int upmnx=-1e9,upmny=-1e9,domxx=1e9,domxy=1e9;
-    int upmxx=-1e9,upmxy=-1e9,domnx=1e9,domny=1e9;
     for (auto i:vec)
     {
-        if (i.fir<=mnx+5)
-        {
-            upmnx=max(upmnx,i.sec);
-            domnx=min(domnx,i.sec);
-        }
-        if (i.fir>=mxx-5)
-        {
-            upmxx=max(upmxx,i.sec);
-            domxx=min(domxx,i.sec);
-        }
-
-        if (i.sec<=mny+5)
-        {
-            upmny=max(upmny,i.fir);
-            domny=min(domny,i.fir);
-        }
-        if (i.sec>=mxy-5)
-        {
-            upmxy=max(upmxy,i.fir);
-            domxy=min(domxy,i.fir);
-        }
+        if (i.fir>mxx.x)
+            mxx=pt(i.fir,i.sec);
+        if (i.fir<mnx.x)
+            mnx=pt(i.fir,i.sec);
+        if (i.sec>mxy.y)
+            mxy=pt(i.fir,i.sec);
+        if (i.sec<mny.y)
+            mny=pt(i.fir,i.sec);
     }
 
-    pair<int,int> upleft,upright,downleft,downright,leftup,leftdown,rightup,rightdown;
+    if ((mxx.x-mnx.x+1)*(mxy.y-mny.y+1)*85<=vec.size()*100)
+        cout<<'%'<<colour[vec[0].fir][vec[0].sec]<<'\n';
 
-    upleft={mxx,domxx};
-    upright={mxx,upmxx};
-    downleft={mnx,domnx};
-    downright={mnx,upmnx};
-
-    leftup={upmny,mny};
-    leftdown={domny,mny};
-    rightup={upmxy,mxy};
-    rightdown={domxy,mxy};
-
-    pt p1_;
-    intersect(line(leftdown.fir,leftdown.sec,leftup.fir,leftup.sec),line(downleft.fir,downleft.sec,downright.fir,downright.sec),p1_);
-    pt p2_;
-    intersect(line(rightdown.fir,rightdown.sec,rightup.fir,rightup.sec),line(downleft.fir,downleft.sec,downright.fir,downright.sec),p2_);
-    pt p3_;
-    intersect(line(rightdown.fir,rightdown.sec,rightup.fir,rightup.sec),line(upleft.fir,upleft.sec,upright.fir,upright.sec),p3_);
-    pt p4_;
-    intersect(line(leftdown.fir,leftdown.sec,leftup.fir,leftup.sec),line(upleft.fir,upleft.sec,upright.fir,upright.sec),p4_);
-
-    try_add(p1_,p2_,p3_,p4_,vec);
+    try_add(mnx,mny,mxx,mxy,vec);
 }
 
 vector<vector<int> > comp_pic(string file)

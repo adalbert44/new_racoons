@@ -433,7 +433,7 @@ int main(int argc, char** argv)
     glutPassiveMotionFunc(mouse_motion);
     glutFullScreen();
 
-    scan("textures/test1.bmp");
+    scan("textures/scheme.bmp");
 
     glutMainLoop();
 
