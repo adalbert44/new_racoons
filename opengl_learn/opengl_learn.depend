@@ -1094,7 +1094,7 @@
 1508415185 source:c:\users\admin\desktop\new_racoons\opengl_learn\window_message.h
 	"includes.h"
 
-1509209589 source:c:\users\user\desktop\new_racoons\opengl_learn\basik_classes.cpp
+1509482177 source:c:\users\user\desktop\new_racoons\opengl_learn\basik_classes.cpp
 	"basik_classes.h"
 	"object_menu_reaction.h"
 
@@ -1273,7 +1273,7 @@
 	"element_type.h"
 	"input_info.h"
 
-1509209682 c:\users\user\desktop\new_racoons\opengl_learn\read_write.h
+1509480915 c:\users\user\desktop\new_racoons\opengl_learn\read_write.h
 	"includes.h"
 
 1509208115 c:\users\user\desktop\new_racoons\opengl_learn\u_ask_mode.h
@@ -1325,7 +1325,7 @@
 	"includes.h"
 	"element_type.h"
 
-1509209682 source:c:\users\user\desktop\new_racoons\opengl_learn\read_write.h
+1509480915 source:c:\users\user\desktop\new_racoons\opengl_learn\read_write.h
 	"includes.h"
 
 1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\u_ask_mode.cpp
@@ -1350,7 +1350,7 @@
 1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\window_message.h
 	"includes.h"
 
-1509308606 source:c:\users\user\desktop\new_racoons\opengl_learn\read_write.cpp
+1509482801 source:c:\users\user\desktop\new_racoons\opengl_learn\read_write.cpp
 	"read_write.h"
 	<fstream>
 
@@ -1362,7 +1362,7 @@
 	"includes.h"
 	"read_write.h"
 
-1509480665 source:c:\users\user\desktop\new_racoons\opengl_learn\scan.cpp
+1509480731 source:c:\users\user\desktop\new_racoons\opengl_learn\scan.cpp
 	"scan.h"
 
 1509440177 c:\users\admin\desktop\new_racoons\opengl_learn\scan.h

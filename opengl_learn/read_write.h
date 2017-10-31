@@ -10,6 +10,7 @@
     int save_do();
     vector<vector<Color>  > readBMP(string file);
     vector<vector<bool>  > read_pic(string file);
+    void write_info(string way);
 
 #endif // READ_WRITE_H_INCLUDED
 

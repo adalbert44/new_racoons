@@ -147,7 +147,10 @@ Button_do object_change_R;
 Button_do statement_show;
 string parse_to_string(double u)
 {
+
     u=abs(u);
+    if (u>=1e8)
+        return("inf");
     u+=0.0001;
     string res="";
     int uu=int(u);
