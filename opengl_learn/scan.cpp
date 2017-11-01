@@ -262,7 +262,7 @@ void try_add(pt p1_, pt p2_, pt p3_, pt p4_, vector<pair<int,int> > &vec)
         if (min({dist_to_line(pt(i.fir,i.sec),line(p1_,p2_)),
                  dist_to_line(pt(i.fir,i.sec),line(p2_,p3_)),
                  dist_to_line(pt(i.fir,i.sec),line(p3_,p4_)),
-                 dist_to_line(pt(i.fir,i.sec),line(p1_,p4_)),})<=10.0)
+                 dist_to_line(pt(i.fir,i.sec),line(p1_,p4_)),})<=40.0)
         {
             need_use[i.fir][i.sec]=1;
         }
@@ -329,10 +329,10 @@ void check_square(vector<pair<int,int> > vec)
 
 }
 
-void check_circle(vector<pair<int,int> > vec)
+bool check_circle(vector<pair<int,int> > vec)
 {
     if (vec.size()<50)
-        return;
+        return(0);
     pt mnx,mny,mxx,mxy;
     mnx.x=1e9;
     mxx.x=-1e9;
@@ -362,7 +362,7 @@ void check_circle(vector<pair<int,int> > vec)
 
 
     for (auto i:vec)
-        if (abs(dist_pt(O,pt(i.fir,i.sec))-r)<=r*ld(0.4/sqrt(2)))
+        if (dist_pt(O,pt(i.fir,i.sec))>=r/sqrt(2)+1)
         {
             need_use[i.fir][i.sec]=1;
         }
@@ -385,9 +385,156 @@ void check_circle(vector<pair<int,int> > vec)
         use_p[i.fir][i.sec]=0;
     }
 
-    if (ch)
-        cout<<"ci"<<colour[vec[0].fir][vec[0].sec]<<'\n';
+    return(ch);
 }
+
+bool ampermetr(vector<pair<int,int> > vec)
+{
+    if (vec.size()<50)
+        return(0);
+    pt mnx,mny,mxx,mxy;
+    mnx.x=1e9;
+    mxx.x=-1e9;
+    mny.y=1e9;
+    mxy.y=-1e9;
+
+    for (auto i:vec)
+    {
+        if (i.fir>mxx.x)
+            mxx=pt(i.fir,i.sec);
+        if (i.fir<mnx.x)
+            mnx=pt(i.fir,i.sec);
+        if (i.sec>mxy.y)
+            mxy=pt(i.fir,i.sec);
+        if (i.sec<mny.y)
+            mny=pt(i.fir,i.sec);
+    }
+
+    pt O=pt((mxx.x+mnx.x)/2.0,(mny.y+mxy.y)/2.0);
+    ld r=0;
+
+    for (auto i:vec)
+    {
+        r=max(r,ld(dist_pt(O,pt(i.fir,i.sec))));
+    }
+
+
+
+    for (auto i:vec)
+        if (dist_pt(O,pt(i.fir,i.sec))>=r/sqrt(2)+1)
+        {
+            need_use[i.fir][i.sec]=1;
+        }
+    for (auto i:vec)
+        if (need_use[i.fir][i.sec])
+        {
+            bfs2(i);
+            break;
+        }
+
+    bool ch=1;
+
+    for (auto i:vec)
+        if (need_use[i.fir][i.sec] && !use_p[i.fir][i.sec])
+            ch=0;
+
+    for (auto i:vec)
+    {
+        need_use[i.fir][i.sec]=0;
+        use_p[i.fir][i.sec]=0;
+    }
+
+    if (!ch)
+        return(0);
+
+    ch=0;
+
+     for (int i=int(O.x-r);i<=int(O.x+r+1);i++)
+        for (int j=int(O.y-r);j<=int(O.y+r+1);j++)
+            if (dist_pt(pt(i,j),O)<=r/2.0)
+            {
+                if (colour[i][j]!=colour[vec[0].fir][vec[0].sec] && colour[i][j]!=0)
+                {
+                    ch=1;
+                }
+
+            }
+
+    return(ch);
+}
+
+vector<pair<int,int> > points[2000];
+
+bool voltmetr(vector<pair<int,int> > vec)
+{
+    if (vec.size()<50)
+        return(0);
+    pt mnx,mny,mxx,mxy;
+    mnx.x=1e9;
+    mxx.x=-1e9;
+    mny.y=1e9;
+    mxy.y=-1e9;
+
+    for (auto i:vec)
+    {
+        if (i.fir>mxx.x)
+            mxx=pt(i.fir,i.sec);
+        if (i.fir<mnx.x)
+            mnx=pt(i.fir,i.sec);
+        if (i.sec>mxy.y)
+            mxy=pt(i.fir,i.sec);
+        if (i.sec<mny.y)
+            mny=pt(i.fir,i.sec);
+    }
+
+    pt O=pt((mxx.x+mnx.x)/2.0,(mny.y+mxy.y)/2.0);
+    ld r=0;
+
+    for (auto i:vec)
+    {
+        r=max(r,ld(dist_pt(O,pt(i.fir,i.sec))));
+    }
+
+
+
+    for (auto i:vec)
+        if (dist_pt(O,pt(i.fir,i.sec))>=r/sqrt(2)+1)
+        {
+            need_use[i.fir][i.sec]=1;
+        }
+    for (auto i:vec)
+        if (need_use[i.fir][i.sec])
+        {
+            bfs2(i);
+            break;
+        }
+
+    bool ch=1;
+
+    for (auto i:vec)
+        if (need_use[i.fir][i.sec] && !use_p[i.fir][i.sec])
+            ch=0;
+
+    for (auto i:vec)
+    {
+        need_use[i.fir][i.sec]=0;
+        use_p[i.fir][i.sec]=0;
+    }
+
+    if (!ch)
+        return(0);
+
+    ch=1;
+
+     for (int i=int(O.x-r);i<=int(O.x+r+1);i++)
+        for (int j=int(O.y-r);j<=int(O.y+r+1);j++)
+            if (dist_pt(pt(i,j),O)<=r/2.0)
+                if (colour[i][j]!=colour[vec[0].fir][vec[0].sec] && colour[i][j]!=0)
+                ch=0;
+    return(ch);
+}
+
+
 
 vector<vector<int> > comp_pic(string file)
 {
@@ -419,9 +566,17 @@ vector<vector<int> > comp_pic(string file)
             {
                 visited_points.clear();
                 bfs(i,j,++cnt);
-                check_square(visited_points);
-                check_circle(visited_points);
+                points[cnt]=visited_points;
             }
+
+    for (int i=1;i<=cnt;i++)
+    {
+        if (ampermetr(points[i]))
+            cout<<"amp"<<i<<'\n'; else
+        if (voltmetr(points[i]))
+            cout<<"volt"<<i<<'\n'; else
+            check_square(points[i]);
+    }
 
     freopen("koko","w",stdout);
 
