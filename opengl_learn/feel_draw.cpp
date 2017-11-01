@@ -42,7 +42,7 @@ ld speed=5;
                 for (int j1=1;j1<feel_size;j1++)
                     if (power[i][j][i1][j1]>0.001)
                     {
-                        if (power[i][j][i1][j1]>0.001 && power[i][j][i1][j1]<1e9)
+                        if (power[i][j][i1][j1]>0.001 && power[i][j][i1][j1]<mx_I)
                             mx_power=max(mx_power,power[i][j][i1][j1]);
                     }
 
@@ -202,7 +202,7 @@ void draw_feel()
 
                 string to_draw;
 
-                if (abs(power[r.fir.fir][r.fir.sec][r.sec.fir][r.sec.sec])!=inf)
+                if (abs(power[r.fir.fir][r.fir.sec][r.sec.fir][r.sec.sec])<mx_I)
                     to_draw=parse_to_string(abs(power[r.fir.fir][r.fir.sec][r.sec.fir][r.sec.sec])); else
                     to_draw="inf";
 

@@ -4,7 +4,7 @@ bool use__[30][30];
 
 bool badR__(long double u)
 {
-    return(u>1e8);
+    return(u>=mx_I);
 }
 
 void dfs__(int a, int b)

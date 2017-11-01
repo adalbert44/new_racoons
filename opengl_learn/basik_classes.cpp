@@ -13,9 +13,9 @@ double taken_R;
 double ky;
 double kx;
 
-long double mx_U=500;
+long double mx_U=1000000;
 long double mx_R=1000000;
-long double mx_I=500;
+long double mx_I=10000;
 
 bool read_U=0;
 bool read_R=0;
@@ -155,7 +155,7 @@ string parse_to_string(double u)
 {
 
     u=abs(u);
-    if (u>=1e8)
+    if (u>=1e9)
         return("inf");
     u+=0.0001;
     string res="";

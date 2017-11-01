@@ -1094,7 +1094,7 @@
 1508415185 source:c:\users\admin\desktop\new_racoons\opengl_learn\window_message.h
 	"includes.h"
 
-1509482177 source:c:\users\user\desktop\new_racoons\opengl_learn\basik_classes.cpp
+1509531771 source:c:\users\user\desktop\new_racoons\opengl_learn\basik_classes.cpp
 	"basik_classes.h"
 	"object_menu_reaction.h"
 
@@ -1134,7 +1134,7 @@
 	"includes.h"
 	"feel_reaction.h"
 
-1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\basik_classes.h
+1509530437 source:c:\users\user\desktop\new_racoons\opengl_learn\basik_classes.h
 	"includes.h"
 
 1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\choose_lab.cpp
@@ -1159,7 +1159,7 @@
 1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\element_type.h
 	"includes.h"
 
-1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\feel_draw.cpp
+1509531331 source:c:\users\user\desktop\new_racoons\opengl_learn\feel_draw.cpp
 	"feel_draw.h"
 	"basik_classes.h"
 	"potential_mode.h"
@@ -1179,7 +1179,7 @@
 1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\feel_draw.h
 	"includes.h"
 
-1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\feel_reaction.cpp
+1509530522 source:c:\users\user\desktop\new_racoons\opengl_learn\feel_reaction.cpp
 	"feel_reaction.h"
 	"object_menu_reaction.h"
 	"get_power.h"
@@ -1192,7 +1192,7 @@
 1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\feel_reaction.h
 	"includes.h"
 
-1509529406 source:c:\users\user\desktop\new_racoons\opengl_learn\get_power.cpp
+1509530027 source:c:\users\user\desktop\new_racoons\opengl_learn\get_power.cpp
 	"get_power.h"
 
 1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\get_power.h
@@ -1211,7 +1211,7 @@
 	"global_vars.h"
 	"basik_classes.h"
 
-1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\input_info.cpp
+1509530630 source:c:\users\user\desktop\new_racoons\opengl_learn\input_info.cpp
 	"input_info.h"
 
 1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\input_info.h
@@ -1299,7 +1299,7 @@
 	"read_write.h"
 	"get_power.h"
 
-1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\object_menu_draw.cpp
+1509531567 source:c:\users\user\desktop\new_racoons\opengl_learn\object_menu_draw.cpp
 	"object_menu_draw.h"
 
 1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\object_menu_draw.h
