@@ -23,6 +23,13 @@ struct line {
         b=-(x1-x2);
         c=-a*x1-b*y1;
     }
+
+    line(pt p1, pt p2)
+    {
+        a=p1.y-p2.y;
+        b=-(p1.x-p2.x);
+        c=-a*p1.x-b*p1.y;
+    }
 };
 
 const double EPS = 1e-9;
@@ -70,7 +77,6 @@ vector<vector<bool> > read_pic(string file)
     int x1, y1, x2, y2;
     cout<<"do";
 
-  //рассчитываем интегральное изображение
     integral_image = new unsigned long [width*height*sizeof(unsigned long*)];
 
     for (int i = 0; i < width; i++) {
@@ -94,7 +100,6 @@ vector<vector<bool> > read_pic(string file)
     vector<vector<bool> > res(vec1.size());
 
 
-//находим границы для локальные областей
     for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
         index = j * width + i;
@@ -141,11 +146,12 @@ void bfs(int i, int j, int c)
     {
         pair<int,int> now=q.front();
         q.pop();
-        visited_points.pb(now);
+
         int i=now.fir;
         int j=now.sec;
         if (colour[i][j])
             continue;
+        visited_points.pb(now);
         colour[i][j]=c;
 
         if (i-1>=0)
@@ -187,96 +193,111 @@ ld angle(pt p1, pt p2, pt p3)
     return(acos((c*c+b*b-a*a)/(2.0*b*c)));
 }
 
+ld dist_to_line(pt i, line j)
+{
+    return((j.a*i.x+j.b*i.y+c)/sqrt(sqr(j.a)+sqr(j.b)));
+}
+
 void try_add(pt p1_, pt p2_, pt p3_, pt p4_, vector<pair<int,int> > &vec)
 {
-    if (abs(angle(p1_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/18.0)
+    if (abs(angle(p1_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/12.0)
         return;
-    if (abs(angle(p4_,p1_,p3_)-acos(-1)/2.0)>acos(-1)/18.0)
+    if (abs(angle(p4_,p1_,p3_)-acos(-1)/2.0)>acos(-1)/12.0)
         return;
-    if (abs(angle(p2_,p3_,p1_)-acos(-1)/2.0)>acos(-1)/18.0)
+    if (abs(angle(p2_,p3_,p1_)-acos(-1)/2.0)>acos(-1)/12.0)
         return;
-    if (abs(angle(p3_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/18.0)
+    if (abs(angle(p3_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/12.0)
         return;
 
-
-
-    int cnt_good=0;
+    ld mx=0;
+    ld sum=0;
 
     for (auto i:vec)
     {
-        pt now(i.fir,i.sec);
-        if (abs(area(now,p1_,p2_)+area(now,p2_,p3_)+area(now,p3_,p4_)+area(now,p4_,p1_)-area(p1_,p2_,p3_)-area(p1_,p3_,p4_))<EPS)
-            cnt_good++;
-    }
-    cout<<vec.size()<<'\n';
-    cout<<cnt_good<<' '<<dist_pt(p1_,p2_)*dist_pt(p1_,p3_)<<'!'<<'\n';
+        mx=max(mx,dist_to_line(i,line(p1,p2)));
+        mx=max(mx,dist_to_line(i,line(p2,p3)));
+        mx=max(mx,dist_to_line(i,line(p3,p4)));
+        mx=max(mx,dist_to_line(i,line(p1,p4)));
 
-    if (cnt_good*10>=vec.size()*8 && cnt_good*10>=8*int(area(p1_,p2_,p3_)+area(p1_,p3_,p4_)))
-        cout<<'#'<<colour[vec[0].fir][vec[0].sec]<<'\n';
+        sum+=max({dist_to_line(i,line(p1,p2),dist_to_line(i,line(p3,p2),dist_to_line(i,line(p3,p4),dist_to_line(i,line(p1,p4)})
+    }
+
+    cout<<"sq"<<colour[vec[0].fir][vec[0].sec]<<' '<<sum/ld(vec.size())<<' '<<mx<<'\n';
 }
 
 
 void check_square(vector<pair<int,int> > vec)
 {
-    int mnx=1e9,mny=1e9,mxx=-1e9,mxy=-1e9;
+    pt mnx,mny,mxx,mxy;
+    mnx.x=1e9;
+    mxx.x=-1e9;
+    mny.y=1e9;
+    mxy.y=-1e9;
 
-    for (int i=0;i<vec.size();i++)
-    {
-        mnx=min(mnx,vec[i].fir);
-        mxx=max(mxx,vec[i].fir);
-        mny=min(mny,vec[i].sec);
-        mxy=max(mxy,vec[i].sec);
-    }
 
-    int upmnx=-1e9,upmny=-1e9,domxx=1e9,domxy=1e9;
-    int upmxx=-1e9,upmxy=-1e9,domnx=1e9,domny=1e9;
     for (auto i:vec)
     {
-        if (i.fir<=mnx+5)
-        {
-            upmnx=max(upmnx,i.sec);
-            domnx=min(domnx,i.sec);
-        }
-        if (i.fir>=mxx-5)
-        {
-            upmxx=max(upmxx,i.sec);
-            domxx=min(domxx,i.sec);
-        }
-
-        if (i.sec<=mny+5)
-        {
-            upmny=max(upmny,i.fir);
-            domny=min(domny,i.fir);
-        }
-        if (i.sec>=mxy-5)
-        {
-            upmxy=max(upmxy,i.fir);
-            domxy=min(domxy,i.fir);
-        }
+        if (i.fir>mxx.x)
+            mxx=pt(i.fir,i.sec);
+        if (i.fir<mnx.x)
+            mnx=pt(i.fir,i.sec);
+        if (i.sec>mxy.y)
+            mxy=pt(i.fir,i.sec);
+        if (i.sec<mny.y)
+            mny=pt(i.fir,i.sec);
     }
 
-    pair<int,int> upleft,upright,downleft,downright,leftup,leftdown,rightup,rightdown;
+    try_add(mnx,mny,mxx,mxy,vec);
 
-    upleft={mxx,domxx};
-    upright={mxx,upmxx};
-    downleft={mnx,domnx};
-    downright={mnx,upmnx};
+    pt a,b,c,d;
+    a.x=mnx.x;
+    a.y=mny.y;
+    b.x=mxx.x;
+    b.y=mny.y;
+    c.x=mxx.x;
+    c.y=mxy.y;
+    d.x=mnx.x;
+    d.y=mxy.y;
+    try_add(a,b,c,d,vec);
 
-    leftup={upmny,mny};
-    leftdown={domny,mny};
-    rightup={upmxy,mxy};
-    rightdown={domxy,mxy};
+}
 
-    pt p1_;
-    intersect(line(leftdown.fir,leftdown.sec,leftup.fir,leftup.sec),line(downleft.fir,downleft.sec,downright.fir,downright.sec),p1_);
-    pt p2_;
-    intersect(line(rightdown.fir,rightdown.sec,rightup.fir,rightup.sec),line(downleft.fir,downleft.sec,downright.fir,downright.sec),p2_);
-    pt p3_;
-    intersect(line(rightdown.fir,rightdown.sec,rightup.fir,rightup.sec),line(upleft.fir,upleft.sec,upright.fir,upright.sec),p3_);
-    pt p4_;
-    intersect(line(leftdown.fir,leftdown.sec,leftup.fir,leftup.sec),line(upleft.fir,upleft.sec,upright.fir,upright.sec),p4_);
+void check_circle(vector<pair<int,int> > vec)
+{
+    pt mnx,mny,mxx,mxy;
+    mnx.x=1e9;
+    mxx.x=-1e9;
+    mny.y=1e9;
+    mxy.y=-1e9;
 
-    try_add(p1_,p2_,p3_,p4_,vec);
+    for (auto i:vec)
+    {
+        if (i.fir>mxx.x)
+            mxx=pt(i.fir,i.sec);
+        if (i.fir<mnx.x)
+            mnx=pt(i.fir,i.sec);
+        if (i.sec>mxy.y)
+            mxy=pt(i.fir,i.sec);
+        if (i.sec<mny.y)
+            mny=pt(i.fir,i.sec);
+    }
+
+    pt O=pt((mxx.x+mnx.x)/2.0,(mny.y+mxy.y)/2.0);
+    ld r=0;
+
+    for (auto i:vec)
+    {
+        r=max(r,ld(dist_pt(O,pt(i.fir,i.sec))));
+    }
+
+    int cnt=0;
+    for (int i=int(O.x-r);i<=int(O.x+r+1);i++)
+        for (int j=int(O.y-r);j<=int(O.y+r+1);j++)
+            if (dist_pt(pt(i,j),O)<=r)
+            cnt++;
+
+    if (75*cnt<=100*vec.size())
+        cout<<"circle"<<colour[vec[0].fir][vec[0].sec]<<'\n';
 }
 
 vector<vector<int> > comp_pic(string file)
@@ -303,6 +324,7 @@ vector<vector<int> > comp_pic(string file)
                 visited_points.clear();
                 bfs(i,j,++cnt);
                 check_square(visited_points);
+                check_circle(visited_points);
             }
 
     freopen("koko","w",stdout);

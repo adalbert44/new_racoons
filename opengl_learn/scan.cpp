@@ -23,6 +23,13 @@ struct line {
         b=-(x1-x2);
         c=-a*x1-b*y1;
     }
+
+    line(pt p1, pt p2)
+    {
+        a=p1.y-p2.y;
+        b=-(p1.x-p2.x);
+        c=-a*p1.x-b*p1.y;
+    }
 };
 
 const double EPS = 1e-9;
@@ -123,12 +130,12 @@ vector<vector<bool> > read_pic(string file)
     }
 
     delete[] integral_image;
-
+    reverse(res.begin(),res.end());
     return(res);
 }
 
 vector<vector<int> > colour;
-vector<vector<bool> > vec;
+vector<vector<bool> > vec,use_p,need_use;
 vector<pair<int,int> > visited_points;
 
 void bfs(int i, int j, int c)
@@ -186,6 +193,59 @@ ld angle(pt p1, pt p2, pt p3)
     return(acos((c*c+b*b-a*a)/(2.0*b*c)));
 }
 
+ld dist_to_line(pt i, line j)
+{
+    return(abs(j.a*i.x+j.b*i.y+j.c)/sqrt(sqr(j.a)+sqr(j.b)));
+}
+
+bool endd(pair<int,int> i)
+{
+    if (i.fir==0 || i.fir==vec.size()-1)
+        return(1);
+    if (i.sec==0 || i.sec==vec[0].size()-1)
+        return(1);
+
+    if (colour[i.fir][i.sec]!=colour[i.fir-1][i.sec]) return(1);
+    if (colour[i.fir][i.sec]!=colour[i.fir][i.sec-1]) return(1);
+    if (colour[i.fir][i.sec]!=colour[i.fir+1][i.sec]) return(1);
+    if (colour[i.fir][i.sec]!=colour[i.fir][i.sec+1]) return(1);
+
+    return(0);
+}
+
+void bfs2(pair<int,int> u)
+{
+    queue<pair<int,int> > q;
+    q.push(u);
+    while (!q.empty())
+    {
+        pair<int,int> now=q.front();
+        q.pop();
+
+        int i=now.fir;
+        int j=now.sec;
+        if (use_p[i][j])
+            continue;
+        use_p[i][j]=1;
+
+        if (i-1>=0)
+            if (need_use[i-1][j])
+                q.push({i-1,j});
+
+        if (i+1<vec.size())
+            if (need_use[i+1][j])
+                q.push({i+1,j});
+
+        if (j-1>=0)
+            if (need_use[i][j-1])
+                q.push({i,j-1});
+
+        if (j+1<vec[i].size())
+            if (need_use[i][j+1])
+                q.push({i,j+1});
+    }
+}
+
 void try_add(pt p1_, pt p2_, pt p3_, pt p4_, vector<pair<int,int> > &vec)
 {
     if (abs(angle(p1_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/12.0)
@@ -197,24 +257,44 @@ void try_add(pt p1_, pt p2_, pt p3_, pt p4_, vector<pair<int,int> > &vec)
     if (abs(angle(p3_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/12.0)
         return;
 
-    int cnt_good=0;
+
+    for (auto i:vec)
+        if (min({dist_to_line(pt(i.fir,i.sec),line(p1_,p2_)),
+                 dist_to_line(pt(i.fir,i.sec),line(p2_,p3_)),
+                 dist_to_line(pt(i.fir,i.sec),line(p3_,p4_)),
+                 dist_to_line(pt(i.fir,i.sec),line(p1_,p4_)),})<=10.0)
+        {
+            need_use[i.fir][i.sec]=1;
+        }
+
+    for (auto i:vec)
+        if (need_use[i.fir][i.sec])
+        {
+            bfs2(i);
+            break;
+        }
+
+    bool ch=1;
+
+    for (auto i:vec)
+        if (need_use[i.fir][i.sec] && !use_p[i.fir][i.sec])
+            ch=0;
 
     for (auto i:vec)
     {
-        pt now(i.fir,i.sec);
-        if (abs(area(now,p1_,p2_)+area(now,p2_,p3_)+area(now,p3_,p4_)+area(now,p4_,p1_)-area(p1_,p2_,p3_)-area(p1_,p3_,p4_))<EPS)
-            cnt_good++;
+        need_use[i.fir][i.sec]=0;
+        use_p[i.fir][i.sec]=0;
     }
 
-    int all=0;
-
-    if (cnt_good*10>=vec.size()*9 && cnt_good*10>=9*int(area(p1_,p2_,p3_)+area(p1_,p3_,p4_)))
-        cout<<'#'<<colour[vec[0].fir][vec[0].sec]<<'\n';
+    if (ch)
+        cout<<"sq"<<colour[vec[0].fir][vec[0].sec]<<'\n';
 }
 
 
 void check_square(vector<pair<int,int> > vec)
 {
+    if (vec.size()<50)
+        return;
     pt mnx,mny,mxx,mxy;
     mnx.x=1e9;
     mxx.x=-1e9;
@@ -234,14 +314,25 @@ void check_square(vector<pair<int,int> > vec)
             mny=pt(i.fir,i.sec);
     }
 
-    if ((mxx.x-mnx.x+1)*(mxy.y-mny.y+1)*85<=vec.size()*100)
-        cout<<'%'<<colour[vec[0].fir][vec[0].sec]<<'\n';
-
     try_add(mnx,mny,mxx,mxy,vec);
+
+    pt a,b,c,d;
+    a.x=mnx.x;
+    a.y=mny.y;
+    b.x=mxx.x;
+    b.y=mny.y;
+    c.x=mxx.x;
+    c.y=mxy.y;
+    d.x=mnx.x;
+    d.y=mxy.y;
+    try_add(a,b,c,d,vec);
+
 }
 
 void check_circle(vector<pair<int,int> > vec)
 {
+    if (vec.size()<50)
+        return;
     pt mnx,mny,mxx,mxy;
     mnx.x=1e9;
     mxx.x=-1e9;
@@ -268,14 +359,34 @@ void check_circle(vector<pair<int,int> > vec)
         r=max(r,ld(dist_pt(O,pt(i.fir,i.sec))));
     }
 
-    int cnt=0;
-    for (int i=int(O.x-r);i<=int(O.x+r+1);i++)
-        for (int j=int(O.y-r);j<=int(O.y+r+1);j++)
-            if (dist_pt(pt(i,j),O)<=r)
-            cnt++;
 
-    if (75*cnt<=100*vec.size())
-        cout<<"circle"<<colour[vec[0].fir][vec[0].sec]<<'\n';
+
+    for (auto i:vec)
+        if (abs(dist_pt(O,pt(i.fir,i.sec))-r)<=r*ld(0.4/sqrt(2)))
+        {
+            need_use[i.fir][i.sec]=1;
+        }
+    for (auto i:vec)
+        if (need_use[i.fir][i.sec])
+        {
+            bfs2(i);
+            break;
+        }
+
+    bool ch=1;
+
+    for (auto i:vec)
+        if (need_use[i.fir][i.sec] && !use_p[i.fir][i.sec])
+            ch=0;
+
+    for (auto i:vec)
+    {
+        need_use[i.fir][i.sec]=0;
+        use_p[i.fir][i.sec]=0;
+    }
+
+    if (ch)
+        cout<<"ci"<<colour[vec[0].fir][vec[0].sec]<<'\n';
 }
 
 vector<vector<int> > comp_pic(string file)
@@ -286,8 +397,15 @@ vector<vector<int> > comp_pic(string file)
     for (int i=0;i<vec.size();i++)
     {
         colour.pb({});
+        use_p.pb({});
+        need_use.pb({});
         for (int j=0;j<vec[i].size();j++)
+        {
             colour[i].pb(0);
+            use_p[i].pb(0);
+            need_use[i].pb(0);
+        }
+
     }
 
     for (int i=0;i<colour.size();i++)

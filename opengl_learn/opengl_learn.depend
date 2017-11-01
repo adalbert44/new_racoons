@@ -1243,7 +1243,7 @@
 1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\load_textures.h
 	"includes.h"
 
-1509478854 source:c:\users\user\desktop\new_racoons\opengl_learn\main.cpp
+1509519353 source:c:\users\user\desktop\new_racoons\opengl_learn\main.cpp
 	"includes.h"
 	"load_textures.h"
 	"basik_classes.h"
@@ -1350,7 +1350,7 @@
 1509208115 source:c:\users\user\desktop\new_racoons\opengl_learn\window_message.h
 	"includes.h"
 
-1509482801 source:c:\users\user\desktop\new_racoons\opengl_learn\read_write.cpp
+1509482978 source:c:\users\user\desktop\new_racoons\opengl_learn\read_write.cpp
 	"read_write.h"
 	<fstream>
 
@@ -1362,7 +1362,7 @@
 	"includes.h"
 	"read_write.h"
 
-1509480731 source:c:\users\user\desktop\new_racoons\opengl_learn\scan.cpp
+1509519324 source:c:\users\user\desktop\new_racoons\opengl_learn\scan.cpp
 	"scan.h"
 
 1509440177 c:\users\admin\desktop\new_racoons\opengl_learn\scan.h
