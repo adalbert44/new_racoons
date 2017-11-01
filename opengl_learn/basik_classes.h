@@ -225,5 +225,11 @@
     extern string input_info_ask;
     extern string input_text_ask;
 
+    extern long double mx_U;
+    extern long double mx_R;
+    extern long double mx_I;
+
+    extern bool read_U;
+    extern bool read_R;
 
 #endif // BASIK_CLASSES_H_INCLUDED

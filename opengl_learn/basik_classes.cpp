@@ -13,6 +13,12 @@ double taken_R;
 double ky;
 double kx;
 
+long double mx_U=500;
+long double mx_R=1000000;
+long double mx_I=500;
+
+bool read_U=0;
+bool read_R=0;
 //GLuint key_close_horizontal=Load("textures/key_hor.png");
 //GLuint key_close_vertical=Load("textures/key_ver.png");
 

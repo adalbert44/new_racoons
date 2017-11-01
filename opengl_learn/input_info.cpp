@@ -140,6 +140,10 @@ void input_keyboard(unsigned char c)
     }
     reverse(info_zn.begin(),info_zn.end());
 
+    if (input_info_ask=="Enter R:" && parse_to_double(info_zn)>mx_R)
+        info_zn.pop_back();
+    if (input_info_ask=="Enter U:" && parse_to_double(info_zn)>mx_U)
+        info_zn.pop_back();
 }
 
 void input_skeyboard(unsigned char c)

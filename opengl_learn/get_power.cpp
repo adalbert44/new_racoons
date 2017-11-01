@@ -26,7 +26,7 @@ int gauss (vector < vector<ld> > a, vector<ld> & ans) {
 		for (int i=row; i<n; ++i)
 			if (abs (a[i][col]) > abs (a[sel][col]))
 				sel = i;
-		if (abs (a[sel][col]) < 1e-15)
+		if (abs (a[sel][col]) < 1e-9)
 			continue;
 		for (int i=col; i<=m; ++i)
 			swap (a[sel][i], a[row][i]);
