@@ -49,7 +49,7 @@ int gauss (vector < vector<ld> > a, vector<ld> & ans) {
 		double sum = 0;
 		for (int j=0; j<m; ++j)
 			sum += ans[j] * a[i][j];
-		if (abs (sum - a[i][m]) > 1e-15)
+		if (abs (sum - a[i][m]) > 1e-9)
 			return 0;
 	}
 
@@ -244,10 +244,8 @@ void solve(vector<pair<int,int> > vec)
     }
 
 
-
     vector<ld> res;
     int r=gauss(all,res);
-
     if (r==0)
     {
         for (auto i:vec)
