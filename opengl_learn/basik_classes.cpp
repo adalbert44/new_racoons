@@ -15,7 +15,7 @@ double kx;
 
 long double mx_U=1000000;
 long double mx_R=1000000;
-long double mx_I=10000;
+long double mx_I=700;
 
 bool read_U=0;
 bool read_R=0;
