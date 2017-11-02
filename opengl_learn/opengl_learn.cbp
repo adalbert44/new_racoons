@@ -36,9 +36,9 @@
 			<Add library="opengl32" />
 			<Add library="glu32" />
 			<Add library="glut32" />
-			<Add library="libs/DevIL.lib" />
-			<Add library="libs/ILU.lib" />
-			<Add library="libs/ILUT.lib" />
+			<Add library="libs\DevIL.lib" />
+			<Add library="libs\ILU.lib" />
+			<Add library="libs\ILUT.lib" />
 		</Linker>
 		<Unit filename="U_ask_mode.cpp" />
 		<Unit filename="U_ask_mode.h">
@@ -54,6 +54,10 @@
 		</Unit>
 		<Unit filename="delete_mode_reaction.cpp" />
 		<Unit filename="delete_mode_reaction.h">
+			<Option compile="1" />
+		</Unit>
+		<Unit filename="digits.cpp" />
+		<Unit filename="digits.h">
 			<Option compile="1" />
 		</Unit>
 		<Unit filename="element_type.cpp" />

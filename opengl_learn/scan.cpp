@@ -1,4 +1,6 @@
 #include "scan.h"
+#include "digits.h"
+
 
 struct pt {
 	double x, y;
@@ -155,19 +157,19 @@ void bfs(int i, int j, int c)
         colour[i][j]=c;
 
         if (i-1>=0)
-            if (vec[i-1][j])
+            if (vec[i-1][j] && !colour[i-1][j])
                 q.push({i-1,j});
 
         if (i+1<vec.size())
-            if (vec[i+1][j])
+            if (vec[i+1][j] && !colour[i+1][j])
                 q.push({i+1,j});
 
         if (j-1>=0)
-            if (vec[i][j-1])
+            if (vec[i][j-1]  && !colour[i][j-1])
                 q.push({i,j-1});
 
-        if (j+1<vec[i].size())
-            if (vec[i][j+1])
+        if (j+1<vec[i].size() )
+            if (vec[i][j+1]  && !colour[i][j+1])
                 q.push({i,j+1});
 
     }
@@ -229,19 +231,19 @@ void bfs2(pair<int,int> u)
         use_p[i][j]=1;
 
         if (i-1>=0)
-            if (need_use[i-1][j])
+            if (need_use[i-1][j] && !use_p[i-1][j])
                 q.push({i-1,j});
 
         if (i+1<vec.size())
-            if (need_use[i+1][j])
+            if (need_use[i+1][j] && !use_p[i+1][j])
                 q.push({i+1,j});
 
         if (j-1>=0)
-            if (need_use[i][j-1])
+            if (need_use[i][j-1] && !use_p[i][j-1])
                 q.push({i,j-1});
 
         if (j+1<vec[i].size())
-            if (need_use[i][j+1])
+            if (need_use[i][j+1] && !use_p[i][j+1])
                 q.push({i,j+1});
     }
 }
@@ -534,13 +536,215 @@ bool voltmetr(vector<pair<int,int> > vec)
     return(ch);
 }
 
+vector<pair<int,int> > bfs3(pair<int,int> u, vector<vector< bool> > &use_p, vector<vector< bool> > & vec)
+{
+    vector<pair<int,int> > visited;
+    queue<pair<int,int> > q;
+    q.push(u);
+    while (!q.empty())
+    {
+
+        pair<int,int> now=q.front();
+        q.pop();
+
+        int i=now.fir;
+        int j=now.sec;
+        if (use_p[i][j])
+            continue;
+        visited.pb({i,j});
+        use_p[i][j]=1;
+
+        if (i-1>=0)
+            if (vec[i-1][j]==vec[i][j] && !use_p[i-1][j])
+                q.push({i-1,j});
+
+        if (i+1<vec.size())
+            if (vec[i+1][j]==vec[i][j] && !use_p[i+1][j])
+                q.push({i+1,j});
+
+        if (j-1>=0)
+            if (vec[i][j-1]==vec[i][j]  && !use_p[i][j-1])
+                q.push({i,j-1});
+
+        if (j+1<vec[i].size())
+            if (vec[i][j+1]==vec[i][j]  && !use_p[i][j+1])
+                q.push({i,j+1});
+    }
+
+    return(visited);
+}
+
+struct digit
+{
+    int x,y,zn;
+
+    digit()
+    {
+
+    }
+
+    digit(int x_, int y_, int zn_)
+    {
+        x=x_;
+        y=y_;
+        zn=zn_;
+    }
+};
+
+vector<digit> digits;
+
+vector<vector<bool> > squeeze(vector<vector<bool> > vec, int n, int m)
+{
+    vector<vector<bool> > res;
+
+    for (int i=1;i<=n;i++)
+    {
+        res.pb({});
+        for (int j=1;j<=m;j++)
+            res.back().pb(0);
+    }
+
+    int nb=1;
+    int mb=1;
+
+    cout<<vec.size()-1<<' '<<n<<"@@@@@@@"<<'\n';
+
+    while ((vec.size()-1)/nb>=n)
+        nb++;
+    while ((vec[0].size()-1)/mb>=m)
+        mb++;
+
+
+    for (int i=0;i<vec.size();i++)
+        for (int j=0;j<vec[i].size();j++)
+            if (vec[i][j])
+                res[i/nb][j/mb]=1;
+
+    cout<<(vec[0].size()-1)/mb<<'\n';
+    return(res);
+}
+
+digit check_digit(vector<pair<int,int> > visited)
+{
+
+    //cout<<'!';
+    ld mnx=1e9;
+    ld mny=1e9;
+    ld mxx=-1e9;
+    ld mxy=-1e9;
+    for (auto i:visited)
+    {
+        mnx=min(mnx,(ld) i.fir);
+        mxx=max(mxx,(ld)  i.fir);
+        mny=min(mny,(ld)  i.sec);
+        mxy=max(mxy,(ld)  i.sec);
+    }
+    mnx--;
+    mny--;
+    mxx++;
+    mxy++;
+
+    ld kx=30.0/(mxx-mnx+1);
+    ld ky=20.0/(mxy-mny+1);
+
+    vector<vector<bool> > parsed;
+
+    for (int i=1;i<=30;i++)
+    {
+        parsed.pb({});
+        for (int j=1;j<=20;j++)
+            parsed.back().pb(0);
+    }
+
+    for (auto i:visited)
+    {
+        i.fir-=mnx;
+        i.sec-=mny;
+        i.fir*=kx;
+        i.sec*=ky;
+        i.fir=min(i.fir,29);
+        i.sec=min(i.sec,19);
+        parsed[i.fir][i.sec]=1;
+    }
+
+    for (int i=1;i<parsed.size()-1;i++)
+        for (int j=1;j<parsed[i].size()-1;j++)
+    {
+        if (parsed[i+1][j] && parsed[i-1][j])
+            parsed[i][j]=1;
+        if (parsed[i][j+1] && parsed[i][j-1])
+            parsed[i][j]=1;
+    }
+
+
+
+
+
+    //parsed=squeeze(parsed,30,20);
+
+    vector<vector<bool> > use_p;
+    for (auto i:parsed)
+    {
+        use_p.pb({});
+        for (auto j:parsed)
+            use_p.back().pb(0);
+    }
+
+
+    int cnt=0;
+    for (int i=0;i<parsed.size();i++)
+        for (int j=0;j<parsed[0].size();j++)
+        if (parsed[i][j]==0  && !use_p[i][j])
+        {
+            bfs3({i,j},use_p,parsed);
+            cnt++;
+        }
+
+    int x=(mnx+mxx)/2;
+    int y=(mny+mxy)/2;
+
+
+
+    return(digit(x,y,get_nomber(parsed,cnt)));
+}
+
+
+void get_digits()
+{
+
+    vector<vector<bool> > use_p;
+    for (auto i:vec)
+    {
+        use_p.pb({});
+        for (auto j:vec)
+            use_p.back().pb(0);
+    }
+
+    for (int i=0;i<vec.size();i++)
+        for (int j=0;j<vec[0].size();j++)
+        if (vec[i][j]==0 && !use_p[i][j])
+        {
+            vector<pair<int,int> > visited=bfs3({i,j},use_p,vec);
+            if (visited.size()<1000 && visited.size()>10)
+            {
+                digit u=check_digit(visited);
+                    digits.pb(u);
+            }
+        }
+
+    for (auto i:digits)
+    {
+        cout<<i.x<<' '<<i.y<<' '<<i.zn<<'\n';
+    }
+}
 
 
 vector<vector<int> > comp_pic(string file)
 {
 
     vec=read_pic(file);
-    cout<<'!';
+    get_digits();
+
     for (int i=0;i<vec.size();i++)
     {
         colour.pb({});
@@ -578,15 +782,15 @@ vector<vector<int> > comp_pic(string file)
             check_square(points[i]);
     }
 
-    freopen("koko","w",stdout);
-
+    /*ofstream out("koko");
     for (auto i:colour)
     {
         for (auto j:i)
-            cout<<j;
-        cout<<'\n';
+            out<<j;
+        out<<'\n';
     }
 
+    out.close();*/
     return(colour);
 }
 
