@@ -589,9 +589,81 @@ struct digit
         y=y_;
         zn=zn_;
     }
+
 };
 
 vector<digit> digits;
+vector<pair<int,int> > pluss,minuss;
+
+pair<int,int> midle(vector<pair<int,int> > visited)
+{
+    int mnx=1e9;
+    int mny=1e9;
+    int mxx=-1e9;
+    int mxy=-1e9;
+    for (auto i:visited)
+    {
+        mnx=min(mnx, i.fir);
+        mxx=max(mxx,  i.fir);
+        mny=min(mny,  i.sec);
+        mxy=max(mxy,  i.sec);
+    }
+
+    return(make_pair((mnx+mxx)/2,(mny+mxy)/2));
+}
+
+bool check_pluss(vector<pair<int,int> > visited)
+{
+    int mnx=1e9;
+    int mny=1e9;
+    int mxx=-1e9;
+    int mxy=-1e9;
+    for (auto i:visited)
+    {
+        mnx=min(mnx, i.fir);
+        mxx=max(mxx,  i.fir);
+        mny=min(mny,  i.sec);
+        mxy=max(mxy,  i.sec);
+    }
+
+    if ((ld)abs(mnx-mxx)/(ld)abs(mny-mxy)>1.5 || (ld)abs(mnx-mxx)/(ld)abs(mny-mxy)<0.7)
+        return(0);
+    int lx=abs(mnx-mxx)/4;
+    int ly=abs(mny-mxy)/4;
+
+    for (auto i:visited)
+    {
+        if (i.fir<mnx+lx && i.sec<mny+ly)
+            return(0);
+        if (i.fir<mnx+lx && i.sec>mxy-ly)
+            return(0);
+        if (i.fir>mxx-lx && i.sec<mny+ly)
+            return(0);
+        if (i.fir>mxx-lx && i.sec>mxy-ly)
+            return(0);
+    }
+
+    return(1);
+}
+
+bool check_minuss(vector<pair<int,int> > visited)
+{
+    int mnx=1e9;
+    int mny=1e9;
+    int mxx=-1e9;
+    int mxy=-1e9;
+    for (auto i:visited)
+    {
+        mnx=min(mnx, i.fir);
+        mxx=max(mxx, i.fir);
+        mny=min(mny, i.sec);
+        mxy=max(mxy, i.sec);
+    }
+
+//    cout<<(ld)abs(mnx-mxx)<<' '<<(ld)abs(mny-mxy)<<'\n';
+
+    return((ld)abs(mny-mxy)/(ld)abs(mnx-mxx)>3);
+}
 
 vector<vector<bool> > squeeze(vector<vector<bool> > vec, int n, int m)
 {
@@ -708,6 +780,13 @@ digit check_digit(vector<pair<int,int> > visited)
     return(digit(x,y,get_nomber(parsed,cnt)));
 }
 
+vector<pair<int,int> > dot;
+
+void clear_vec(vector<pair<int,int> > visited)
+{
+    for (auto i:visited)
+        vec[i.fir][i.sec]=1;
+}
 
 void get_digits()
 {
@@ -725,17 +804,51 @@ void get_digits()
         if (vec[i][j]==0 && !use_p[i][j])
         {
             vector<pair<int,int> > visited=bfs3({i,j},use_p,vec);
-            if (visited.size()<1000 && visited.size()>10)
+            if (visited.size()<1000 && visited.size()>100)
             {
-                digit u=check_digit(visited);
-                    digits.pb(u);
+                if (check_pluss(visited))
+                {
+                    pluss.pb(midle(visited));
+                    clear_vec(visited);
+                } else
+                if (check_minuss(visited))
+                {
+                    minuss.pb(midle(visited));
+                    clear_vec(visited);
+
+                }
+                else
+                {
+                    digit u=check_digit(visited);
+                    if (u.zn!=-1)
+                    {
+                        digits.pb(u);
+                        clear_vec(visited);
+                    }
+                }
+            } else
+            if (visited.size()<=100)
+            {
+                dot.pb(midle(visited));
+                clear_vec(visited);
             }
         }
 
+    cout<<"digits\n";
     for (auto i:digits)
     {
         cout<<i.x<<' '<<i.y<<' '<<i.zn<<'\n';
     }
+    cout<<"pluss\n";
+    for (auto i:pluss)
+        cout<<i.fir<<' '<<i.sec<<'\n';
+    cout<<"minuss\n";
+    for (auto i:minuss)
+        cout<<i.fir<<' '<<i.sec<<'\n';
+    cout<<"dot\n";
+    for (auto i:dot)
+        cout<<i.fir<<' '<<i.sec<<'\n';
+
 }
 
 
