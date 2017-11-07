@@ -614,6 +614,7 @@ pair<int,int> midle(vector<pair<int,int> > visited)
 
 bool check_pluss(vector<pair<int,int> > visited)
 {
+   // cout<<"pluss";
     int mnx=1e9;
     int mny=1e9;
     int mxx=-1e9;
@@ -648,6 +649,8 @@ bool check_pluss(vector<pair<int,int> > visited)
 
 bool check_minuss(vector<pair<int,int> > visited)
 {
+
+  //  cout<<"minuss";
     int mnx=1e9;
     int mny=1e9;
     int mxx=-1e9;
@@ -679,7 +682,7 @@ vector<vector<bool> > squeeze(vector<vector<bool> > vec, int n, int m)
     int nb=1;
     int mb=1;
 
-    cout<<vec.size()-1<<' '<<n<<"@@@@@@@"<<'\n';
+  //  cout<<vec.size()-1<<' '<<n<<"@@@@@@@"<<'\n';
 
     while ((vec.size()-1)/nb>=n)
         nb++;
@@ -692,14 +695,12 @@ vector<vector<bool> > squeeze(vector<vector<bool> > vec, int n, int m)
             if (vec[i][j])
                 res[i/nb][j/mb]=1;
 
-    cout<<(vec[0].size()-1)/mb<<'\n';
+    //cout<<(vec[0].size()-1)/mb<<'\n';
     return(res);
 }
 
 digit check_digit(vector<pair<int,int> > visited)
 {
-
-    //cout<<'!';
     ld mnx=1e9;
     ld mny=1e9;
     ld mxx=-1e9;
@@ -716,43 +717,16 @@ digit check_digit(vector<pair<int,int> > visited)
     mxx++;
     mxy++;
 
-    ld kx=30.0/(mxx-mnx+1);
-    ld ky=20.0/(mxy-mny+1);
-
     vector<vector<bool> > parsed;
-
-    for (int i=1;i<=30;i++)
+    for (int i=0;i<=(mxx-mnx);i++)
     {
         parsed.pb({});
-        for (int j=1;j<=20;j++)
+        for (int i=0;i<=(mxy-mny);i++)
             parsed.back().pb(0);
     }
 
     for (auto i:visited)
-    {
-        i.fir-=mnx;
-        i.sec-=mny;
-        i.fir*=kx;
-        i.sec*=ky;
-        i.fir=min(i.fir,29);
-        i.sec=min(i.sec,19);
-        parsed[i.fir][i.sec]=1;
-    }
-
-    for (int i=1;i<parsed.size()-1;i++)
-        for (int j=1;j<parsed[i].size()-1;j++)
-    {
-        if (parsed[i+1][j] && parsed[i-1][j])
-            parsed[i][j]=1;
-        if (parsed[i][j+1] && parsed[i][j-1])
-            parsed[i][j]=1;
-    }
-
-
-
-
-
-    //parsed=squeeze(parsed,30,20);
+        parsed[i.fir-mnx][i.sec-mny]=1;
 
     vector<vector<bool> > use_p;
     for (auto i:parsed)
@@ -772,12 +746,55 @@ digit check_digit(vector<pair<int,int> > visited)
             cnt++;
         }
 
+    ld kx=20.0/(mxx-mnx+1);
+    ld ky=20.0/(mxy-mny+1);
+
+
+
+    parsed.clear();
+
+
+    for (int i=1;i<=28;i++)
+    {
+        parsed.pb({});
+        for (int j=1;j<=28;j++)
+            parsed.back().pb(0);
+    }
+
+    for (auto i:visited)
+    {
+        i.fir-=mnx;
+        i.sec-=mny;
+        i.fir*=kx;
+        i.sec*=ky;
+        i.fir=min(i.fir,20);
+        i.sec=min(i.sec,20);
+        parsed[i.fir+4][i.sec+4]=1;
+    }
+
+    for (int i=1;i<parsed.size()-1;i++)
+        for (int j=1;j<parsed[i].size()-1;j++)
+    {
+        if (parsed[i+1][j] && parsed[i-1][j])
+            parsed[i][j]=1;
+        if (parsed[i][j+1] && parsed[i][j-1])
+            parsed[i][j]=1;
+    }
+
+    for (auto i:parsed)
+    {
+        for (auto j:i)
+            cout<<j;
+        cout<<'\n';
+    }
+    cout<<'\n';
+
+
+
     int x=(mnx+mxx)/2;
     int y=(mny+mxy)/2;
 
-
-
-    return(digit(x,y,get_nomber(parsed,cnt)));
+    return(digit(digit(x,y,get_nomber(parsed,cnt))));
 }
 
 vector<pair<int,int> > dot;
@@ -803,8 +820,10 @@ void get_digits()
         for (int j=0;j<vec[0].size();j++)
         if (vec[i][j]==0 && !use_p[i][j])
         {
+
             vector<pair<int,int> > visited=bfs3({i,j},use_p,vec);
-            if (visited.size()<1000 && visited.size()>100)
+           // cout<<'!';
+            if (visited.size()<1000 && visited.size()>60)
             {
                 if (check_pluss(visited))
                 {
@@ -827,11 +846,12 @@ void get_digits()
                     }
                 }
             } else
-            if (visited.size()<=100)
+            if (visited.size()<=60)
             {
                 dot.pb(midle(visited));
                 clear_vec(visited);
             }
+         //   cout<<'@';
         }
 
     cout<<"digits\n";
@@ -909,5 +929,6 @@ vector<vector<int> > comp_pic(string file)
 
 void scan(string file)
 {
+    freopen("koko","w",stdout);
     comp_pic(file);
 }
