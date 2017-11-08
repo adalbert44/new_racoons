@@ -180,7 +180,7 @@ void creat_feel()
         for (int j=1;j<feel_size;j++)
             object[i][j]=Circle_element(i*feel_seg_size,j*feel_seg_size);
 
-    left_menu_background=Figure(0,left_menu_size+20,0,WinHei,left_menu_background_tex,1.0);
+    left_menu_background=Figure(0,left_menu_size+30,0,WinHei,left_menu_background_tex,1.0);
 
     for (int i=0;i<7;i++)
         left_menu_vertical[i]=Figure(0,left_menu_size/2.0,100+i*(WinHei-100)/7.0,100+(i+1)*(WinHei-100)/7.0,left_menu_vertical[i].tex,1.0);
@@ -196,17 +196,16 @@ void creat_feel()
         int y=i/4;
         choose_lab[i]=Button_do(Figure(x*www,(x+1)*www,y*hhh,(y+1)*hhh,choose_lab_tex[i],1.0),&create_lab,light_lab,shade_lab);
     }
-
-    line_mode=Button(Figure(100,left_menu_size+20,50,100,line_mode_tex,1.0),{&line_mode_used});
+    line_mode=Button(Figure(150,left_menu_size+20,50,100,line_mode_tex,1.0),{&line_mode_used});
     save=Button_do(Figure(0,50,0,50,save_tex,1.0),&save_do,window_light,window_shade.tex);
     point_mode=Button(Figure(0,50,50,100,point_mode_tex,1.0),{&point_mode_used});
-    move_mode=Button(Figure(150,200,0,50,move_tex,1.0),{&move_mode_used});
+    move_mode=Button(Figure(100,150,50,100,move_tex,1.0),{&move_mode_used});
     delete_mode=Button(Figure(50,100,50,100,delete_mode_tex,1.0),{&delete_mode_used});
     U_ask_mode=Button(Figure(200,250,0,50,u_mode,1.0),{&U_ask_mode_used});
     potential_mode=Button(Figure(250,300,0,50,p_mode,1.0),{&potential_mode_used});
 
-    undo_button=Button_do(Figure(50,100,0,50,undo_tex,1.0),&undo,window_light,window_shade.tex);
-    redo_button=Button_do(Figure(100,150,0,50,redo_tex,1.0),&redo,window_light,window_shade.tex);
+    undo_button=Button_do(Figure(100,150,0,50,undo_tex,1.0),&undo,window_light,window_shade.tex);
+    redo_button=Button_do(Figure(150,200,0,50,redo_tex,1.0),&redo,window_light,window_shade.tex);
 
     shade_button1.tex=shade_button_tex1;
     shade_button2.tex=shade_button_tex2;
@@ -221,14 +220,14 @@ void creat_feel()
 
     input_info_background=Figure(w1/1.15,WinWid-w1/1.15,40,WinHei-h1*1.62+10,info_background,1.0);
     input_feel=Figure(w2-60,WinWid-w2+60,160,200,text_line,1.0);
-    input_ok=Button_do(Figure(w1,w1+l,WinHei-h1,WinHei-h1+100,ok_tex,1.0),&input_ok_do,light_ok,shade_circle);
-    input_R_ok=Button_do(Figure(w1,w1+l,WinHei-h1,WinHei-h1+100,ok_tex,1.0),&change_R,light_ok,shade_circle);
-    input_bad=Button_do(Figure(w1+l,w1+2*l,WinHei-h1,WinHei-h1+100,bad_tex,1.0),&input_bad_do,light_ok,shade_circle);
+    input_ok=Button_do(Figure(w1-10,w1+l-10,200,310,ok_tex,1.0),&input_ok_do,light_ok,shade_circle);
+    input_R_ok=Button_do(Figure(w1-10,w1+l-10,200,310,ok_tex,1.0),&change_R,light_ok,shade_circle);
+    input_bad=Button_do(Figure(w1+l+10,w1+2*l+10,200,310,bad_tex,1.0),&input_bad_do,light_ok,shade_circle);
 
     back_to_main=Button_do(Figure(WinWid-100,WinWid,WinHei-100,WinHei,back_button_tex,1.0),&back_to_main_do,light_down,shade_down);
 
-    statement_show=Button_do(Figure(WinWid-100,WinWid-50,50,100,show_statements_tex,1.0),&show_statement,light_ok,shade_circle);
-    answer_lab=Button_do(Figure(WinWid-100,WinWid-50,150,200,ok_lab_tex,1.0),&read_anses,light_ok,shade_circle);
+    statement_show=Button_do(Figure(WinWid-150,WinWid-90,80,140,show_statements_tex,1.0),&show_statement,light_ok,shade_circle);
+    answer_lab=Button_do(Figure(WinWid-150,WinWid-90,180,240,ok_lab_tex,1.0),&read_anses,light_ok,shade_circle);
 
     window_shade=Figure(0,WinWid,0,WinHei,window_shade.tex,0.0);
 
