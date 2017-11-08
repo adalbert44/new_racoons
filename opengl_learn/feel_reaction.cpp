@@ -303,15 +303,15 @@ void feel_mouse_pressed(int button, int state)
 
                     object_info=Figure(x,x+200,y,y+75,main_menu_background.tex,1.0);
                     //cout<<'@'<<left_menu_background_tex<<'\n';
-                    object_delete=Button_do(Figure(x+200,x+275,y,y+75,delete_mode_tex,1.0),&object_delete_func);
-                    object_rotate=Button_do(Figure(x+275,x+350,y,y+75,rotate_tex,1.0),&object_rotate_func);
+                    object_delete=Button_do(Figure(x+200,x+275,y,y+75,delete_mode_tex,1.0),&object_delete_func,window_light,window_shade.tex);
+                    object_rotate=Button_do(Figure(x+275,x+350,y,y+75,rotate_tex,1.0),&object_rotate_func,window_light,window_shade.tex);
 
                     if (key(object[i][j].f.tex))
                         object_change_state=Button_do(Figure(x+350,x+425,y,y+75,rotate_tex,1.0),
-                                                      &object_change_state_func);
+                                                      &object_change_state_func,window_light,window_shade.tex);
                     if (reostat(object[i][j].f.tex))
                         object_change_R=Button_do(Figure(x+350,x+425,y,y+75,rotate_tex,1.0),
-                                                      &object_change_R_func);
+                                                      &object_change_R_func,window_light,window_shade.tex);
 
                     choosen_object={i,j};
                 }

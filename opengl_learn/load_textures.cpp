@@ -89,4 +89,10 @@ void load_all()
         choose_labs_tex[i]=Load(way);
     }
 
+
+
+    light_exit=Load("textures/shade_exit_tex.png");
+    light_line=Load("textures/line_shade_tex.png");
+    light_lab=Load("textures/lab_shade.png");
+    light_ok=Load("textures/white_circle.png");
 }

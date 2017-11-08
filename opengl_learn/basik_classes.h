@@ -273,4 +273,9 @@
     extern bool read_U;
     extern bool read_R;
 
+    extern GLuint light_exit;
+    extern GLuint light_line;
+    extern GLuint light_lab;
+    extern GLuint light_ok;
+
 #endif // BASIK_CLASSES_H_INCLUDED
