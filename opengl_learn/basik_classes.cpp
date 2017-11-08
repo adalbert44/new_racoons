@@ -48,6 +48,16 @@ Button_do back_to_main;
 Button_do answer_lab;
 
 GLuint menu_background;
+GLuint back_button_tex;
+GLuint change_tex;
+GLuint u_mode;
+GLuint show_statements_tex;
+GLuint save_tex;
+GLuint ok_lab_tex;
+GLuint lab_background;
+GLuint info_khm;
+GLuint p_mode;
+
 GLuint lab_tex;
 GLuint exit_tex;
 GLuint photo_tex;

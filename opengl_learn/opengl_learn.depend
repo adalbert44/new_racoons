@@ -1679,3 +1679,292 @@
 1510147397 source:c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.h
 	"includes.h"
 
+1510151206 source:c:\users\user\documents\github\new_racoons2\opengl_learn\basik_classes.cpp
+	"basik_classes.h"
+	"object_menu_reaction.h"
+
+1510151206 c:\users\user\documents\github\new_racoons2\opengl_learn\basik_classes.h
+	"includes.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\includes.h
+	<bits/stdc++.h>
+	<time.h>
+	<cstdlib>
+	<GL/glut.h>
+	<IL/ilut.h>
+	"global_vars.h"
+	"basik_classes.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\global_vars.h
+	"includes.h"
+	"basik_classes.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\object_menu_reaction.h
+	"includes.h"
+	"delete_mode_reaction.h"
+	"element_type.h"
+	"input_info.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\delete_mode_reaction.h
+	"includes.h"
+	"feel_reaction.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\feel_reaction.h
+	"includes.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\element_type.h
+	"includes.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\input_info.h
+	"includes.h"
+	"feel_reaction.h"
+
+1510151206 source:c:\users\user\documents\github\new_racoons2\opengl_learn\basik_classes.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\choose_lab.cpp
+	"choose_lab.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\choose_lab.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\choose_lab.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\delete_mode_reaction.cpp
+	"delete_mode_reaction.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\delete_mode_reaction.h
+	"includes.h"
+	"feel_reaction.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\digits.cpp
+	"digits.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\digits.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\digits.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\element_type.cpp
+	"element_type.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\element_type.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\feel_draw.cpp
+	"feel_draw.h"
+	"basik_classes.h"
+	"potential_mode.h"
+	"lab_mode.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\feel_draw.h
+	"includes.h"
+
+1510150577 c:\users\user\documents\github\new_racoons2\opengl_learn\potential_mode.h
+	"includes.h"
+	"element_type.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\lab_mode.h
+	"includes.h"
+	"input_info.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\feel_draw.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\feel_reaction.cpp
+	"feel_reaction.h"
+	"object_menu_reaction.h"
+	"get_power.h"
+	"element_type.h"
+	"lab_mode.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\get_power.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\feel_reaction.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\get_power.cpp
+	"get_power.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\get_power.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\global_vars.h
+	"includes.h"
+	"basik_classes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\includes.h
+	<bits/stdc++.h>
+	<time.h>
+	<cstdlib>
+	<GL/glut.h>
+	<IL/ilut.h>
+	"global_vars.h"
+	"basik_classes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\input_info.cpp
+	"input_info.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\input_info.h
+	"includes.h"
+	"feel_reaction.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\input_text.cpp
+	"input_text.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\input_text.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\input_text.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\lab_mode.cpp
+	"lab_mode.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\lab_mode.h
+	"includes.h"
+	"input_info.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\load_textures.cpp
+	"load_textures.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\load_textures.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\load_textures.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\main.cpp
+	"includes.h"
+	"load_textures.h"
+	"basik_classes.h"
+	"feel_draw.h"
+	"feel_reaction.h"
+	"undo_redo.h"
+	"object_menu_draw.h"
+	"object_menu_reaction.h"
+	"delete_mode_reaction.h"
+	"input_info.h"
+	"read_write.h"
+	"U_ask_mode.h"
+	"window_message.h"
+	"potential_mode.h"
+	"main_menu.h"
+	"input_text.h"
+	"lab_mode.h"
+	"scan.h"
+
+1510150586 c:\users\user\documents\github\new_racoons2\opengl_learn\undo_redo.h
+	"includes.h"
+	"get_power.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\object_menu_draw.h
+	"includes.h"
+	"delete_mode_reaction.h"
+	"element_type.h"
+	"input_info.h"
+
+1510150577 c:\users\user\documents\github\new_racoons2\opengl_learn\read_write.h
+	"includes.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\u_ask_mode.h
+	"includes.h"
+	"get_power.h"
+
+1510150586 c:\users\user\documents\github\new_racoons2\opengl_learn\window_message.h
+	"includes.h"
+
+1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\main_menu.h
+	"includes.h"
+	"input_text.h"
+	"read_write.h"
+	"get_power.h"
+
+1510150577 c:\users\user\documents\github\new_racoons2\opengl_learn\scan.h
+	"includes.h"
+	"read_write.h"
+	"scan.h"
+	"digits.h"
+	"put_on_feel.h"
+
+1510150577 c:\users\user\documents\github\new_racoons2\opengl_learn\put_on_feel.h
+	"includes.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\main_menu.cpp
+	"main_menu.h"
+	"choose_lab.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\main_menu.h
+	"includes.h"
+	"input_text.h"
+	"read_write.h"
+	"get_power.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\object_menu_draw.cpp
+	"object_menu_draw.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\object_menu_draw.h
+	"includes.h"
+	"delete_mode_reaction.h"
+	"element_type.h"
+	"input_info.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\object_menu_reaction.cpp
+	"object_menu_reaction.h"
+	"feel_reaction.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\object_menu_reaction.h
+	"includes.h"
+	"delete_mode_reaction.h"
+	"element_type.h"
+	"input_info.h"
+
+1510150577 source:c:\users\user\documents\github\new_racoons2\opengl_learn\potential_mode.cpp
+	"potential_mode.h"
+
+1510150577 source:c:\users\user\documents\github\new_racoons2\opengl_learn\potential_mode.h
+	"includes.h"
+	"element_type.h"
+
+1510150577 source:c:\users\user\documents\github\new_racoons2\opengl_learn\read_write.cpp
+	"read_write.h"
+	<fstream>
+
+1510150577 source:c:\users\user\documents\github\new_racoons2\opengl_learn\read_write.h
+	"includes.h"
+
+1510150577 source:c:\users\user\documents\github\new_racoons2\opengl_learn\scan.cpp
+	"scan.h"
+
+1510150577 source:c:\users\user\documents\github\new_racoons2\opengl_learn\scan.h
+	"includes.h"
+	"read_write.h"
+	"scan.h"
+	"digits.h"
+	"put_on_feel.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\u_ask_mode.cpp
+	"U_ask_mode.h"
+	"feel_draw.h"
+	"get_power.h"
+
+1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\u_ask_mode.h
+	"includes.h"
+	"get_power.h"
+
+1510150586 source:c:\users\user\documents\github\new_racoons2\opengl_learn\undo_redo.cpp
+	"undo_redo.h"
+
+1510150586 source:c:\users\user\documents\github\new_racoons2\opengl_learn\undo_redo.h
+	"includes.h"
+	"get_power.h"
+
+1510150586 source:c:\users\user\documents\github\new_racoons2\opengl_learn\window_message.cpp
+	"window_message.h"
+
+1510150586 source:c:\users\user\documents\github\new_racoons2\opengl_learn\window_message.h
+	"includes.h"
+
