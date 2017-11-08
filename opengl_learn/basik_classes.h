@@ -193,6 +193,7 @@
     extern vector<vector<Event> > events;
     extern long double power[30][30][30][30];
     extern Figure text_back_ground;
+    extern Figure lab_background0;
     extern bool choose_lab_mode;
     extern bool window_picture_used;
     extern vector<Figure> window_picture;
@@ -278,5 +279,6 @@
     extern GLuint light_line;
     extern GLuint light_lab;
     extern GLuint light_ok;
+
 
 #endif // BASIK_CLASSES_H_INCLUDED

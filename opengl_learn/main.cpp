@@ -217,6 +217,8 @@ void creat_feel()
     double h2=WinHei/2.5+100;
     double l=(WinWid-w1*2)/2.0;
 
+    lab_background0 = Figure(0,WinWid,0,WinHei,lab_background,1.0);
+
     input_info_background=Figure(w1,WinWid-w1,h1,WinHei-h1,info_background,1.0);
     input_feel=Figure(w2,WinWid-w2,h2,h2+25,text_line,1.0);
     input_ok=Button_do(Figure(w1,w1+l,WinHei-h1,WinHei-h1+100,ok_tex,1.0),&input_ok_do,light_ok,window_shade.tex);

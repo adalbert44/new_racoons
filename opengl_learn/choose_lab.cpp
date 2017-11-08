@@ -3,6 +3,7 @@
 void choose_lab_draw()
 {
     back_to_main.watch();
+    lab_background0.draw_state();
     for (int i=0;i<16;i++)
     {
         if (back_to_main.light>0.0001)

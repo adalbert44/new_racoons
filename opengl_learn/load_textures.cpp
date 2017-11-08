@@ -88,8 +88,7 @@ void load_all()
     for (int i=0;i<16;i++)
     {
         string way="textures/labs/lab";
-        if (i<13) way+=parse(i+1); else
-            way +=parse(1);
+        way+=parse(i+1);
         way+=".png";
         choose_lab_tex[i]=Load(way);
 
