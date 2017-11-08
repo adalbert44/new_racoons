@@ -241,6 +241,17 @@ struct prov
     extern GLuint exit_tex;
     extern GLuint photo_tex;
     extern GLuint new_file_tex;
+
+    extern GLuint menu_background;
+    extern GLuint back_button_tex;
+    extern GLuint change_tex;
+    extern GLuint u_mode;
+    extern GLuint show_statements_tex;
+    extern GLuint save_tex;
+    extern GLuint ok_lab_tex;
+    extern GLuint lab_background;
+    extern GLuint info_khm;
+
     extern GLuint old_file_tex;
     extern string info_name;
     extern string now_file_name;
