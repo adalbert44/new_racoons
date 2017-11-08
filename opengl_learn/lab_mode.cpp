@@ -39,7 +39,7 @@ int show_statement()
     window_message=1;
     window_picture_used=1;
     window_picture.clear();
-    window_picture.pb(Figure(350,WinWid-350,50,WinHei/2.0-25,choose_lab_tex[choosen_lab],1.0));
+    window_picture.pb(Figure(800,WinWid-80,50,WinHei/2.0-25,choose_lab_tex[choosen_lab],1.0));
     window_picture.pb(Figure(400,WinWid-400,WinHei/2.0+25,WinHei-50,choose_labs_tex[choosen_lab],1.0));
 }
 
