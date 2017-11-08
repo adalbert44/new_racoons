@@ -834,11 +834,11 @@
 1507448909 source:c:\users\user\documents\github\racoons\opengl_learn\choose_lab.cpp
 	"choose_lab.h"
 
-1510154641 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.cpp
+1510163532 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.cpp
 	"basik_classes.h"
 	"object_menu_reaction.h"
 
-1510154653 c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
+1510163355 c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
 	"includes.h"
 
 1508415184 c:\users\admin\desktop\new_racoons\opengl_learn\includes.h
@@ -874,10 +874,10 @@
 	"includes.h"
 	"feel_reaction.h"
 
-1510154653 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
+1510163355 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
 	"includes.h"
 
-1508761443 source:c:\users\admin\desktop\new_racoons\opengl_learn\choose_lab.cpp
+1510158712 source:c:\users\admin\desktop\new_racoons\opengl_learn\choose_lab.cpp
 	"choose_lab.h"
 
 1508415184 c:\users\admin\desktop\new_racoons\opengl_learn\choose_lab.h
@@ -967,14 +967,14 @@
 1508415184 source:c:\users\admin\desktop\new_racoons\opengl_learn\input_text.h
 	"includes.h"
 
-1510155773 source:c:\users\admin\desktop\new_racoons\opengl_learn\lab_mode.cpp
+1510162837 source:c:\users\admin\desktop\new_racoons\opengl_learn\lab_mode.cpp
 	"lab_mode.h"
 
 1508415184 source:c:\users\admin\desktop\new_racoons\opengl_learn\lab_mode.h
 	"includes.h"
 	"input_info.h"
 
-1510154695 source:c:\users\admin\desktop\new_racoons\opengl_learn\load_textures.cpp
+1510163465 source:c:\users\admin\desktop\new_racoons\opengl_learn\load_textures.cpp
 	"load_textures.h"
 
 1508415184 c:\users\admin\desktop\new_racoons\opengl_learn\load_textures.h
@@ -983,7 +983,7 @@
 1508415184 source:c:\users\admin\desktop\new_racoons\opengl_learn\load_textures.h
 	"includes.h"
 
-1510154789 source:c:\users\admin\desktop\new_racoons\opengl_learn\main.cpp
+1510163522 source:c:\users\admin\desktop\new_racoons\opengl_learn\main.cpp
 	"includes.h"
 	"load_textures.h"
 	"basik_classes.h"

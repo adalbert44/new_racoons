@@ -101,11 +101,15 @@ void load_all()
 
 
 
-    light_exit=Load("textures/shade_exit_tex.png");
+    light_exit=Load("textures/light_exit_tex.png");
     light_line=Load("textures/line_shade_tex.png");
     light_lab=Load("textures/lab_shade.png");
     light_ok=Load("textures/white_circle.png");
 
     shade_lab=Load("textures/black_button4.png");
     shade_circle=Load("textures/black_circle.png");
+    shade_exit=Load("textures/shade_exit_tex.png");
+    light_down=Load("textures/back_light.png");
+    shade_lab=Load("textures/back_shade.png");
+    shade_down=Load("textures/lab_light.png");
 }

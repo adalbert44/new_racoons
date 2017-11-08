@@ -81,8 +81,12 @@ GLuint window_light;
 GLuint light_exit;
 GLuint light_line;
 GLuint light_lab;
+GLuint light_down;
+GLuint shade_down;
 GLuint shade_lab;
 GLuint shade_circle;
+GLuint shade_exit;
+
 
 GLuint light_ok;
 

@@ -280,9 +280,12 @@
     extern GLuint light_line;
     extern GLuint light_lab;
     extern GLuint light_ok;
-
     extern GLuint shade_lab;
     extern GLuint shade_circle;
+    extern GLuint shade_exit;
+    extern GLuint light_down;
+    extern GLuint shade_lab;
+    extern GLuint shade_down;
 
 
 #endif // BASIK_CLASSES_H_INCLUDED
