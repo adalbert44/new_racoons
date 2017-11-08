@@ -132,6 +132,7 @@ Circle_element object[30][30];
 GLuint left_menu_background_tex;
 GLuint line_mode_tex;
 GLuint point_mode_tex;
+GLuint key_tex;
 Button_do *pressed_do=NULL;
 bool taken_point=0;
 vector<pair<int,int> > taken_reb;

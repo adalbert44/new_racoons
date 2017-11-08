@@ -199,6 +199,7 @@
     extern vector<Figure> window_picture;
     extern GLuint choose_lab_mode_tex[16];
     extern GLuint window_light;
+    extern GLuint key_tex;
 
     extern long double start[30][30][30][30];
     extern long double len[30][30][30][30];
