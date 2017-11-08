@@ -39,9 +39,9 @@ int show_statement()
     window_message=1;
     window_picture_used=1;
     window_picture.clear();
-    window_picture.pb(Figure(1000,WinWid-130,90,WinHei/2.0-25,choose_lab_tex[choosen_lab],1.0));
-    window_picture.pb(Figure(988,WinWid-304,WinHei/2.0-25,WinHei-50,choose_labs_tex[choosen_lab],1.0));
-    window_picture.pb(Figure(600,1000,71,650,key_tex,1.0));
+    window_picture.pb(Figure(1100,WinWid-10,300,809,choose_lab_tex[choosen_lab],1.0));
+    window_picture.pb(Figure(1083,WinWid-193,42,530,choose_labs_tex[choosen_lab],1.0));
+    window_picture.pb(Figure(580,1109,19,821,key_tex,1.0));
 }
 
 int read_anses()
