@@ -106,11 +106,14 @@ vector<vector<Color> > readBMP(string file)
     cout << "  Name: " << filename << endl;
     cout << " Width: " << width << endl;
     cout << "Height: " << height << endl;
-
+    cout<<'!';
     int row_padded = (width*3 + 3) & (~3);
+
     unsigned char* data = new unsigned char[row_padded];
+
     unsigned char tmp;
     vector<vector<Color> > res(height);
+
     for(int i = 0; i < height; i++)
     {
         fread(data, sizeof(unsigned char), row_padded, f);
@@ -126,7 +129,6 @@ vector<vector<Color> > readBMP(string file)
     }
 
     fclose(f);
-
 
     return(res);
 }

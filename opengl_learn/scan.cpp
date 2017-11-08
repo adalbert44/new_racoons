@@ -1,6 +1,23 @@
 #include "scan.h"
 #include "digits.h"
 
+struct digit
+{
+    int x,y,zn;
+
+    digit()
+    {
+
+    }
+
+    digit(int x_, int y_, int zn_)
+    {
+        x=x_;
+        y=y_;
+        zn=zn_;
+    }
+
+};
 
 struct pt {
 	double x, y;
@@ -34,6 +51,11 @@ struct line {
     }
 };
 
+vector<digit> digits;
+
+vector<pair<int,int> > pluss,minuss;
+vector<pair<int,int> > dot;
+
 const double EPS = 1e-9;
 
 double det (double a, double b, double c, double d) {
@@ -63,7 +85,9 @@ vector<vector<int> > black_white(vector<vector<Color> > vec)
 
 vector<vector<bool> > read_pic(string file)
 {
+    cout<<"!!!!!!!!!!!!!!!!!!\n";
     vector<vector<Color> > vec=readBMP(file);
+
     vector<vector<int> > vec1=black_white(vec);
 
     int width=vec[0].size();
@@ -133,6 +157,7 @@ vector<vector<bool> > read_pic(string file)
 
     delete[] integral_image;
     reverse(res.begin(),res.end());
+
     return(res);
 }
 
@@ -248,49 +273,297 @@ void bfs2(pair<int,int> u)
     }
 }
 
-void try_add(pt p1_, pt p2_, pt p3_, pt p4_, vector<pair<int,int> > &vec)
+struct Element
 {
-    if (abs(angle(p1_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/12.0)
-        return;
-    if (abs(angle(p4_,p1_,p3_)-acos(-1)/2.0)>acos(-1)/12.0)
-        return;
-    if (abs(angle(p2_,p3_,p1_)-acos(-1)/2.0)>acos(-1)/12.0)
-        return;
-    if (abs(angle(p3_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/12.0)
-        return;
+    vector<pt> p;
+    ld rad;
+    ld R;
+    pt minuss;
+    pt pluss;
+    string name="";
 
-
-    for (auto i:vec)
-        if (min({dist_to_line(pt(i.fir,i.sec),line(p1_,p2_)),
-                 dist_to_line(pt(i.fir,i.sec),line(p2_,p3_)),
-                 dist_to_line(pt(i.fir,i.sec),line(p3_,p4_)),
-                 dist_to_line(pt(i.fir,i.sec),line(p1_,p4_)),})<=40.0)
-        {
-            need_use[i.fir][i.sec]=1;
-        }
-
-    for (auto i:vec)
-        if (need_use[i.fir][i.sec])
-        {
-            bfs2(i);
-            break;
-        }
-
-    bool ch=1;
-
-    for (auto i:vec)
-        if (need_use[i.fir][i.sec] && !use_p[i.fir][i.sec])
-            ch=0;
-
-    for (auto i:vec)
+    Element()
     {
-        need_use[i.fir][i.sec]=0;
-        use_p[i.fir][i.sec]=0;
+        R=0;
     }
 
-    if (ch)
-        cout<<"sq"<<colour[vec[0].fir][vec[0].sec]<<'\n';
+};
+
+vector<Element> elements;
+
+bool check_midle(pt p1_, pt p2_, pt p3_, pt p4_)
+{
+    int mnx=min({p1_.x,p2_.x,p3_.x,p4_.x});
+    int mxx=max({p1_.x,p2_.x,p3_.x,p4_.x});
+    int mny=min({p1_.y,p2_.y,p3_.y,p4_.y});
+    int mxy=max({p1_.y,p2_.y,p3_.y,p4_.y});
+
+    cout<<mnx<<' '<<mxx<<' '<<mny<<' '<<mxy<<" check_key"<<'\n';
+
+    pt pp=pt((p1_.x+p3_.x)/2.0,(p1_.y+p3_.y)/2.0);
+
+    ld len=dist_pt(p1_,pp);
+    ld len_=len/2.0;
+
+    p1_=pt(pp.x+(p1_.x-pp.x)*0.5 , pp.y+(p1_.y-pp.y)*0.5);
+
+    len=dist_pt(p3_,pp);
+    len_=len/2.0;
+
+    p3_=pt(pp.x+(p3_.x-pp.x)*0.5 , pp.y+(p3_.y-pp.y)*0.5);
+
+    pp=pt((p2_.x+p4_.x)/2.0,(p2_.y+p4_.y)/2.0);
+
+    len=dist_pt(p2_,pp);
+    len_=len/2.0;
+
+    p2_=pt(pp.x+(p2_.x-pp.x)*0.5 , pp.y+(p2_.y-pp.y)*0.5);
+
+    len=dist_pt(p4_,pp);
+    len_=len/2.0;
+
+    p4_=pt(pp.x+(p4_.x-pp.x)*0.5 , pp.y+(p4_.y-pp.y)*0.5);
+
+     mnx=min({p1_.x,p2_.x,p3_.x,p4_.x});
+     mxx=max({p1_.x,p2_.x,p3_.x,p4_.x});
+     mny=min({p1_.y,p2_.y,p3_.y,p4_.y});
+     mxy=max({p1_.y,p2_.y,p3_.y,p4_.y});
+
+    cout<<mnx<<' '<<mxx<<' '<<mny<<' '<<mxy<<" check_key"<<'\n';
+
+    for (int i=mnx;i<=mxx;i++)
+        for (int j=mny;j<=mxy;j++)
+        {
+            if (abs(area(p1_,p2_,pt(i,j))+area(p3_,p2_,pt(i,j))+area(p3_,p4_,pt(i,j))+area(p1_,p4_,pt(i,j))
+                -area(p1_,p2_,p3_)-area(p1_,p3_,p4_))<EPS)
+                {
+                    if (i>=0 && i<vec.size())
+                        if (j>=0 && j<vec[0].size())
+                        if (vec[i][j]==0)
+                        {
+                            cout<<i<<' '<<j<<'\n';
+                            return(1);
+                        }
+
+                }
+        }
+    return(0);
 }
+
+vector<pt> intersect_black(pt p1, pt p2)
+{
+    int mnx=min(p1.x,p2.x);
+    int mxx=max(p1.x,p2.x);
+    int mny=min(p1.y,p2.y);
+    int mxy=max(p1.y,p2.y);
+
+
+
+    p1.x+=0.5;
+    p1.y+=0.5;
+    p2.x+=0.5;
+    p2.y+=0.5;
+
+    vector<pt> res;
+
+    for (int i=mnx;i<=mxx;i++)
+        for (int j=mny;j<=mxy;j++)
+        {
+            if (i<0)
+                continue;
+            if (j<0)
+                continue;
+            if (i>=vec.size())
+                continue;
+            if (j>=vec[0].size())
+                continue;
+
+            pt o;
+            bool ch=0;
+            if (intersect(line(p1,p2),line(pt(i,j),pt(i+1,j)),o))
+                ch=1;
+            if (intersect(line(p1,p2),line(pt(i+1,j),pt(i+1,j+1)),o))
+                ch=1;
+            if (intersect(line(p1,p2),line(pt(i+1,j+1),pt(i,j+1)),o))
+                ch=1;
+            if (intersect(line(p1,p2),line(pt(i,j),pt(i,j+1)),o))
+                ch=1;
+
+            if (ch && vec[i][j]==0)
+                res.pb(pt(i,j));
+        }
+
+    return (res);
+}
+
+bool check_res(pt p1_, pt p2_, pt p3_, pt p4_)
+{
+    vector<pt> g12=intersect_black(p1_,p2_);
+    vector<pt> g23=intersect_black(p2_,p3_);
+    vector<pt> g34=intersect_black(p3_,p4_);
+    vector<pt> g41=intersect_black(p1_,p4_);
+
+    if (!g12.empty() && !g34.empty())
+        return 1;
+
+    if (!g23.empty() && !g41.empty())
+        return 1;
+
+    return 0;
+}
+
+void add(pt p1_, pt p2_, pt p3_, pt p4_)
+{
+    cout<<"add"<<'\n';
+    cout<<p1_.x<<' '<<p1_.y<<'\n';
+    pt pp=pt((p1_.x+p3_.x)/2.0,(p1_.y+p3_.y)/2.0);
+
+    ld len=dist_pt(p1_,pp);
+    ld len_=len+40;
+
+
+    p1_=pt(pp.x+(p1_.x-pp.x)*1.3 , pp.y+(p1_.y-pp.y)*1.3);
+    cout<<p1_.x<<' '<<p1_.y<<'\n';
+
+    len=dist_pt(p3_,pp);
+    len_=len+40;
+
+    p3_=pt(pp.x+(p3_.x-pp.x)*1.3 , pp.y+(p3_.y-pp.y)*1.3);
+
+    pp=pt((p2_.x+p4_.x)/2.0,(p2_.y+p4_.y)/2.0);
+
+    len=dist_pt(p2_,pp);
+    len_=len+40;
+
+    p2_=pt(pp.x+(p2_.x-pp.x)*1.3 , pp.y+(p2_.y-pp.y)*1.3);
+
+    len=dist_pt(p4_,pp);
+    len_=len+40;
+
+    p4_=pt(pp.x+(p4_.x-pp.x)*1.3 , pp.y+(p4_.y-pp.y)*1.3);
+
+
+    elements.pb(Element());
+    elements.back().p={p1_,p2_,p3_,p4_};
+
+    vector<pair<int,int> > inform;
+    for (auto i:digits)
+    {
+       if (abs(area(p1_,p2_,pt(i.x,i.y))+area(p3_,p2_,pt(i.x,i.y))+area(p3_,p4_,pt(i.x,i.y))+area(p1_,p4_,pt(i.x,i.y))
+                -area(p1_,p2_,p3_)-area(p1_,p3_,p4_))<EPS)
+            inform.pb({i.y,i.zn});
+    }
+
+    sort(inform.begin(),inform.end());
+
+    ld R=0;
+
+    for (auto i:inform)
+    {
+        R*=10;
+        R+=i.sec;
+    }
+
+
+    int last=inform.size()-1;
+
+    for (auto i:dot)
+    {
+        if (abs(area(p1_,p2_,pt(i.fir,i.sec))+area(p3_,p2_,pt(i.fir,i.sec))+area(p3_,p4_,pt(i.fir,i.sec))+area(p1_,p4_,pt(i.fir,i.sec))
+                -area(p1_,p2_,p3_)-area(p1_,p3_,p4_))<EPS)
+                {
+                    if (last>=0)
+                    while (i.sec<inform[last].fir)
+                    {
+                        R/=10.0;
+                        last--;
+                        if (last<0)
+                            break;
+                    }
+                }
+    }
+
+    elements.back().R=R;
+    bool ch=0;
+
+    for (auto i:minuss)
+        if (abs(area(p1_,p2_,pt(i.fir,i.sec))+area(p3_,p2_,pt(i.fir,i.sec))+area(p3_,p4_,pt(i.fir,i.sec))+area(p1_,p4_,pt(i.fir,i.sec))
+                -area(p1_,p2_,p3_)-area(p1_,p3_,p4_))<EPS)
+        {
+            ch=1;
+            elements.back().minuss=pt(i.fir,i.sec);
+        }
+
+
+    for (auto i:pluss)
+        if (abs(area(p1_,p2_,pt(i.fir,i.sec))+area(p3_,p2_,pt(i.fir,i.sec))+area(p3_,p4_,pt(i.fir,i.sec))+area(p1_,p4_,pt(i.fir,i.sec))
+                -area(p1_,p2_,p3_)-area(p1_,p3_,p4_))<EPS)
+        {
+            ch=1;
+            elements.back().pluss=pt(i.fir,i.sec);
+        }
+
+    if (ch)
+    {
+        elements.back().name="energy";
+        return;
+    }
+
+    if (check_midle(p1_,p2_,p3_,p4_))
+    {
+        elements.back().name="key";
+        return;
+    }
+
+    if (check_res(p1_,p2_,p3_,p4_))
+    {
+        elements.back().name="rezistor";
+        return;
+    }
+
+    elements.back().name="reostat";
+    return;
+
+}
+
+void add_volt(pt p, ld r)
+{
+    r+=40;
+    elements.pb(Element());
+    elements.back().p={p};
+    elements.back().rad=r;
+    elements.back().name="voltmetr";
+}
+
+void add_amp(pt p, ld r)
+{
+    r+=40;
+    elements.pb(Element());
+    elements.back().p={p};
+    elements.back().rad=r;
+    elements.back().name="ampermetr";
+}
+
+bool try_add(pt p1_, pt p2_, pt p3_, pt p4_, vector<pair<int,int> > &vec)
+{
+    if (abs(angle(p1_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/9.0)
+        return(0);
+    if (abs(angle(p4_,p1_,p3_)-acos(-1)/2.0)>acos(-1)/9.0)
+        return(0);
+    if (abs(angle(p2_,p3_,p1_)-acos(-1)/2.0)>acos(-1)/9.0)
+        return(0);
+    if (abs(angle(p3_,p2_,p4_)-acos(-1)/2.0)>acos(-1)/9.0)
+        return(0);
+
+
+    if (abs(area(p1_,p2_,p3_))+abs(area(p1_,p4_,p3_))<1.5*ld(vec.size()))
+    {
+        add(p1_,p2_,p3_,p4_);
+        return(1);
+    } else
+    return(0);
+}
+
 
 
 void check_square(vector<pair<int,int> > vec)
@@ -316,7 +589,8 @@ void check_square(vector<pair<int,int> > vec)
             mny=pt(i.fir,i.sec);
     }
 
-    try_add(mnx,mny,mxx,mxy,vec);
+    if (try_add(mnx,mny,mxx,mxy,vec))
+        return;
 
     pt a,b,c,d;
     a.x=mnx.x;
@@ -462,6 +736,9 @@ bool ampermetr(vector<pair<int,int> > vec)
 
             }
 
+    if (ch)
+        add_amp(O,r);
+
     return(ch);
 }
 
@@ -533,6 +810,10 @@ bool voltmetr(vector<pair<int,int> > vec)
             if (dist_pt(pt(i,j),O)<=r/2.0)
                 if (colour[i][j]!=colour[vec[0].fir][vec[0].sec] && colour[i][j]!=0)
                 ch=0;
+
+
+    if (ch)
+        add_volt(O,r);
     return(ch);
 }
 
@@ -574,26 +855,8 @@ vector<pair<int,int> > bfs3(pair<int,int> u, vector<vector< bool> > &use_p, vect
     return(visited);
 }
 
-struct digit
-{
-    int x,y,zn;
 
-    digit()
-    {
 
-    }
-
-    digit(int x_, int y_, int zn_)
-    {
-        x=x_;
-        y=y_;
-        zn=zn_;
-    }
-
-};
-
-vector<digit> digits;
-vector<pair<int,int> > pluss,minuss;
 
 pair<int,int> midle(vector<pair<int,int> > visited)
 {
@@ -797,7 +1060,6 @@ digit check_digit(vector<pair<int,int> > visited)
     return(digit(digit(x,y,get_nomber(parsed,cnt))));
 }
 
-vector<pair<int,int> > dot;
 
 void clear_vec(vector<pair<int,int> > visited)
 {
@@ -805,9 +1067,10 @@ void clear_vec(vector<pair<int,int> > visited)
         vec[i.fir][i.sec]=1;
 }
 
+
+
 void get_digits()
 {
-
     vector<vector<bool> > use_p;
     for (auto i:vec)
     {
@@ -815,6 +1078,8 @@ void get_digits()
         for (auto j:vec)
             use_p.back().pb(0);
     }
+
+
 
     for (int i=0;i<vec.size();i++)
         for (int j=0;j<vec[0].size();j++)
@@ -877,7 +1142,6 @@ vector<vector<int> > comp_pic(string file)
 
     vec=read_pic(file);
     get_digits();
-
     for (int i=0;i<vec.size();i++)
     {
         colour.pb({});
@@ -931,4 +1195,6 @@ void scan(string file)
 {
     freopen("koko","w",stdout);
     comp_pic(file);
+    for (auto i:elements)
+        cout<<i.name<<'\n';
 }

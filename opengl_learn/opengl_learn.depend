@@ -1065,7 +1065,7 @@
 	"includes.h"
 	"element_type.h"
 
-1509611622 source:c:\users\admin\desktop\new_racoons\opengl_learn\read_write.cpp
+1510135721 source:c:\users\admin\desktop\new_racoons\opengl_learn\read_write.cpp
 	"read_write.h"
 	<fstream>
 
@@ -1373,7 +1373,7 @@
 	"includes.h"
 	"read_write.h"
 
-1510050594 source:c:\users\admin\desktop\new_racoons\opengl_learn\scan.cpp
+1510136471 source:c:\users\admin\desktop\new_racoons\opengl_learn\scan.cpp
 	"scan.h"
 	"digits.h"
 
