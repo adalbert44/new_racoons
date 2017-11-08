@@ -44,8 +44,10 @@ void get_dist(vector<vector<bool> > vec)
 
 int get_nomber(vector<vector<bool> > vec, int cnt)
 {
-    vector<pair<int,int> > v;
 
+    if (cnt<1 || cnt>3)
+        return(-1);
+    vector<pair<int,int> > v;
 
     get_dist(vec);
 
@@ -73,6 +75,8 @@ int get_nomber(vector<vector<bool> > vec, int cnt)
     }
 
     sort(v.begin(),v.end());
+
+
     if (v[0].fir<150)
     return(v[0].sec); else
     return(-1);

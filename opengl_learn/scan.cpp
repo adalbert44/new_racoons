@@ -267,7 +267,6 @@ bool check_midle(pt p1_, pt p2_, pt p3_, pt p4_)
     int mny=min({p1_.y,p2_.y,p3_.y,p4_.y});
     int mxy=max({p1_.y,p2_.y,p3_.y,p4_.y});
 
-    cout<<mnx<<' '<<mxx<<' '<<mny<<' '<<mxy<<" check_key"<<'\n';
 
     pt pp=pt((p1_.x+p3_.x)/2.0,(p1_.y+p3_.y)/2.0);
 
@@ -298,7 +297,6 @@ bool check_midle(pt p1_, pt p2_, pt p3_, pt p4_)
      mny=min({p1_.y,p2_.y,p3_.y,p4_.y});
      mxy=max({p1_.y,p2_.y,p3_.y,p4_.y});
 
-    cout<<mnx<<' '<<mxx<<' '<<mny<<' '<<mxy<<" check_key"<<'\n';
 
     for (int i=mnx;i<=mxx;i++)
         for (int j=mny;j<=mxy;j++)
@@ -310,7 +308,6 @@ bool check_midle(pt p1_, pt p2_, pt p3_, pt p4_)
                         if (j>=0 && j<vec[0].size())
                         if (vec[i][j]==0)
                         {
-                            cout<<i<<' '<<j<<'\n';
                             return(1);
                         }
 
@@ -383,8 +380,7 @@ bool check_res(pt p1_, pt p2_, pt p3_, pt p4_)
 
 void add(pt p1_, pt p2_, pt p3_, pt p4_)
 {
-    cout<<"add"<<'\n';
-    cout<<p1_.x<<' '<<p1_.y<<'\n';
+
     pt pp=pt((p1_.x+p3_.x)/2.0,(p1_.y+p3_.y)/2.0);
 
     ld len=dist_pt(p1_,pp);
@@ -1051,18 +1047,13 @@ digit check_digit(vector<pair<int,int> > visited)
             parsed[i][j]=1;
     }
 
-    for (auto i:parsed)
-    {
-        for (auto j:i)
-            cout<<j;
-        cout<<'\n';
-    }
-    cout<<'\n';
+
 
 
 
     int x=(mnx+mxx)/2;
     int y=(mny+mxy)/2;
+
 
     return(digit(digit(x,y,get_nomber(parsed,cnt))));
 }
@@ -1094,7 +1085,8 @@ void get_digits()
         {
 
             vector<pair<int,int> > visited=bfs3({i,j},use_p,vec);
-           // cout<<'!';
+
+
             if (visited.size()<1000 && visited.size()>60)
             {
                 if (check_pluss(visited))
@@ -1110,12 +1102,15 @@ void get_digits()
                 }
                 else
                 {
+
                     digit u=check_digit(visited);
                     if (u.zn!=-1)
                     {
                         digits.pb(u);
                         clear_vec(visited);
                     }
+
+
                 }
             } else
             if (visited.size()<=60)
@@ -1123,8 +1118,8 @@ void get_digits()
                 dot.pb(midle(visited));
                 clear_vec(visited);
             }
-         //   cout<<'@';
         }
+
 
     cout<<"digits\n";
     for (auto i:digits)
@@ -1149,6 +1144,7 @@ vector<vector<int> > comp_pic(string file)
 
     vec=read_pic(file);
     get_digits();
+
     for (int i=0;i<vec.size();i++)
     {
         colour.pb({});
@@ -1180,9 +1176,9 @@ vector<vector<int> > comp_pic(string file)
     for (int i=1;i<=cnt;i++)
     {
         if (ampermetr(points[i]))
-            cout<<"amp"<<i<<'\n'; else
+            ; else
         if (voltmetr(points[i]))
-            cout<<"volt"<<i<<'\n'; else
+            ; else
             check_square(points[i]);
     }
 
@@ -1200,7 +1196,6 @@ vector<vector<int> > comp_pic(string file)
 
 void clear_(Element u, int now)
 {
-    cout<<"clear "<<now<<'\n';
     if (u.p.size()==1)
     {
         int mnx=u.p[0].x-u.rad;
@@ -1208,7 +1203,6 @@ void clear_(Element u, int now)
         int mny=u.p[0].y-u.rad;
         int mxy=u.p[0].y+u.rad;
 
-        cout<<mnx<<' '<<mxx<<' '<<mny<<' '<<mxy<<'\n';
 
         for (int i=mnx;i<=mxx;i++)
             for (int j=mny;j<=mxy;j++)
@@ -1248,16 +1242,13 @@ void scan(string file)
     comp_pic(file);
 
 
-    cout<<"!!!!!!!!!!!!!\n";
-    for (auto i:elements)
-        cout<<i.name<<'\n';
 
     vector<Element> new_elements;
     for (auto i:elements)
     {
         bool ch=0;
         if (i.p.size()==4)
-            if ((area(i.p[0],i.p[1],i.p[2])+area(i.p[0],i.p[2],i.p[3]))/(1.3*1.3)>ld(colour.size()*colour[0].size())/3)
+            if ((area(i.p[0],i.p[1],i.p[2])+area(i.p[0],i.p[2],i.p[3]))>ld(colour.size()*colour[0].size())/3)
                 ch=1;
         if (!ch)
             new_elements.pb(i);
@@ -1265,17 +1256,19 @@ void scan(string file)
 
     elements=new_elements;
 
+    for (auto i:elements)
+        cout<<i.name<<'\n';
 
     for (int i=0;i<colour.size();i++)
         for (int j=0;j<colour[i].size();j++)
         if (colour[i][j]==0)
         colour[i][j]=0; else
-        colour[i][j]=elements.size();
+        colour[i][j]=elements.size()+1;
 
     int cnt=0;
 
     for (auto i:elements)
-        clear_(i,cnt++);
+        clear_(i,++cnt);
 
     for (auto i:elements)
     {
@@ -1286,6 +1279,13 @@ void scan(string file)
             vector<pt> g34=intersect_black(i.p[2],i.p[3]);
             vector<pt> g41=intersect_black(i.p[0],i.p[3]);
         }
+    }
+
+    for (auto i:colour)
+    {
+        for (auto j:i)
+            cout<<j;
+        cout<<'\n';
     }
 
     vector<vector<bool> > used;
@@ -1308,7 +1308,7 @@ void scan(string file)
 
             map<int,bool> mp;
             mp[0]=1;
-            mp[elements.size()]=1;
+            mp[elements.size()+1]=1;
 
             for (auto i:vis)
             {
