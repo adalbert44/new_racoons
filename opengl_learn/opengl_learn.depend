@@ -1681,11 +1681,11 @@
 1510147397 source:c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.h
 	"includes.h"
 
-1510151206 source:c:\users\user\documents\github\new_racoons2\opengl_learn\basik_classes.cpp
+1510156626 source:c:\users\user\documents\github\new_racoons2\opengl_learn\basik_classes.cpp
 	"basik_classes.h"
 	"object_menu_reaction.h"
 
-1510151206 c:\users\user\documents\github\new_racoons2\opengl_learn\basik_classes.h
+1510156619 c:\users\user\documents\github\new_racoons2\opengl_learn\basik_classes.h
 	"includes.h"
 
 1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\includes.h
@@ -1721,10 +1721,10 @@
 	"includes.h"
 	"feel_reaction.h"
 
-1510151206 source:c:\users\user\documents\github\new_racoons2\opengl_learn\basik_classes.h
+1510156619 source:c:\users\user\documents\github\new_racoons2\opengl_learn\basik_classes.h
 	"includes.h"
 
-1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\choose_lab.cpp
+1510156662 source:c:\users\user\documents\github\new_racoons2\opengl_learn\choose_lab.cpp
 	"choose_lab.h"
 
 1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\choose_lab.h
@@ -1775,7 +1775,7 @@
 1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\feel_draw.h
 	"includes.h"
 
-1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\feel_reaction.cpp
+1510155185 source:c:\users\user\documents\github\new_racoons2\opengl_learn\feel_reaction.cpp
 	"feel_reaction.h"
 	"object_menu_reaction.h"
 	"get_power.h"
@@ -1823,14 +1823,14 @@
 1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\input_text.h
 	"includes.h"
 
-1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\lab_mode.cpp
+1510157790 source:c:\users\user\documents\github\new_racoons2\opengl_learn\lab_mode.cpp
 	"lab_mode.h"
 
 1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\lab_mode.h
 	"includes.h"
 	"input_info.h"
 
-1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\load_textures.cpp
+1510157424 source:c:\users\user\documents\github\new_racoons2\opengl_learn\load_textures.cpp
 	"load_textures.h"
 
 1510150575 c:\users\user\documents\github\new_racoons2\opengl_learn\load_textures.h
@@ -1839,7 +1839,7 @@
 1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\load_textures.h
 	"includes.h"
 
-1510150575 source:c:\users\user\documents\github\new_racoons2\opengl_learn\main.cpp
+1510157041 source:c:\users\user\documents\github\new_racoons2\opengl_learn\main.cpp
 	"includes.h"
 	"load_textures.h"
 	"basik_classes.h"
@@ -1968,5 +1968,11 @@
 	"window_message.h"
 
 1510150586 source:c:\users\user\documents\github\new_racoons2\opengl_learn\window_message.h
+	"includes.h"
+
+1510150577 source:c:\users\user\documents\github\new_racoons2\opengl_learn\put_on_feel.cpp
+	"put_on_feel.h"
+
+1510150577 source:c:\users\user\documents\github\new_racoons2\opengl_learn\put_on_feel.h
 	"includes.h"
 

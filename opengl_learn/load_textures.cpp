@@ -64,6 +64,16 @@ void load_all()
     info_background=Load("textures/info_background.png");
     menu_background=Load("textures/menu_background.png");
 
+    back_button_tex=Load("textures/back_button_tex.png");
+    change_tex=Load("textures/change_tex.png");
+    u_mode=Load("textures/u_mode.png");
+    show_statements_tex=Load("textures/show_statements_tex.png");
+    save_tex=Load("textures/save_tex.png");
+    lab_background=Load("textures/lab_background.png");
+    info_khm=Load("textures/info_khm.png");
+    p_mode=Load("textures/p_mode.png");
+    ok_lab_tex=Load("textures/ok_lab_tex.png");
+
     text_line=Load("textures/text_line.png");
     close_hor=Load("textures/key_hor.png");
     close_ver=Load("textures/key_ver.png");
@@ -78,8 +88,7 @@ void load_all()
     for (int i=0;i<16;i++)
     {
         string way="textures/labs/lab";
-        if (i<13) way+=parse(i+1); else
-            way +=parse(1);
+        way+=parse(i+1);
         way+=".png";
         choose_lab_tex[i]=Load(way);
 

@@ -127,6 +127,7 @@ GLuint empty_;
 GLuint connection_point;
 vector<Figure> feel_background;
 Figure left_menu_background;
+Figure lab_background0;
 Circle_element object[30][30];
 GLuint left_menu_background_tex;
 GLuint line_mode_tex;
