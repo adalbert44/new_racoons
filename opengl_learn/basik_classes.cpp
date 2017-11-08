@@ -477,13 +477,17 @@ void Button :: watch()
 Button_do :: Button_do()
 {
     light=0;
+    shade_tex=window_shade.tex;
+    light_tex=window_light;
 }
 
-Button_do :: Button_do(Figure f_, int (*to_do_)())
+Button_do :: Button_do(Figure f_, int (*to_do_)(), GLuint l, GLuint s)
 {
     light=0;
     f=f_;
     to_do=to_do_;
+    shade_tex=s;
+    light_tex=l;
 }
 
 void Button_do :: draw_state()
@@ -491,13 +495,12 @@ void Button_do :: draw_state()
     f.draw_state();
 
 
-    Figure fig=Figure(f.x1,f.x2,f.y1,f.y2,window_shade.tex,shade);
+    Figure fig=Figure(f.x1,f.x2,f.y1,f.y2,shade_tex,shade);
     fig.draw_state();
 
-    fig.tex=window_light;
+    fig.tex=light_tex;
     fig.alpha=light;
     fig.draw_state();
-
 }
 
 void Button_do :: watch()

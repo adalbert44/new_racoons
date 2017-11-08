@@ -94,9 +94,11 @@
         int (*to_do)();
         double shade=0;
         double light=0;
+        GLuint shade_tex;
+        GLuint light_tex;
 
         Button_do();
-        Button_do(Figure f_, int (*to_do_)());
+        Button_do(Figure f_, int (*to_do_)(), GLuint s, GLuint l);
         void draw_state();
         void press_down();
         void press_up();
@@ -111,33 +113,33 @@
         Color(int r, int g, int b);
     };
 
-struct pt {
-	double x, y;
-	pt(int x_, int y_);
+    struct pt {
+        double x, y;
+        pt(int x_, int y_);
 
-	pt();
-};
+        pt();
+    };
 
-struct Element
-{
-    vector<pt> p;
-    long double rad;
-    long double R;
-    pt minuss;
-    pt pluss;
-    string name="";
+    struct Element
+    {
+        vector<pt> p;
+        long double rad;
+        long double R;
+        pt minuss;
+        pt pluss;
+        string name="";
 
-    Element();
-};
+        Element();
+    };
 
-struct prov
-{
-    int c1,c2;
-    pt p1,p2;
+    struct prov
+    {
+        int c1,c2;
+        pt p1,p2;
 
-    prov();
-    prov(int c1_,int c2_, pt p1_, pt p2_);
-};
+        prov();
+        prov(int c1_,int c2_, pt p1_, pt p2_);
+    };
 
 
 
