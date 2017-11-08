@@ -48,4 +48,5 @@ int read_anses()
     input_info_mode=1;
     input_info_ask="Enter "+lab_ask[choosen_lab][last_ans]+":";
     input_ok.to_do=&check_anses;
+    input_bad.to_do=&input_bad_do;
 }
