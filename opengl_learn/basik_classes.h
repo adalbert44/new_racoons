@@ -248,6 +248,7 @@
     extern GLuint back_button_tex;
     extern GLuint change_tex;
     extern GLuint u_mode;
+    extern GLuint p_mode;
     extern GLuint show_statements_tex;
     extern GLuint save_tex;
     extern GLuint ok_lab_tex;

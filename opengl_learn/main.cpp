@@ -157,11 +157,12 @@ void main_menu_create()
     main_menu_background=Figure(0,WinWid,0,WinHei,menu_background,1.0);
     ld midle=WinWid/2.0;
 
-    new_file=Button_do(Figure(midle-200,midle,300,500,new_file_tex,1.0),&create_new_file,window_light,window_shade.tex);
-    old_file=Button_do(Figure(midle,midle+200,300,500,old_file_tex,1.0),&load_old_file,window_light,window_shade.tex);
-    lab=Button_do(Figure(midle-200,midle,500,700,lab_tex,1.0),&choose_lab_select,window_light,window_shade.tex);
-    photo=Button_do(Figure(midle,midle+200,500,700,photo_tex,1.0),&create_new_file,window_light,window_shade.tex);
-    exit_b=Button_do(Figure(midle-200,midle+200,700,900,exit_tex,1.0),&exit_,light_exit,window_shade.tex);
+    new_file=Button_do(Figure(midle-200,midle,350,550,new_file_tex,1.0),&create_new_file,window_light,window_shade.tex);
+    old_file=Button_do(Figure(midle,midle+200,350,550,old_file_tex,1.0),&load_old_file,window_light,window_shade.tex);
+    lab=Button_do(Figure(midle-200,midle,550,750,lab_tex,1.0),&choose_lab_select,window_light,window_shade.tex);
+    photo=Button_do(Figure(midle,midle+200,550,750,photo_tex,1.0),&create_new_file,window_light,window_shade.tex);
+    exit_b=Button_do(Figure(midle-200,midle+200,750,950,exit_tex,1.0),&exit_,light_exit,window_shade.tex);
+
 }
 
 
@@ -196,17 +197,17 @@ void creat_feel()
         choose_lab[i]=Button_do(Figure(x*www,(x+1)*www,y*hhh,(y+1)*hhh,choose_lab_tex[i],1.0),&create_lab,light_lab,window_shade.tex);
     }
 
-
     line_mode=Button(Figure(100,left_menu_size+20,50,100,line_mode_tex,1.0),{&line_mode_used});
-    save=Button_do(Figure(50,100,50,100,point_mode_tex,1.0),&save_do,window_light,window_shade.tex);
+    save=Button_do(Figure(0,50,0,50,save_tex,1.0),&save_do,window_light,window_shade.tex);
     point_mode=Button(Figure(0,50,50,100,point_mode_tex,1.0),{&point_mode_used});
-    move_mode=Button(Figure(100,150,0,50,move_tex,1.0),{&move_mode_used});
-    delete_mode=Button(Figure(150,200,0,50,delete_mode_tex,1.0),{&delete_mode_used});
-    U_ask_mode=Button(Figure(200,250,0,50,delete_mode_tex,1.0),{&U_ask_mode_used});
-    potential_mode=Button(Figure(250,300,0,50,delete_mode_tex,1.0),{&potential_mode_used});
+    move_mode=Button(Figure(150,200,0,50,move_tex,1.0),{&move_mode_used});
+    delete_mode=Button(Figure(50,100,50,100,delete_mode_tex,1.0),{&delete_mode_used});
+    U_ask_mode=Button(Figure(200,250,0,50,u_mode,1.0),{&U_ask_mode_used});
+    potential_mode=Button(Figure(250,300,0,50,p_mode,1.0),{&potential_mode_used});
 
-    undo_button=Button_do(Figure(0,50,0,50,undo_tex,1.0),&undo,window_light,window_shade.tex);
-    redo_button=Button_do(Figure(50,100,0,50,redo_tex,1.0),&redo,window_light,window_shade.tex);
+    undo_button=Button_do(Figure(50,100,0,50,undo_tex,1.0),&undo,window_light,window_shade.tex);
+    redo_button=Button_do(Figure(100,150,0,50,redo_tex,1.0),&redo,window_light,window_shade.tex);
+
     shade_button1.tex=shade_button_tex1;
     shade_button2.tex=shade_button_tex2;
 
@@ -222,10 +223,10 @@ void creat_feel()
     input_R_ok=Button_do(Figure(w1,w1+l,WinHei-h1,WinHei-h1+100,ok_tex,1.0),&change_R,light_ok,window_shade.tex);
     input_bad=Button_do(Figure(w1+l,w1+2*l,WinHei-h1,WinHei-h1+100,bad_tex,1.0),&input_bad_do,light_ok,window_shade.tex);
 
-    back_to_main=Button_do(Figure(WinWid-100,WinWid,WinHei-100,WinHei,empty_,1.0),&back_to_main_do,light_ok,window_shade.tex);
+    back_to_main=Button_do(Figure(WinWid-100,WinWid,WinHei-100,WinHei,back_button_tex,1.0),&back_to_main_do,light_ok,window_shade.tex);
 
-    statement_show=Button_do(Figure(WinWid-100,WinWid-50,50,100,redo_tex,1.0),&show_statement,light_ok,window_shade.tex);
-    answer_lab=Button_do(Figure(WinWid-100,WinWid-50,150,200,redo_tex,1.0),&read_anses,light_ok,window_shade.tex);
+    statement_show=Button_do(Figure(WinWid-100,WinWid-50,50,100,show_statements_tex,1.0),&show_statement,light_ok,window_shade.tex);
+    answer_lab=Button_do(Figure(WinWid-100,WinWid-50,150,200,ok_lab_tex,1.0),&read_anses,light_ok,window_shade.tex);
 
     window_shade=Figure(0,WinWid,0,WinHei,window_shade.tex,0.0);
 
