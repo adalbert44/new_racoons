@@ -41,7 +41,8 @@ int show_statement()
     window_picture.clear();
     window_picture.pb(Figure(1000,WinWid-130,90,WinHei/2.0-25,choose_lab_tex[choosen_lab],1.0));
     window_picture.pb(Figure(1100,WinWid-200,WinHei/2.0+25,WinHei,choose_labs_tex[choosen_lab],1.0));
-    window_picture.pb(Figure(100,800,300,900,choose_labs_tex[choosen_lab],1.0));
+    cout<<"key"<<key_tex<<'\n';
+    window_picture.pb(Figure(100,800,300,900,key_tex,1.0));
 }
 
 int read_anses()

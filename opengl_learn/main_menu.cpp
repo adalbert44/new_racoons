@@ -34,6 +34,7 @@ int create()
 
 void clear_feel()
 {
+
     for (int i=1;i<feel_size;i++)
         for (int j=1;j<feel_size;j++)
         {
@@ -44,6 +45,7 @@ void clear_feel()
             object[i][j].U=0;
             object[i][j].shade=0;
         }
+
 }
 
 int create_lab()
@@ -55,9 +57,13 @@ int create_lab()
     last_ans=0;
     info_name="lab_work";
     now_file_name=info_name;
+
+    cout<<"!!!"<<key_tex<<'\n';
     read(info_name);
+    cout<<"!!!"<<key_tex<<'\n';
     info_name="";
     clear_feel();
+
     input_text_mode=0;
     solve();
 }

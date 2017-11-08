@@ -67,8 +67,8 @@ GLuint choose_lab_tex[16];
 GLuint choose_labs_tex[16];
 
 
-ld start[30][30][30][30];
-ld len[30][30][30][30];
+ld start[31][31][31][31];
+ld len[31][31][31][31];
 
 GLuint info_background;
 int info_i,info_j;
@@ -112,8 +112,8 @@ vector<pair<int,int> > to_del_point;
 string info_zn="0";
 string info_name="";
 string now_file_name="";
-ld power[30][30][30][30];
-ld potential[30][30];
+ld power[31][31][31][31];
+ld potential[31][31];
 GLuint move_tex;
 GLuint delete_mode_tex;
 Figure shade_button1,shade_button2;
@@ -137,7 +137,7 @@ GLuint connection_point;
 vector<Figure> feel_background;
 Figure left_menu_background;
 Figure lab_background0;
-Circle_element object[30][30];
+Circle_element object[31][31];
 GLuint left_menu_background_tex;
 GLuint line_mode_tex;
 GLuint point_mode_tex;

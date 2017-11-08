@@ -1238,7 +1238,6 @@ vector<prov> rebers;
 
 void scan(string file)
 {
-    freopen("koko","w",stdout);
     comp_pic(file);
 
 
@@ -1281,12 +1280,7 @@ void scan(string file)
         }
     }
 
-    for (auto i:colour)
-    {
-        for (auto j:i)
-            cout<<j;
-        cout<<'\n';
-    }
+
 
     vector<vector<bool> > used;
 

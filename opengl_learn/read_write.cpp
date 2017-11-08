@@ -43,6 +43,7 @@ void add_all_files(string st)
 
 void read(string way)
 {
+    cout<<'!'<<key_tex<<'\n';
     way+=".ec";
     ifstream in(way);
     int reb_size, first_i2, second_i2;
@@ -61,6 +62,8 @@ void read(string way)
             }
         }
     in.close();
+
+    cout<<'!'<<key_tex<<'\n';
 }
 
 void write(string way)

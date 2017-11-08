@@ -157,7 +157,7 @@
         Event(Circle_element was_, Circle_element become_, pair<int,int> p1);
     };
 
-    extern Circle_element object[30][30];
+    extern Circle_element object[31][31];
     extern std::vector<Figure> feel_background;
     extern Figure left_menu_background;
     extern Figure left_menu_vertical[9];
@@ -191,7 +191,7 @@
     extern Button_do input_bad;
     extern double taken_R;
     extern vector<vector<Event> > events;
-    extern long double power[30][30][30][30];
+    extern long double power[31][31][31][31];
     extern Figure text_back_ground;
     extern Figure lab_background0;
     extern bool choose_lab_mode;
@@ -201,8 +201,8 @@
     extern GLuint window_light;
     extern GLuint key_tex;
 
-    extern long double start[30][30][30][30];
-    extern long double len[30][30][30][30];
+    extern long double start[31][31][31][31];
+    extern long double len[31][31][31][31];
 
 
     extern GLuint key_close_horizontal;
@@ -212,7 +212,7 @@
     extern GLuint close_hor;
     extern GLuint close_ver;
     extern double real_WinWid,real_WinHei;
-    extern long double potential[30][30];
+    extern long double potential[31][31];
     extern Button_do object_change_state;
     extern Button_do object_change_R;
     extern Button_do input_R_ok;
