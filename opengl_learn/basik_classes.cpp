@@ -573,3 +573,33 @@ Color :: Color(int r, int g, int b)
     G=g;
     B=b;
 }
+
+prov :: prov(int c1_,int c2_, pt p1_, pt p2_)
+{
+    c1=c1_;
+    c2=c2_;
+    p1=p1_;
+    p2=p2_;
+}
+
+prov :: prov()
+{
+
+}
+
+Element :: Element()
+{
+    R=0;
+}
+
+pt :: pt(int x_, int y_)
+{
+    x=x_;
+    y=y_;
+}
+
+pt :: pt()
+{
+
+}
+

@@ -111,6 +111,34 @@
         Color(int r, int g, int b);
     };
 
+struct pt {
+	double x, y;
+	pt(int x_, int y_);
+
+	pt();
+};
+
+struct Element
+{
+    vector<pt> p;
+    long double rad;
+    long double R;
+    pt minuss;
+    pt pluss;
+    string name="";
+
+    Element();
+};
+
+struct prov
+{
+    int c1,c2;
+    pt p1,p2;
+
+    prov();
+    prov(int c1_,int c2_, pt p1_, pt p2_);
+};
+
 
 
     class Event

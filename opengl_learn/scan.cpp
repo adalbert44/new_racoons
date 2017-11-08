@@ -1,5 +1,4 @@
 #include "scan.h"
-#include "digits.h"
 
 struct digit
 {
@@ -17,20 +16,6 @@ struct digit
         zn=zn_;
     }
 
-};
-
-struct pt {
-	double x, y;
-	pt(int x_, int y_)
-	{
-        x=x_;
-        y=y_;
-	}
-
-	pt()
-	{
-
-	}
 };
 
 struct line {
@@ -272,22 +257,6 @@ void bfs2(pair<int,int> u)
                 q.push({i,j+1});
     }
 }
-
-struct Element
-{
-    vector<pt> p;
-    ld rad;
-    ld R;
-    pt minuss;
-    pt pluss;
-    string name="";
-
-    Element()
-    {
-        R=0;
-    }
-
-};
 
 vector<Element> elements;
 
@@ -817,7 +786,45 @@ bool voltmetr(vector<pair<int,int> > vec)
     return(ch);
 }
 
-vector<pair<int,int> > bfs3(pair<int,int> u, vector<vector< bool> > &use_p, vector<vector< bool> > & vec)
+vector<pair<int,int> > bfs3(pair<int,int> u, vector<vector< bool> > &use_p, vector<vector< bool > > & vec)
+{
+    vector<pair<int,int> > visited;
+    queue<pair<int,int> > q;
+    q.push(u);
+    while (!q.empty())
+    {
+
+        pair<int,int> now=q.front();
+        q.pop();
+
+        int i=now.fir;
+        int j=now.sec;
+        if (use_p[i][j])
+            continue;
+        visited.pb({i,j});
+        use_p[i][j]=1;
+
+        if (i-1>=0)
+            if (vec[i-1][j]==vec[i][j] && !use_p[i-1][j])
+                q.push({i-1,j});
+
+        if (i+1<vec.size())
+            if (vec[i+1][j]==vec[i][j] && !use_p[i+1][j])
+                q.push({i+1,j});
+
+        if (j-1>=0)
+            if (vec[i][j-1]==vec[i][j]  && !use_p[i][j-1])
+                q.push({i,j-1});
+
+        if (j+1<vec[i].size())
+            if (vec[i][j+1]==vec[i][j]  && !use_p[i][j+1])
+                q.push({i,j+1});
+    }
+
+    return(visited);
+}
+
+vector<pair<int,int> > bfs4(pair<int,int> u, vector<vector< bool> > &use_p, vector<vector< int > > & vec)
 {
     vector<pair<int,int> > visited;
     queue<pair<int,int> > q;
@@ -1191,10 +1198,133 @@ vector<vector<int> > comp_pic(string file)
     return(colour);
 }
 
+void clear_(Element u, int now)
+{
+    cout<<"clear "<<now<<'\n';
+    if (u.p.size()==1)
+    {
+        int mnx=u.p[0].x-u.rad;
+        int mxx=u.p[0].x+u.rad;
+        int mny=u.p[0].y-u.rad;
+        int mxy=u.p[0].y+u.rad;
+
+        cout<<mnx<<' '<<mxx<<' '<<mny<<' '<<mxy<<'\n';
+
+        for (int i=mnx;i<=mxx;i++)
+            for (int j=mny;j<=mxy;j++)
+                if (dist_pt(u.p[0],pt(i,j))<=u.rad)
+                    if (i>=0 && j>=0 && i<vec.size() && j<vec[0].size())
+                    colour[i][j]=now;
+    } else
+    {
+        int mnx=1e9;
+        int mny=1e9;
+        int mxx=-1e9;
+        int mxy=-1e9;
+
+        for (auto i:u.p)
+        {
+            mnx=min(mnx,(int)i.x);
+            mny=min(mny,(int)i.y);
+            mxx=max(mnx,(int)i.x);
+            mxy=max(mny,(int)i.y);
+
+            for (int i=mnx;i<=mxx;i++)
+                for (int j=mny;j<=mxy;j++)
+                    if (abs(area(u.p[0],u.p[1],pt(i,j))+area(u.p[1],u.p[2],pt(i,j))+area(u.p[2],u.p[3],pt(i,j))+area(u.p[0],u.p[3],pt(i,j))
+                        -area(u.p[0],u.p[1],u.p[2])-area(u.p[0],u.p[2],u.p[3]))<EPS)
+                    if (i>=0 && j>=0 && i<vec.size() && j<vec[0].size())
+                    colour[i][j]=now;
+        }
+    }
+}
+
+
+vector<prov> rebers;
+
 void scan(string file)
 {
     freopen("koko","w",stdout);
     comp_pic(file);
+
+
+    cout<<"!!!!!!!!!!!!!\n";
     for (auto i:elements)
         cout<<i.name<<'\n';
+
+    vector<Element> new_elements;
+    for (auto i:elements)
+    {
+        bool ch=0;
+        if (i.p.size()==4)
+            if ((area(i.p[0],i.p[1],i.p[2])+area(i.p[0],i.p[2],i.p[3]))/(1.3*1.3)>ld(colour.size()*colour[0].size())/3)
+                ch=1;
+        if (!ch)
+            new_elements.pb(i);
+    }
+
+    elements=new_elements;
+
+
+    for (int i=0;i<colour.size();i++)
+        for (int j=0;j<colour[i].size();j++)
+        if (colour[i][j]==0)
+        colour[i][j]=0; else
+        colour[i][j]=elements.size();
+
+    int cnt=0;
+
+    for (auto i:elements)
+        clear_(i,cnt++);
+
+    for (auto i:elements)
+    {
+        if (i.p.size()==4)
+        {
+            vector<pt> g12=intersect_black(i.p[0],i.p[1]);
+            vector<pt> g23=intersect_black(i.p[1],i.p[2]);
+            vector<pt> g34=intersect_black(i.p[2],i.p[3]);
+            vector<pt> g41=intersect_black(i.p[0],i.p[3]);
+        }
+    }
+
+    vector<vector<bool> > used;
+
+    for (auto i:colour)
+    {
+        used.pb({});
+        for (auto j:i)
+            used.back().pb(0);
+    }
+
+    for (int i=0;i<colour.size();i++)
+        for (int j=0;j<colour[0].size();j++)
+    {
+        if (!used[i][j] && colour[i][j]==0)
+        {
+            vector<pair<int,int> > vis=bfs4({i,j},used,colour);
+
+            vector<pair<pt,int> > v;
+
+            map<int,bool> mp;
+            mp[0]=1;
+            mp[elements.size()]=1;
+
+            for (auto i:vis)
+            {
+                if (i.fir+1<vec.size())
+                    if (!mp[colour[i.fir+1][i.sec]])
+                    {
+                        v.pb({pt(i.fir,i.sec),colour[i.fir+1][i.sec]});
+                        mp[colour[i.fir+1][i.sec]]=1;
+                    }
+            }
+
+            for (int i=0;i<v.size();i++)
+                for (int j=i+1;j<v.size();j++)
+                    rebers.pb(prov(v[i].sec,v[j].sec,v[i].fir,v[j].fir));
+        }
+    }
+
+    put_on_feel(elements,rebers);
 }
