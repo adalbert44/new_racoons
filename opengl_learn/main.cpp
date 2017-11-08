@@ -157,10 +157,10 @@ void main_menu_create()
     main_menu_background=Figure(0,WinWid,0,WinHei,menu_background,1.0);
     ld midle=WinWid/2.0;
 
-    new_file=Button_do(Figure(midle-200,midle,350,550,new_file_tex,1.0),&create_new_file,window_light,window_shade.tex);
-    old_file=Button_do(Figure(midle,midle+200,350,550,old_file_tex,1.0),&load_old_file,window_light,window_shade.tex);
-    lab=Button_do(Figure(midle-200,midle,550,750,lab_tex,1.0),&choose_lab_select,window_light,window_shade.tex);
-    photo=Button_do(Figure(midle,midle+200,550,750,photo_tex,1.0),&create_new_file,window_light,window_shade.tex);
+    new_file=Button_do(Figure(midle-200,midle,350,550,new_file_tex,1.0),&create_new_file,window_light,shade_lab);
+    old_file=Button_do(Figure(midle,midle+200,350,550,old_file_tex,1.0),&load_old_file,window_light,shade_lab);
+    lab=Button_do(Figure(midle-200,midle,550,750,lab_tex,1.0),&choose_lab_select,window_light,shade_lab);
+    photo=Button_do(Figure(midle,midle+200,550,750,photo_tex,1.0),&create_new_file,window_light,shade_lab);
     exit_b=Button_do(Figure(midle-200,midle+200,750,950,exit_tex,1.0),&exit_,light_exit,window_shade.tex);
 
 }
@@ -221,14 +221,14 @@ void creat_feel()
 
     input_info_background=Figure(w1/1.15,WinWid-w1/1.15,40,WinHei-h1*1.62+10,info_background,1.0);
     input_feel=Figure(w2-60,WinWid-w2+60,160,200,text_line,1.0);
-    input_ok=Button_do(Figure(w1,w1+l,WinHei-h1,WinHei-h1+100,ok_tex,1.0),&input_ok_do,light_ok,window_shade.tex);
-    input_R_ok=Button_do(Figure(w1,w1+l,WinHei-h1,WinHei-h1+100,ok_tex,1.0),&change_R,light_ok,window_shade.tex);
-    input_bad=Button_do(Figure(w1+l,w1+2*l,WinHei-h1,WinHei-h1+100,bad_tex,1.0),&input_bad_do,light_ok,window_shade.tex);
+    input_ok=Button_do(Figure(w1,w1+l,WinHei-h1,WinHei-h1+100,ok_tex,1.0),&input_ok_do,light_ok,shade_circle);
+    input_R_ok=Button_do(Figure(w1,w1+l,WinHei-h1,WinHei-h1+100,ok_tex,1.0),&change_R,light_ok,shade_circle);
+    input_bad=Button_do(Figure(w1+l,w1+2*l,WinHei-h1,WinHei-h1+100,bad_tex,1.0),&input_bad_do,light_ok,shade_circle);
 
-    back_to_main=Button_do(Figure(WinWid-100,WinWid,WinHei-100,WinHei,back_button_tex,1.0),&back_to_main_do,light_ok,window_shade.tex);
+    back_to_main=Button_do(Figure(WinWid-100,WinWid,WinHei-100,WinHei,back_button_tex,1.0),&back_to_main_do,light_ok,shade_circle);
 
-    statement_show=Button_do(Figure(WinWid-100,WinWid-50,50,100,show_statements_tex,1.0),&show_statement,light_ok,window_shade.tex);
-    answer_lab=Button_do(Figure(WinWid-100,WinWid-50,150,200,ok_lab_tex,1.0),&read_anses,light_ok,window_shade.tex);
+    statement_show=Button_do(Figure(WinWid-100,WinWid-50,50,100,show_statements_tex,1.0),&show_statement,light_ok,shade_circle);
+    answer_lab=Button_do(Figure(WinWid-100,WinWid-50,150,200,ok_lab_tex,1.0),&read_anses,light_ok,shade_circle);
 
     window_shade=Figure(0,WinWid,0,WinHei,window_shade.tex,0.0);
 

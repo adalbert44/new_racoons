@@ -81,7 +81,11 @@ GLuint window_light;
 GLuint light_exit;
 GLuint light_line;
 GLuint light_lab;
+GLuint shade_lab;
+GLuint shade_circle;
+
 GLuint light_ok;
+
 Figure window_shade;
 Figure object_info;
 Figure input_info_background;
