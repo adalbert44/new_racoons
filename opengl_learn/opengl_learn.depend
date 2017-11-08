@@ -834,11 +834,11 @@
 1507448909 source:c:\users\user\documents\github\racoons\opengl_learn\choose_lab.cpp
 	"choose_lab.h"
 
-1510163532 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.cpp
+1510164274 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.cpp
 	"basik_classes.h"
 	"object_menu_reaction.h"
 
-1510163355 c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
+1510164286 c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
 	"includes.h"
 
 1508415184 c:\users\admin\desktop\new_racoons\opengl_learn\includes.h
@@ -874,7 +874,7 @@
 	"includes.h"
 	"feel_reaction.h"
 
-1510163355 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
+1510164286 source:c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
 	"includes.h"
 
 1510158712 source:c:\users\admin\desktop\new_racoons\opengl_learn\choose_lab.cpp
@@ -974,7 +974,7 @@
 	"includes.h"
 	"input_info.h"
 
-1510163465 source:c:\users\admin\desktop\new_racoons\opengl_learn\load_textures.cpp
+1510164258 source:c:\users\admin\desktop\new_racoons\opengl_learn\load_textures.cpp
 	"load_textures.h"
 
 1508415184 c:\users\admin\desktop\new_racoons\opengl_learn\load_textures.h
@@ -983,7 +983,7 @@
 1508415184 source:c:\users\admin\desktop\new_racoons\opengl_learn\load_textures.h
 	"includes.h"
 
-1510163522 source:c:\users\admin\desktop\new_racoons\opengl_learn\main.cpp
+1510164471 source:c:\users\admin\desktop\new_racoons\opengl_learn\main.cpp
 	"includes.h"
 	"load_textures.h"
 	"basik_classes.h"

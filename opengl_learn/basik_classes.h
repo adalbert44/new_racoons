@@ -286,6 +286,7 @@
     extern GLuint light_down;
     extern GLuint shade_lab;
     extern GLuint shade_down;
+    extern GLuint shade_menu;
 
 
 #endif // BASIK_CLASSES_H_INCLUDED

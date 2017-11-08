@@ -157,10 +157,10 @@ void main_menu_create()
     main_menu_background=Figure(0,WinWid,0,WinHei,menu_background,1.0);
     ld midle=WinWid/2.0;
 
-    new_file=Button_do(Figure(midle-200,midle,350,550,new_file_tex,1.0),&create_new_file,window_light,shade_lab);
-    old_file=Button_do(Figure(midle,midle+200,350,550,old_file_tex,1.0),&load_old_file,window_light,shade_lab);
-    lab=Button_do(Figure(midle-200,midle,550,750,lab_tex,1.0),&choose_lab_select,window_light,shade_lab);
-    photo=Button_do(Figure(midle,midle+200,550,750,photo_tex,1.0),&create_new_file,window_light,shade_lab);
+    new_file=Button_do(Figure(midle-200,midle,350,550,new_file_tex,1.0),&create_new_file,window_light,shade_menu);
+    old_file=Button_do(Figure(midle,midle+200,350,550,old_file_tex,1.0),&load_old_file,window_light,shade_menu);
+    lab=Button_do(Figure(midle-200,midle,550,750,lab_tex,1.0),&choose_lab_select,window_light,shade_menu);
+    photo=Button_do(Figure(midle,midle+200,550,750,photo_tex,1.0),&create_new_file,window_light,shade_menu);
     exit_b=Button_do(Figure(midle-200,midle+200,750,950,exit_tex,1.0),&exit_,light_exit,shade_exit);
 
 }
@@ -225,7 +225,7 @@ void creat_feel()
     input_R_ok=Button_do(Figure(w1,w1+l,WinHei-h1,WinHei-h1+100,ok_tex,1.0),&change_R,light_ok,shade_circle);
     input_bad=Button_do(Figure(w1+l,w1+2*l,WinHei-h1,WinHei-h1+100,bad_tex,1.0),&input_bad_do,light_ok,shade_circle);
 
-    back_to_main=Button_do(Figure(WinWid-100,WinWid,WinHei-100,WinHei,back_button_tex,1.0),&back_to_main_do,light_ok,shade_down);
+    back_to_main=Button_do(Figure(WinWid-100,WinWid,WinHei-100,WinHei,back_button_tex,1.0),&back_to_main_do,light_down,shade_down);
 
     statement_show=Button_do(Figure(WinWid-100,WinWid-50,50,100,show_statements_tex,1.0),&show_statement,light_ok,shade_circle);
     answer_lab=Button_do(Figure(WinWid-100,WinWid-50,150,200,ok_lab_tex,1.0),&read_anses,light_ok,shade_circle);

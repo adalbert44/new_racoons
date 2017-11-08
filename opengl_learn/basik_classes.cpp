@@ -86,6 +86,7 @@ GLuint shade_down;
 GLuint shade_lab;
 GLuint shade_circle;
 GLuint shade_exit;
+GLuint shade_menu;
 
 
 GLuint light_ok;
