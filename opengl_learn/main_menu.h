@@ -14,6 +14,9 @@
     int create_lab();
     int choose_lab_select();
     int back_to_main_do();
+    int open_info();
+    int open_info();
+
 
 
 #endif // MAIN_MENU_H_INCLUDED

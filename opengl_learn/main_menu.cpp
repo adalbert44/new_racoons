@@ -10,6 +10,14 @@ int back_to_main_do()
 
 }
 
+int open_info()
+{
+    window_message=1;
+    window_picture_used=1;
+    window_picture.clear();
+    window_picture.pb(Figure(0,WinWid,0,WinHei,info_menu_tex,1.0));
+}
+
 int not_create()
 {
     input_text_mode=0;
@@ -58,9 +66,7 @@ int create_lab()
     info_name="lab_work";
     now_file_name=info_name;
 
-    cout<<"!!!"<<key_tex<<'\n';
     read(info_name);
-    cout<<"!!!"<<key_tex<<'\n';
     info_name="";
     clear_feel();
 

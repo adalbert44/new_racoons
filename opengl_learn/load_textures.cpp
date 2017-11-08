@@ -112,4 +112,5 @@ void load_all()
     shade_lab=Load("textures/lab_light.png");
     shade_down=Load("textures/back_shade.png");
     key_tex=Load("textures/key_tex.png");
+    info_menu_tex=Load("textures/info_khm.png");
 }

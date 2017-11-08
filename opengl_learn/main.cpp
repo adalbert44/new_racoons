@@ -34,7 +34,9 @@ void Draw()
     } else
     if (in_main_menu)
     {
-        main_menu_draw();
+        if (window_message)
+            window_message_draw(); else
+            main_menu_draw();
     }
 
     glutSwapBuffers();
@@ -159,7 +161,7 @@ void main_menu_create()
     new_file=Button_do(Figure(midle-200,midle,350,550,new_file_tex,1.0),&create_new_file,window_light,shade_menu);
     old_file=Button_do(Figure(midle,midle+200,350,550,old_file_tex,1.0),&load_old_file,window_light,shade_menu);
     lab=Button_do(Figure(midle-200,midle,550,750,lab_tex,1.0),&choose_lab_select,window_light,shade_menu);
-    photo=Button_do(Figure(midle,midle+200,550,750,photo_tex,1.0),&create_new_file,window_light,shade_menu);
+    photo=Button_do(Figure(midle,midle+200,550,750,photo_tex,1.0),&open_info,window_light,shade_menu);
     exit_b=Button_do(Figure(midle-200,midle+200,750,950,exit_tex,1.0),&exit_,light_exit,shade_exit);
 
 }
@@ -168,8 +170,7 @@ void main_menu_create()
 
 void creat_feel()
 {
-    //cout<<WinWid<<'!'<<' '<<WinHei<<'\n';
-    for (int i=0;i<feel_size;i++)
+   for (int i=0;i<feel_size;i++)
         for (int j=0;j<feel_size;j++)
         if (rand()%3)
         feel_background.push_back(Figure(feel_seg_size*i, feel_seg_size*(i+1), feel_seg_size*j, feel_seg_size*(j+1), feel_background_texture[0],1)); else
@@ -266,7 +267,6 @@ void creat_feel()
 
 void Initialize(int w, int h)
 {
-    //cout<<w<<' '<<h<<'\n';
     glViewport(0,0,w,h);
     real_WinWid=w;
     real_WinHei=h;
@@ -274,7 +274,7 @@ void Initialize(int w, int h)
     WinHei=1080;
     kx=real_WinWid/WinWid;
     ky=real_WinHei/WinHei;
-    //cout<<WinWid<<' '<<WinHei<<' '<<real_WinWid<<' '<<real_WinHei<<'\n';
+
     left_menu_size=(WinHei-100)/7.0*2.0;
     startx=-left_menu_size;
 	glMatrixMode(GL_PROJECTION);
@@ -293,6 +293,12 @@ void mouse_pressed(int button, int state, int x, int y)
 {
     x/=kx;
     y/=ky;
+
+    if (window_message)
+    {
+        window_message_reaction(button,state);
+        return;
+    }
 
     if (in_main_menu)
     {

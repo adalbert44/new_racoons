@@ -43,7 +43,6 @@ void add_all_files(string st)
 
 void read(string way)
 {
-    cout<<'!'<<key_tex<<'\n';
     way+=".ec";
     ifstream in(way);
     int reb_size, first_i2, second_i2;
@@ -63,7 +62,6 @@ void read(string way)
         }
     in.close();
 
-    cout<<'!'<<key_tex<<'\n';
 }
 
 void write(string way)
@@ -105,11 +103,6 @@ vector<vector<Color> > readBMP(string file)
     int width = *(int*)&info[18];
     int height = *(int*)&info[22];
 
-    cout << endl;
-    cout << "  Name: " << filename << endl;
-    cout << " Width: " << width << endl;
-    cout << "Height: " << height << endl;
-    cout<<'!';
     int row_padded = (width*3 + 3) & (~3);
 
     unsigned char* data = new unsigned char[row_padded];

@@ -70,7 +70,6 @@ vector<vector<int> > black_white(vector<vector<Color> > vec)
 
 vector<vector<bool> > read_pic(string file)
 {
-    cout<<"!!!!!!!!!!!!!!!!!!\n";
     vector<vector<Color> > vec=readBMP(file);
 
     vector<vector<int> > vec1=black_white(vec);
@@ -86,7 +85,6 @@ vector<vector<bool> > read_pic(string file)
     int count=0;
     int index;
     int x1, y1, x2, y2;
-    cout<<"do";
 
     integral_image = new unsigned long [width*height*sizeof(unsigned long*)];
 
@@ -107,7 +105,7 @@ vector<vector<bool> > read_pic(string file)
 
         }
     }
-    cout<<"do";
+
     vector<vector<bool> > res(vec1.size());
 
 
@@ -388,7 +386,7 @@ void add(pt p1_, pt p2_, pt p3_, pt p4_)
 
 
     p1_=pt(pp.x+(p1_.x-pp.x)*1.3 , pp.y+(p1_.y-pp.y)*1.3);
-    cout<<p1_.x<<' '<<p1_.y<<'\n';
+
 
     len=dist_pt(p3_,pp);
     len_=len+40;
@@ -880,7 +878,6 @@ pair<int,int> midle(vector<pair<int,int> > visited)
 
 bool check_pluss(vector<pair<int,int> > visited)
 {
-   // cout<<"pluss";
     int mnx=1e9;
     int mny=1e9;
     int mxx=-1e9;
@@ -916,7 +913,7 @@ bool check_pluss(vector<pair<int,int> > visited)
 bool check_minuss(vector<pair<int,int> > visited)
 {
 
-  //  cout<<"minuss";
+
     int mnx=1e9;
     int mny=1e9;
     int mxx=-1e9;
@@ -929,7 +926,7 @@ bool check_minuss(vector<pair<int,int> > visited)
         mxy=max(mxy, i.sec);
     }
 
-//    cout<<(ld)abs(mnx-mxx)<<' '<<(ld)abs(mny-mxy)<<'\n';
+
 
     return((ld)abs(mny-mxy)/(ld)abs(mnx-mxx)>3);
 }
@@ -948,7 +945,6 @@ vector<vector<bool> > squeeze(vector<vector<bool> > vec, int n, int m)
     int nb=1;
     int mb=1;
 
-  //  cout<<vec.size()-1<<' '<<n<<"@@@@@@@"<<'\n';
 
     while ((vec.size()-1)/nb>=n)
         nb++;
@@ -961,7 +957,7 @@ vector<vector<bool> > squeeze(vector<vector<bool> > vec, int n, int m)
             if (vec[i][j])
                 res[i/nb][j/mb]=1;
 
-    //cout<<(vec[0].size()-1)/mb<<'\n';
+
     return(res);
 }
 
@@ -1121,20 +1117,7 @@ void get_digits()
         }
 
 
-    cout<<"digits\n";
-    for (auto i:digits)
-    {
-        cout<<i.x<<' '<<i.y<<' '<<i.zn<<'\n';
-    }
-    cout<<"pluss\n";
-    for (auto i:pluss)
-        cout<<i.fir<<' '<<i.sec<<'\n';
-    cout<<"minuss\n";
-    for (auto i:minuss)
-        cout<<i.fir<<' '<<i.sec<<'\n';
-    cout<<"dot\n";
-    for (auto i:dot)
-        cout<<i.fir<<' '<<i.sec<<'\n';
+
 
 }
 
@@ -1255,8 +1238,6 @@ void scan(string file)
 
     elements=new_elements;
 
-    for (auto i:elements)
-        cout<<i.name<<'\n';
 
     for (int i=0;i<colour.size();i++)
         for (int j=0;j<colour[i].size();j++)

@@ -29,6 +29,7 @@ vector<string> lab_ask[16];
 GLuint rotate_tex;
 GLuint ok_tex;
 GLuint bad_tex;
+GLuint info_menu_tex;
 bool window_message;
 bool in_main_menu=1;
 bool window_picture_used;

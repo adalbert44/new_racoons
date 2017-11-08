@@ -27,7 +27,6 @@ void object_menu_draw()
 
     object_info.draw_state();
 
-    //cout<<object_info.tex<<'@'<<'\n';
 
 
     if (!(object[i][j].f.tex==choosen_point_tex || object[i][j].f.tex==connection_point && !can_delete(i,j)))
