@@ -2,7 +2,7 @@
 
 void input_info_draw()
 {
-    window_shade.alpha=0.1;
+    window_shade.alpha=0.2;
     window_shade.draw_state();
     input_info_background.draw_state();
     input_feel.draw_state();
