@@ -256,11 +256,19 @@ void creat_feel()
     lab_ask[8]={"R1","R2"};
     lab_ans[9]={44/15,3};
     lab_ask[9]={"R1","R2"};
-    for (int i=10;i<16;i++)
-    {
-        lab_ans[i].pb(0);
-        lab_ask[i].pb("");
-    }
+    lab_ans[10]={3,6.2};
+    lab_ask[10]={"I1","R"};
+    lab_ans[11]={6};
+    lab_ask[11]={"U1"};
+    lab_ans[12]={15};
+    lab_ask[12]={"U1"};
+    lab_ans[13]={1.5};
+    lab_ask[13]={"R"};
+    lab_ans[14]={0.8};
+    lab_ask[14]={"R"};
+    lab_ans[15]={11};
+    lab_ask[15]={"R"};
+
 
 }
 

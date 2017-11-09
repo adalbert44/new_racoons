@@ -158,7 +158,6 @@ void put_on_feel(vector<Element> elements, vector<prov> rebers)
 
     for (auto i:rebers)
     {
-        //cout<<i.c1<<' '<<i.c2<<'\n';
         points[i.c1-1].pb(i.p1);
         points[i.c2-1].pb(i.p2);
     }
@@ -193,7 +192,6 @@ void put_on_feel(vector<Element> elements, vector<prov> rebers)
 
             if (mxx-mnx>mxy-mny)
             {
-                cout<<"start1";
 
                 int x1=x-1;
                 int y1=y;

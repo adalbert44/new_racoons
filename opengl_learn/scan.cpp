@@ -41,6 +41,35 @@ vector<digit> digits;
 vector<pair<int,int> > pluss,minuss;
 vector<pair<int,int> > dot;
 
+vector<vector<int> > colour;
+vector<vector<bool> > vec,use_p,need_use;
+vector<pair<int,int> > visited_points;
+vector<Element> elements;
+
+vector<pair<int,int> > points[2000];
+
+vector<prov> rebers;
+
+
+
+void clear_all()
+{
+    digits.clear();
+    pluss.clear();
+    minuss.clear();
+    dot.clear();
+    colour.clear();
+    vec.clear();
+    use_p.clear();
+    need_use.clear();
+    visited_points.clear();
+    elements.clear();
+
+    for (int i=0;i<2000;i++)
+        points[i].clear();
+    rebers.clear();
+}
+
 const double EPS = 1e-9;
 
 double det (double a, double b, double c, double d) {
@@ -143,10 +172,6 @@ vector<vector<bool> > read_pic(string file)
 
     return(res);
 }
-
-vector<vector<int> > colour;
-vector<vector<bool> > vec,use_p,need_use;
-vector<pair<int,int> > visited_points;
 
 void bfs(int i, int j, int c)
 {
@@ -255,8 +280,6 @@ void bfs2(pair<int,int> u)
                 q.push({i,j+1});
     }
 }
-
-vector<Element> elements;
 
 bool check_midle(pt p1_, pt p2_, pt p3_, pt p4_)
 {
@@ -749,7 +772,6 @@ bool ampermetr(vector<pair<int,int> > vec)
     return(ch);
 }
 
-vector<pair<int,int> > points[2000];
 
 bool voltmetr(vector<pair<int,int> > vec)
 {
@@ -1260,9 +1282,6 @@ void clear_(Element u, int now)
     }
 }
 
-
-vector<prov> rebers;
-
 ld area(Element u)
 {
     if (u.p.size()==1)
@@ -1307,6 +1326,9 @@ bool intersect(Element i, Element j)
 
 void scan(string file)
 {
+
+    clear_all();
+
     comp_pic(file);
 
 
