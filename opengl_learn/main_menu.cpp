@@ -40,9 +40,41 @@ int create()
     input_text_mode=0;
 }
 
+int scan_path()
+{
+    char current_work_dir[50000];
+    _getcwd(current_work_dir, sizeof(current_work_dir));
+
+    string s=current_work_dir;
+
+    int cnt=0;
+    for (auto i:s)
+        if (i=='\\')
+        cnt++;
+
+    s="";
+    while (cnt--)
+    {
+        s+="..\\";
+    }
+    s+=info_name;
+
+    if (!scan(info_name))
+    {
+        window_message=1;
+        window_message_write="Bad photo";
+    }
+    info_name="";
+    input_text_mode=0;
+}
+
 int make_scan_do()
 {
-    scan("textures/scheme.bmp");
+    //scan("textures/scheme.bmp");
+    input_text_mode=1;
+    input_text_ask="Enter path:";
+    input_ok.to_do=&scan_path;
+    input_bad.to_do=&not_create;
 }
 
 void clear_feel()

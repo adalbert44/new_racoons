@@ -140,7 +140,7 @@ void pos_ver(int j, int i, Element u)
 }
 
 
-void put_on_feel(vector<Element> elements, vector<prov> rebers)
+bool put_on_feel(vector<Element> elements, vector<prov> rebers)
 {
     /*for (auto i:elements)
         for (auto j:i.p)
@@ -170,7 +170,7 @@ void put_on_feel(vector<Element> elements, vector<prov> rebers)
         start=i;
 
     if (start==-1)
-        return;
+        return(0);
 
     clear_feel();
     int now=0;
@@ -343,4 +343,5 @@ void put_on_feel(vector<Element> elements, vector<prov> rebers)
     }
 
     solve();
+    return(1);
 }

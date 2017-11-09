@@ -8,7 +8,7 @@
     bool in_all_files(string st);
     void add_all_files(string st);
     int save_do();
-    vector<vector<Color>  > readBMP(string file);
+    vector<vector<Color>  > readBMP(string file, bool &bad);
     vector<vector<bool>  > read_pic(string file);
     void write_info(string way);
 

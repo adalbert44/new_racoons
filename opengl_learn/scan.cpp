@@ -50,7 +50,7 @@ vector<pair<int,int> > points[2000];
 
 vector<prov> rebers;
 
-
+bool all_very_bad;
 
 void clear_all()
 {
@@ -68,6 +68,7 @@ void clear_all()
     for (int i=0;i<2000;i++)
         points[i].clear();
     rebers.clear();
+    all_very_bad=0;
 }
 
 const double EPS = 1e-9;
@@ -99,7 +100,9 @@ vector<vector<int> > black_white(vector<vector<Color> > vec)
 
 vector<vector<bool> > read_pic(string file)
 {
-    vector<vector<Color> > vec=readBMP(file);
+    vector<vector<Color> > vec=readBMP(file,all_very_bad);
+    vector<vector<bool> > a;
+    if (all_very_bad) return(a);
 
     vector<vector<int> > vec1=black_white(vec);
 
@@ -1192,6 +1195,8 @@ vector<vector<int> > comp_pic(string file)
 {
 
     vec=read_pic(file);
+    vector<vector<int> > a;
+    if (all_very_bad) return(a);
     get_digits();
 
     for (int i=0;i<vec.size();i++)
@@ -1324,12 +1329,15 @@ bool intersect(Element i, Element j)
     return(0);
 }
 
-void scan(string file)
+bool scan(string file)
 {
 
     clear_all();
 
     comp_pic(file);
+
+    if (all_very_bad)
+        return(0);
 
 
 
@@ -1441,5 +1449,5 @@ void scan(string file)
         }
     }
 
-    put_on_feel(elements,rebers);
+    return(put_on_feel(elements,rebers));
 }

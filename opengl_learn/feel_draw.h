@@ -2,6 +2,7 @@
 #define FEEL_DRAW_H_INCLUDED
 
     #include "includes.h"
+    #include "input_text.h"
 
     void draw_feel();
     void draw_left_menu();

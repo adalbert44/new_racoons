@@ -223,6 +223,9 @@ void draw_feel()
     }
 
     back_to_main.draw_state();
+
+    if (input_text_mode)
+        input_text_draw();
 }
 
 void draw_left_menu()

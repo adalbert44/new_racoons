@@ -83,9 +83,27 @@ void write(string way)
     out.close();
 }
 
+bool bad_way(string s)
+{
+    if (s.size()<4)
+        return(1);
+    if (s.back()!='p')
+        return(1);
+    s.pop_back();
+    if (s.back()!='m')
+        return(1);
+    s.pop_back();
+    if (s.back()!='b')
+        return(1);
+    s.pop_back();
 
+    if (s.back()!='.')
+        return(1);
 
-vector<vector<Color> > readBMP(string file)
+    return(0);
+}
+
+vector<vector<Color> > readBMP(string file, bool &bad)
 {
     char *filename = new char[file.length() + 1];
     strcpy(filename, file.c_str());
@@ -93,8 +111,13 @@ vector<vector<Color> > readBMP(string file)
     int i;
     FILE* f = fopen(filename, "rb");
 
-    if(f == NULL)
-        throw "Argument Exception";
+    if (f == NULL || bad_way(file))
+    {
+        fclose(f);
+        bad=1;
+        vector<vector<Color> > emp;
+        return(emp);
+    }
 
     unsigned char info[54];
     fread(info, sizeof(unsigned char), 54, f); // read the 54-byte header

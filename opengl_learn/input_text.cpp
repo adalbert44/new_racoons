@@ -60,6 +60,14 @@ void input_text_keyboard(char c)
     if (c=='.')
         info_name+=c;
 
+    if (in_feel)
+    {
+        if (c=='\\')
+            info_name+=c;
+        if (c==':')
+            info_name+=c;
+    }
+
     if (info_name.size()>15)
         info_name.pop_back();
 }

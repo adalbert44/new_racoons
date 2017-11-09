@@ -303,6 +303,12 @@ void mouse_pressed(int button, int state, int x, int y)
     x/=kx;
     y/=ky;
 
+    if (input_text_mode)
+    {
+        input_text_reaction(button,state);
+        return;
+    }
+
     if (window_message)
     {
         window_message_reaction(button,state);

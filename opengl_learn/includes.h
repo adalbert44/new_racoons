@@ -8,7 +8,7 @@
     #include <IL/ilut.h>
     #include "global_vars.h"
     #include "basik_classes.h"
-
+    #include "direct.h"
 
     #define mp make_pair
     #define pb push_back

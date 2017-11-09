@@ -841,7 +841,7 @@
 1510218326 c:\users\admin\desktop\new_racoons\opengl_learn\basik_classes.h
 	"includes.h"
 
-1508415184 c:\users\admin\desktop\new_racoons\opengl_learn\includes.h
+1510233112 c:\users\admin\desktop\new_racoons\opengl_learn\includes.h
 	<bits/stdc++.h>
 	<time.h>
 	<cstdlib>
@@ -849,6 +849,7 @@
 	<IL/ilut.h>
 	"global_vars.h"
 	"basik_classes.h"
+	"direct.h"
 
 1508415184 c:\users\admin\desktop\new_racoons\opengl_learn\global_vars.h
 	"includes.h"
@@ -899,14 +900,15 @@
 1508415184 source:c:\users\admin\desktop\new_racoons\opengl_learn\element_type.h
 	"includes.h"
 
-1510218560 source:c:\users\admin\desktop\new_racoons\opengl_learn\feel_draw.cpp
+1510232266 source:c:\users\admin\desktop\new_racoons\opengl_learn\feel_draw.cpp
 	"feel_draw.h"
 	"basik_classes.h"
 	"potential_mode.h"
 	"lab_mode.h"
 
-1508415184 c:\users\admin\desktop\new_racoons\opengl_learn\feel_draw.h
+1510232292 c:\users\admin\desktop\new_racoons\opengl_learn\feel_draw.h
 	"includes.h"
+	"input_text.h"
 
 1508415184 c:\users\admin\desktop\new_racoons\opengl_learn\potential_mode.h
 	"includes.h"
@@ -916,10 +918,11 @@
 	"includes.h"
 	"input_info.h"
 
-1508415184 source:c:\users\admin\desktop\new_racoons\opengl_learn\feel_draw.h
+1510232292 source:c:\users\admin\desktop\new_racoons\opengl_learn\feel_draw.h
 	"includes.h"
+	"input_text.h"
 
-1510218743 source:c:\users\admin\desktop\new_racoons\opengl_learn\feel_reaction.cpp
+1510232363 source:c:\users\admin\desktop\new_racoons\opengl_learn\feel_reaction.cpp
 	"feel_reaction.h"
 	"object_menu_reaction.h"
 	"get_power.h"
@@ -942,7 +945,7 @@
 	"includes.h"
 	"basik_classes.h"
 
-1508415184 source:c:\users\admin\desktop\new_racoons\opengl_learn\includes.h
+1510233112 source:c:\users\admin\desktop\new_racoons\opengl_learn\includes.h
 	<bits/stdc++.h>
 	<time.h>
 	<cstdlib>
@@ -950,6 +953,7 @@
 	<IL/ilut.h>
 	"global_vars.h"
 	"basik_classes.h"
+	"direct.h"
 
 1509611622 source:c:\users\admin\desktop\new_racoons\opengl_learn\input_info.cpp
 	"input_info.h"
@@ -958,7 +962,7 @@
 	"includes.h"
 	"feel_reaction.h"
 
-1508760776 source:c:\users\admin\desktop\new_racoons\opengl_learn\input_text.cpp
+1510232773 source:c:\users\admin\desktop\new_racoons\opengl_learn\input_text.cpp
 	"input_text.h"
 
 1508415184 c:\users\admin\desktop\new_racoons\opengl_learn\input_text.h
@@ -983,7 +987,7 @@
 1508415184 source:c:\users\admin\desktop\new_racoons\opengl_learn\load_textures.h
 	"includes.h"
 
-1510223557 source:c:\users\admin\desktop\new_racoons\opengl_learn\main.cpp
+1510232419 source:c:\users\admin\desktop\new_racoons\opengl_learn\main.cpp
 	"includes.h"
 	"load_textures.h"
 	"basik_classes.h"
@@ -1013,7 +1017,7 @@
 	"element_type.h"
 	"input_info.h"
 
-1509611622 c:\users\admin\desktop\new_racoons\opengl_learn\read_write.h
+1510234032 c:\users\admin\desktop\new_racoons\opengl_learn\read_write.h
 	"includes.h"
 
 1508415184 c:\users\admin\desktop\new_racoons\opengl_learn\u_ask_mode.h
@@ -1030,7 +1034,7 @@
 	"get_power.h"
 	"scan.h"
 
-1510218455 source:c:\users\admin\desktop\new_racoons\opengl_learn\main_menu.cpp
+1510234025 source:c:\users\admin\desktop\new_racoons\opengl_learn\main_menu.cpp
 	"main_menu.h"
 	"choose_lab.h"
 
@@ -1067,11 +1071,11 @@
 	"includes.h"
 	"element_type.h"
 
-1510167326 source:c:\users\admin\desktop\new_racoons\opengl_learn\read_write.cpp
+1510234498 source:c:\users\admin\desktop\new_racoons\opengl_learn\read_write.cpp
 	"read_write.h"
 	<fstream>
 
-1509611622 source:c:\users\admin\desktop\new_racoons\opengl_learn\read_write.h
+1510234032 source:c:\users\admin\desktop\new_racoons\opengl_learn\read_write.h
 	"includes.h"
 
 1508415184 source:c:\users\admin\desktop\new_racoons\opengl_learn\u_ask_mode.cpp
@@ -1367,21 +1371,21 @@
 1509523913 source:c:\users\user\desktop\new_racoons\opengl_learn\scan.cpp
 	"scan.h"
 
-1510148054 c:\users\admin\desktop\new_racoons\opengl_learn\scan.h
+1510233742 c:\users\admin\desktop\new_racoons\opengl_learn\scan.h
 	"includes.h"
 	"read_write.h"
 	"scan.h"
 	"digits.h"
 	"put_on_feel.h"
 
-1510148054 source:c:\users\admin\desktop\new_racoons\opengl_learn\scan.h
+1510233742 source:c:\users\admin\desktop\new_racoons\opengl_learn\scan.h
 	"includes.h"
 	"read_write.h"
 	"scan.h"
 	"digits.h"
 	"put_on_feel.h"
 
-1510223325 source:c:\users\admin\desktop\new_racoons\opengl_learn\scan.cpp
+1510234278 source:c:\users\admin\desktop\new_racoons\opengl_learn\scan.cpp
 	"scan.h"
 
 1510157348 source:c:\users\admin\desktop\new_racoons\opengl_learn\digits.cpp
@@ -1674,15 +1678,15 @@
 	"scan.h"
 	"digits.h"
 
-1510221169 c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.h
+1510234136 c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.h
 	"includes.h"
 	"main_menu.h"
 	"get_power.h"
 
-1510223371 source:c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.cpp
+1510234164 source:c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.cpp
 	"put_on_feel.h"
 
-1510221169 source:c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.h
+1510234136 source:c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.h
 	"includes.h"
 	"main_menu.h"
 	"get_power.h"

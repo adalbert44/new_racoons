@@ -8,6 +8,6 @@
     #include "put_on_feel.h"
 
     vector<vector<int> > comp_pic(string file);
-    void scan(string file);
+    bool scan(string file);
 
 #endif // SCAN_H_INCLUDED
