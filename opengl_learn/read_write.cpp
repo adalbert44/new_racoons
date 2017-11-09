@@ -1,6 +1,28 @@
 #include "read_write.h"
 #include <fstream>
 
+string to_start()
+{
+    char current_work_dir[50000];
+    _getcwd(current_work_dir, sizeof(current_work_dir));
+
+    string s=current_work_dir;
+
+    int cnt=0;
+    for (auto i:s)
+        if (i=='\\')
+        cnt++;
+    cnt--;
+
+    s="";
+    while (cnt--)
+    {
+        s+="..\\";
+    }
+
+    return(s);
+}
+
 int save_do()
 {
     write(now_file_name);
@@ -185,11 +207,14 @@ int length_long_double(long long number)
 
 void write_info(string way)
 {
+    if (way=="lab_work")
+        return;
     struct MyType
     {
         int object, num;
     };
     setlocale(0,"UKR");
+    way="C:\\elmos\\"+way;
     way+=".txt";
     ofstream out(way);
     long double maxU, maxI, maxR;

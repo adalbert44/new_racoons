@@ -166,11 +166,29 @@ void main_menu_create()
 
 }
 
-
+bool read_directory(const std::string& name, vector<string>& v)
+{
+    std::string pattern(name);
+    pattern.append("\\*");
+    WIN32_FIND_DATA data;
+    HANDLE hFind;
+    if ((hFind = FindFirstFile(pattern.c_str(), &data)) != INVALID_HANDLE_VALUE) {
+        do {
+            if (data.cFileName=="elmos")
+                return(1);
+        } while (FindNextFile(hFind, &data) != 0);
+        FindClose(hFind);
+    }
+    return(0);
+}
 
 void creat_feel()
 {
-   for (int i=0;i<feel_size;i++)
+    vector<string> v;
+    string way="C:\\";
+    if (!read_directory(way,v))
+        mkdir("C:\\elmos");
+    for (int i=0;i<feel_size;i++)
         for (int j=0;j<feel_size;j++)
         if (rand()%3)
         feel_background.push_back(Figure(feel_seg_size*i, feel_seg_size*(i+1), feel_seg_size*j, feel_seg_size*(j+1), feel_background_texture[0],1)); else
