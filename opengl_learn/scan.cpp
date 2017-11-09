@@ -271,24 +271,24 @@ bool check_midle(pt p1_, pt p2_, pt p3_, pt p4_)
     ld len=dist_pt(p1_,pp);
     ld len_=len/2.0;
 
-    p1_=pt(pp.x+(p1_.x-pp.x)*0.5 , pp.y+(p1_.y-pp.y)*0.5);
+    p1_=pt(pp.x+(p1_.x-pp.x)*0.3 , pp.y+(p1_.y-pp.y)*0.3);
 
     len=dist_pt(p3_,pp);
     len_=len/2.0;
 
-    p3_=pt(pp.x+(p3_.x-pp.x)*0.5 , pp.y+(p3_.y-pp.y)*0.5);
+    p3_=pt(pp.x+(p3_.x-pp.x)*0.3 , pp.y+(p3_.y-pp.y)*0.3);
 
     pp=pt((p2_.x+p4_.x)/2.0,(p2_.y+p4_.y)/2.0);
 
     len=dist_pt(p2_,pp);
     len_=len/2.0;
 
-    p2_=pt(pp.x+(p2_.x-pp.x)*0.5 , pp.y+(p2_.y-pp.y)*0.5);
+    p2_=pt(pp.x+(p2_.x-pp.x)*0.3 , pp.y+(p2_.y-pp.y)*0.3);
 
     len=dist_pt(p4_,pp);
     len_=len/2.0;
 
-    p4_=pt(pp.x+(p4_.x-pp.x)*0.5 , pp.y+(p4_.y-pp.y)*0.5);
+    p4_=pt(pp.x+(p4_.x-pp.x)*0.3 , pp.y+(p4_.y-pp.y)*0.3);
 
      mnx=min({p1_.x,p2_.x,p3_.x,p4_.x});
      mxx=max({p1_.x,p2_.x,p3_.x,p4_.x});
@@ -376,6 +376,16 @@ bool check_res(pt p1_, pt p2_, pt p3_, pt p4_)
     return 0;
 }
 
+int count_seg(pt p1_, pt p2_, pt p3_, pt p4_)
+{
+    vector<pt> g12=intersect_black(p1_,p2_);
+    vector<pt> g23=intersect_black(p2_,p3_);
+    vector<pt> g34=intersect_black(p3_,p4_);
+    vector<pt> g41=intersect_black(p1_,p4_);
+
+    return ((g12.size()!=0) + (g23.size()!=0) + (g34.size()!=0) + (g41.size()!=0));
+}
+
 void add(pt p1_, pt p2_, pt p3_, pt p4_)
 {
 
@@ -385,26 +395,64 @@ void add(pt p1_, pt p2_, pt p3_, pt p4_)
     ld len_=len+40;
 
 
-    p1_=pt(pp.x+(p1_.x-pp.x)*1.3 , pp.y+(p1_.y-pp.y)*1.3);
+    p1_=pt(pp.x+(p1_.x-pp.x)*1.1 , pp.y+(p1_.y-pp.y)*1.1);
 
 
     len=dist_pt(p3_,pp);
     len_=len+40;
 
-    p3_=pt(pp.x+(p3_.x-pp.x)*1.3 , pp.y+(p3_.y-pp.y)*1.3);
+    p3_=pt(pp.x+(p3_.x-pp.x)*1.1 , pp.y+(p3_.y-pp.y)*1.1);
 
     pp=pt((p2_.x+p4_.x)/2.0,(p2_.y+p4_.y)/2.0);
 
     len=dist_pt(p2_,pp);
     len_=len+40;
 
-    p2_=pt(pp.x+(p2_.x-pp.x)*1.3 , pp.y+(p2_.y-pp.y)*1.3);
+    p2_=pt(pp.x+(p2_.x-pp.x)*1.1 , pp.y+(p2_.y-pp.y)*1.1);
 
     len=dist_pt(p4_,pp);
     len_=len+40;
 
-    p4_=pt(pp.x+(p4_.x-pp.x)*1.3 , pp.y+(p4_.y-pp.y)*1.3);
+    p4_=pt(pp.x+(p4_.x-pp.x)*1.1 , pp.y+(p4_.y-pp.y)*1.1);
 
+
+    while (count_seg(p1_,p2_,p3_,p4_)>2)
+    {
+        pt pp=pt((p1_.x+p3_.x)/2.0,(p1_.y+p3_.y)/2.0);
+
+        ld len=dist_pt(p1_,pp);
+        ld len_=len+40;
+
+
+        p1_=pt(pp.x+(p1_.x-pp.x)*1.1 , pp.y+(p1_.y-pp.y)*1.1);
+
+
+        len=dist_pt(p3_,pp);
+        len_=len+40;
+
+        p3_=pt(pp.x+(p3_.x-pp.x)*1.1 , pp.y+(p3_.y-pp.y)*1.1);
+
+        pp=pt((p2_.x+p4_.x)/2.0,(p2_.y+p4_.y)/2.0);
+
+        len=dist_pt(p2_,pp);
+        len_=len+40;
+
+        p2_=pt(pp.x+(p2_.x-pp.x)*1.1 , pp.y+(p2_.y-pp.y)*1.1);
+
+        len=dist_pt(p4_,pp);
+        len_=len+40;
+
+        p4_=pt(pp.x+(p4_.x-pp.x)*1.1 , pp.y+(p4_.y-pp.y)*1.1);
+
+    }
+
+    cout<<p1_.x<<' '<<p1_.y<<'\n';
+    cout<<p2_.x<<' '<<p2_.y<<'\n';
+    cout<<p3_.x<<' '<<p3_.y<<'\n';
+    cout<<p4_.x<<' '<<p4_.y<<'\n';
+
+    if (count_seg(p1_,p2_,p3_,p4_)!=2)
+        return;
 
     elements.pb(Element());
     elements.back().p={p1_,p2_,p3_,p4_};
@@ -1219,6 +1267,45 @@ void clear_(Element u, int now)
 
 vector<prov> rebers;
 
+ld area(Element u)
+{
+    if (u.p.size()==1)
+        return(acos(-1)*u.rad*u.rad); else
+        return(area(u.p[0],u.p[1],u.p[2])+area(u.p[0],u.p[2],u.p[3]));
+}
+
+bool in(pt u, Element e)
+{
+    ld a=area(e);
+
+    return(abs((area(u,e.p[0],e.p[1])+area(u,e.p[1],e.p[2])+area(u,e.p[3],e.p[2])+area(u,e.p[0],e.p[3])-a)<EPS));
+}
+
+bool intersect(Element i, Element j)
+{
+    if (i.p.size()==1 && j.p.size()==1)
+    {
+        return(dist_pt(i.p[0],j.p[0])<i.rad+j.rad);
+    }
+
+    if (i.p.size()==4 && j.p.size()==4)
+    {
+
+        for (auto l:i.p)
+            if (in(l,j))
+                return(1);
+        return(0);
+    }
+
+    if (i.p.size()==4)
+        swap(i,j);
+
+    for (auto l:j.p)
+        if (dist_pt(i.p[0],l)<i.rad)
+        return(1);
+    return(0);
+}
+
 void scan(string file)
 {
     comp_pic(file);
@@ -1226,17 +1313,27 @@ void scan(string file)
 
 
     vector<Element> new_elements;
-    for (auto i:elements)
+
+    for (int i=0;i<elements.size();i++)
     {
-        bool ch=0;
-        if (i.p.size()==4)
-            if ((area(i.p[0],i.p[1],i.p[2])+area(i.p[0],i.p[2],i.p[3]))>ld(colour.size()*colour[0].size())/3)
-                ch=1;
-        if (!ch)
-            new_elements.pb(i);
+        bool ch=1;
+
+        for (int j=0;j<elements.size();j++)
+            if (j!=i)
+            {
+                if (area(elements[i])>=area(elements[j]))
+                    if (intersect(elements[i],elements[j]))
+                    ch=0;
+            }
+
+            if (ch)
+                new_elements.pb(elements[i]);
     }
 
     elements=new_elements;
+
+    for (auto i:elements)
+        cout<<i.name<<'\n';
 
 
     for (int i=0;i<colour.size();i++)
