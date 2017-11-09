@@ -206,6 +206,8 @@ void creat_feel()
 
     undo_button=Button_do(Figure(100,150,0,50,undo_tex,1.0),&undo,window_light,window_shade.tex);
     redo_button=Button_do(Figure(150,200,0,50,redo_tex,1.0),&redo,window_light,window_shade.tex);
+    make_scan=Button_do(Figure(50,100,0,50,undo_tex,1.0),&make_scan_do,window_light,window_shade.tex);;
+
 
     shade_button1.tex=shade_button_tex1;
     shade_button2.tex=shade_button_tex2;
@@ -440,7 +442,7 @@ int main(int argc, char** argv)
     glutPassiveMotionFunc(mouse_motion);
     glutFullScreen();
 
-    scan("textures/scheme.bmp");
+    //scan("textures/scheme.bmp");
 
     glutMainLoop();
 

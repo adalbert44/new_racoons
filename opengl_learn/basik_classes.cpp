@@ -177,6 +177,7 @@ bool object_menu_used=0;
 Button_do object_change_state;
 Button_do object_change_R;
 Button_do statement_show;
+Button_do make_scan;
 string parse_to_string(double u)
 {
 

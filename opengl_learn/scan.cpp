@@ -1294,6 +1294,9 @@ bool intersect(Element i, Element j)
         for (auto l:i.p)
             if (in(l,j))
                 return(1);
+        for (auto l:j.p)
+            if (in(l,i))
+                return(1);
         return(0);
     }
 
@@ -1326,8 +1329,9 @@ void scan(string file)
                     ch=0;
             }
 
-            if (ch)
-                new_elements.pb(elements[i]);
+
+        if (ch)
+            new_elements.pb(elements[i]);
     }
 
     elements=new_elements;
@@ -1374,6 +1378,7 @@ void scan(string file)
     {
         if (!used[i][j] && colour[i][j]==0)
         {
+
             vector<pair<int,int> > vis=bfs4({i,j},used,colour);
 
             vector<pair<pt,int> > v;
@@ -1389,6 +1394,26 @@ void scan(string file)
                     {
                         v.pb({pt(i.fir,i.sec),colour[i.fir+1][i.sec]});
                         mp[colour[i.fir+1][i.sec]]=1;
+                    }
+                if (i.fir-1>=0)
+                    if (!mp[colour[i.fir-1][i.sec]])
+                    {
+                        v.pb({pt(i.fir,i.sec),colour[i.fir-1][i.sec]});
+                        mp[colour[i.fir-1][i.sec]]=1;
+                    }
+
+                if (i.sec+1<vec[0].size())
+                    if (!mp[colour[i.fir][i.sec+1]])
+                    {
+                        v.pb({pt(i.fir,i.sec),colour[i.fir][i.sec+1]});
+                        mp[colour[i.fir][i.sec+1]]=1;
+                    }
+
+                if (i.sec-1>=0)
+                    if (!mp[colour[i.fir][i.sec-1]])
+                    {
+                        v.pb({pt(i.fir,i.sec),colour[i.fir][i.sec-1]});
+                        mp[colour[i.fir][i.sec-1]]=1;
                     }
             }
 

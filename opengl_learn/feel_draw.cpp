@@ -246,6 +246,7 @@ void draw_left_menu()
         U_ask_mode.watch();
         potential_mode.watch();
         save.watch();
+        make_scan.watch();
     }
 
 
@@ -257,5 +258,6 @@ void draw_left_menu()
     redo_button.draw_state();
     U_ask_mode.draw_state();
     potential_mode.draw_state();
+    make_scan.draw_state();
     save.draw_state();
 }

@@ -288,6 +288,7 @@
     extern GLuint shade_down;
     extern GLuint shade_menu;
     extern GLuint info_menu_tex;
+    extern Button_do make_scan;
 
 
 #endif // BASIK_CLASSES_H_INCLUDED

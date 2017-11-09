@@ -601,6 +601,12 @@ void left_menu_mouse_pressed(int button, int state)
             pressed_do=&save;
         }
 
+        if (make_scan.f.in() && !line_mode_used && !point_mode_used && !move_mode_used)
+        {
+            make_scan.press_down();
+            pressed_do=&make_scan;
+        }
+
 
 
     } else

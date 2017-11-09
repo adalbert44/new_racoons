@@ -40,6 +40,11 @@ int create()
     input_text_mode=0;
 }
 
+int make_scan_do()
+{
+    scan("textures/scheme.bmp");
+}
+
 void clear_feel()
 {
 
@@ -53,7 +58,8 @@ void clear_feel()
             object[i][j].U=0;
             object[i][j].shade=0;
         }
-
+    events.clear();
+    last_event=-1;
 }
 
 int create_lab()
