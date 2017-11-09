@@ -446,10 +446,6 @@ void add(pt p1_, pt p2_, pt p3_, pt p4_)
 
     }
 
-    cout<<p1_.x<<' '<<p1_.y<<'\n';
-    cout<<p2_.x<<' '<<p2_.y<<'\n';
-    cout<<p3_.x<<' '<<p3_.y<<'\n';
-    cout<<p4_.x<<' '<<p4_.y<<'\n';
 
     if (count_seg(p1_,p2_,p3_,p4_)!=2)
         return;

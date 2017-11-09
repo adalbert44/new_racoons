@@ -43,15 +43,43 @@ bool can_put(vector<Element> elements, int u)
     return(1);
 }
 
-void pos_hor(int i, int j, Element u)
+void pos_hor(int j, int i, Element u)
 {
-    object[i][j].f.tex=left_menu_vertical[0].tex;
+
+
     object[i][j].f.resize_(100);
     object[i][j].f.alpha=1.0;
     object[i][j].reb.pb({i,j-1});
     object[i][j].reb.pb({i,j+1});
     object[i][j].R=u.R;
-
+    if (u.name=="rezistor")
+    {
+        object[i][j].f.tex=left_menu_vertical[0].tex;
+    } else
+    if (u.name=="reostat")
+    {
+        object[i][j].f.tex=left_menu_vertical[4].tex;
+    } else
+    if (u.name=="energy")
+    {
+        if (u.pluss.x<u.minuss.x)
+        object[i][j].f.tex=left_menu_vertical[6].tex; else
+        object[i][j].f.tex=left_menu_vertical[5].tex;
+    } else
+    if (u.name=="key")
+    {
+        object[i][j].R=1e15;
+        object[i][j].f.tex=left_menu_vertical[2].tex;
+    } else
+    if (u.name=="voltmetr")
+    {
+        object[i][j].R=1e15;
+        object[i][j].f.tex=left_menu_vertical[1].tex;
+    } else
+    if (u.name=="ampermetr")
+    {
+        object[i][j].f.tex=left_menu_vertical[3].tex;
+    }
 
     object[i][j+1].f.tex=connection_point;
     object[i][j+1].f.alpha=1.0;
@@ -64,15 +92,41 @@ void pos_hor(int i, int j, Element u)
     object[i][j-1].reb.pb({i,j});
 }
 
-void pos_ver(int i, int j, Element u)
+void pos_ver(int j, int i, Element u)
 {
-    object[i][j].f.tex=left_menu_horizontal[0].tex;
     object[i][j].f.resize_(100);
     object[i][j].f.alpha=1.0;
     object[i][j].reb.pb({i-1,j});
     object[i][j].reb.pb({i+1,j});
     object[i][j].R=u.R;
-
+    if (u.name=="rezistor")
+    {
+        object[i][j].f.tex=left_menu_horizontal[0].tex;
+    } else
+    if (u.name=="reostat")
+    {
+        object[i][j].f.tex=left_menu_horizontal[4].tex;
+    } else
+    if (u.name=="energy")
+    {
+        if (u.pluss.y<u.minuss.y)
+        object[i][j].f.tex=left_menu_horizontal[6].tex; else
+        object[i][j].f.tex=left_menu_horizontal[5].tex;
+    } else
+    if (u.name=="key")
+    {
+        object[i][j].R=1e15;
+        object[i][j].f.tex=left_menu_horizontal[2].tex;
+    } else
+    if (u.name=="voltmetr")
+    {
+        object[i][j].R=1e15;
+        object[i][j].f.tex=left_menu_horizontal[1].tex;
+    } else
+    if (u.name=="ampermetr")
+    {
+        object[i][j].f.tex=left_menu_horizontal[3].tex;
+    }
 
     object[i+1][j].f.tex=connection_point;
     object[i+1][j].f.alpha=1.0;
@@ -88,7 +142,7 @@ void pos_ver(int i, int j, Element u)
 
 void put_on_feel(vector<Element> elements, vector<prov> rebers)
 {
-    for (auto i:elements)
+    /*for (auto i:elements)
         for (auto j:i.p)
         swap(j.x,j.y);
 
@@ -96,7 +150,7 @@ void put_on_feel(vector<Element> elements, vector<prov> rebers)
     {
         swap(i.p1.x,i.p1.y);
         swap(i.p2.x,i.p2.y);
-    }
+    }*/
 
     vector<vector<pt> > points;
     for (auto i:elements)
@@ -168,7 +222,7 @@ void put_on_feel(vector<Element> elements, vector<prov> rebers)
                     }
 
 
-                pos_ver(x,y,u);
+                pos_hor(x,y,u);
 
             } else
             {
@@ -197,7 +251,7 @@ void put_on_feel(vector<Element> elements, vector<prov> rebers)
                     {
                         way[{points[now][i].x,points[now][i].y}]={x2,y2};
                     }
-                pos_hor(x,y,u);
+                pos_ver(x,y,u);
             }
 
         } else
@@ -242,7 +296,7 @@ void put_on_feel(vector<Element> elements, vector<prov> rebers)
                     }
 
 
-                pos_ver(x,y,u);
+                pos_hor(x,y,u);
             } else
             {
                 int x1=x;
@@ -270,7 +324,8 @@ void put_on_feel(vector<Element> elements, vector<prov> rebers)
                     {
                         way[{(int)points[now][i].x,(int)points[now][i].y}]={x2,y2};
                     }
-                pos_hor(x,y,u);
+                pos_ver
+                (x,y,u);
             }
         }
         now++;
@@ -285,8 +340,8 @@ void put_on_feel(vector<Element> elements, vector<prov> rebers)
         int y2=way[{(int)i.p2.x,(int)i.p2.y}].sec;
 
 
-        object[x1][y1].reb.pb({x2,y2});
-        object[x2][y2].reb.pb({x1,y1});
+        object[y1][x1].reb.pb({y2,x2});
+        object[y2][x2].reb.pb({y1,x1});
     }
 
     solve();

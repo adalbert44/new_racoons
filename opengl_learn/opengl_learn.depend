@@ -1679,12 +1679,13 @@
 	"main_menu.h"
 	"get_power.h"
 
-1510220683 source:c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.cpp
+1510223120 source:c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.cpp
 	"put_on_feel.h"
 
-1510216028 source:c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.h
+1510221169 source:c:\users\admin\desktop\new_racoons\opengl_learn\put_on_feel.h
 	"includes.h"
 	"main_menu.h"
+	"get_power.h"
 
 1510168429 source:c:\users\user\documents\github\new_racoons2\opengl_learn\basik_classes.cpp
 	"basik_classes.h"
