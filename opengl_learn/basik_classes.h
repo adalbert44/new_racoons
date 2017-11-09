@@ -286,6 +286,7 @@
     extern GLuint light_down;
     extern GLuint shade_lab;
     extern GLuint shade_down;
+    extern GLuint scan_tex;
     extern GLuint shade_menu;
     extern GLuint info_menu_tex;
     extern Button_do make_scan;

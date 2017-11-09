@@ -132,6 +132,7 @@ GLuint taken;
 GLuint put;
 double left_menu_size=350;
 double startx=-left_menu_size,starty=0;
+GLuint scan_tex;
 GLuint feel_background_texture[2];
 GLuint empty_;
 GLuint connection_point;
