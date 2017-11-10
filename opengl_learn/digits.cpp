@@ -3,7 +3,7 @@
 int dist(vector<int> vec1, vector<int> vec2)
 {
     int res=0;
-    for (int i=0;i<vec1.size();i++)
+    for (int i=0;i<(int)vec1.size();i++)
     {
         res+=min(abs(vec1[i]-vec2[max(0,i-1)]), min(abs(vec1[i]-vec2[i]), abs(vec1[i]-vec2[min(i+1,(int)vec2.size()-1)])));
     }
@@ -30,10 +30,10 @@ void get_dist(vector<vector<bool> > vec)
 
         string s[vec.size()];
         int cnt=0;
-        for (int i=0;i<vec.size();i++)
+        for (int i=0;i<(int)vec.size();i++)
         {
             in>>s[i];
-            for (int j=0;j<vec[0].size();j++)
+            for (int j=0;j<(int)vec[0].size();j++)
                 cnt+=(vec[i][j]+'0'!=s[i][j]);
         }
 

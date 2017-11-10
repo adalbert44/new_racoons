@@ -65,6 +65,12 @@ void add_all_files(string st)
 
 void read(string way)
 {
+    /*if (way=="lab_work")
+    {
+        clear_feel();
+        return;
+    }*/
+
     way+=".ec";
     ifstream in(way);
     int reb_size, first_i2, second_i2;

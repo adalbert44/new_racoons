@@ -2,6 +2,7 @@
 #define READ_WRITE_H_INCLUDED
 
     #include "includes.h"
+    #include "main_menu.h"
 
     void read(string way);
     void write(string way);

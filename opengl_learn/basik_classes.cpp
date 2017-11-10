@@ -235,10 +235,9 @@ void drawstring(double x,double y,double z,string s)
     setFont(GLUT_BITMAP_TIMES_ROMAN_24);
     glColor3f(1.0,1.0,1.0);
 
-    char *c;
     glRasterPos3f(x,y,z);
 
-    for (int i=0;i<s.size();i++)
+    for (int i=0;i<(int)s.size();i++)
     {
         glColor3f(0.0,0.0,0.0);
         glutBitmapCharacter(currentfont,s[i]);
@@ -399,7 +398,7 @@ void Circle_element :: draw()
 {
     glLineWidth(5);
 
-    for (int i=0;i<reb.size();i++)
+    for (int i=0;i<(int)reb.size();i++)
     {
 
         int pi=((f.x1+f.x2)/2.0)/feel_seg_size+0.00001;
@@ -485,7 +484,7 @@ void Button :: press_up()
         shade=0.16;
     used=!used;
     for (int i=0;i<change.size();i++)
-        (*change[i])=!(*change[i]);
+        (*change[i])=(bool)!(*change[i]);
 
 }
 

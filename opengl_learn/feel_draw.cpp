@@ -32,7 +32,7 @@ double dist_to_seg(double x1, double y1, int i1, int j1, int i2, int j2)
 
 void draw_electron()
 {
-ld speed=5;
+
 
     ld mx_power=0.001;
 
