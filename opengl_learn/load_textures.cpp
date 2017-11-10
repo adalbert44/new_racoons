@@ -76,7 +76,7 @@ void load_all()
 
     text_line=Load("textures/text_line.png");
     close_hor=Load("textures/key_hor.png");
-    close_hor=Load("textures/key_hor.png");
+    close_ver=Load("textures/key_ver.png");
     scan_tex=Load("textures/scan_mode_tex.png");
 
     lab_tex=Load("textures/lab_tex.png");
