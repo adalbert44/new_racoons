@@ -2,7 +2,7 @@
 
 void input_info_draw()
 {
-    window_shade.alpha=0.2;
+    window_shade.alpha=0.5;
     window_shade.draw_state();
     input_info_background.draw_state();
     input_feel.draw_state();
@@ -25,7 +25,8 @@ void input_info_R_draw()
     input_R_ok.draw_state();
     input_bad.draw_state();
 
-    drawstring(input_feel.x1,input_feel.y2,1.0,info_zn);
+    drawstring(input_feel.x1+7,input_feel.y2-10,1.0,info_zn);
+    drawstring(input_feel.x1+10,input_feel.y2-70,1.0,input_info_ask);
 }
 
 double parse_to_double(string st)
@@ -95,6 +96,7 @@ int check_anses()
 int input_bad_do()
 {
     input_info_mode=0;
+    input_R_used=0;
     info_zn="0";
 }
 

@@ -35,7 +35,9 @@ void try_del(int i, int j, pair<int,int> p, vector<Event> &vec)
 
 int object_change_R_func()
 {
+    input_bad.to_do=&input_bad_do;
     input_R_used=1;
+    input_info_ask="Enter R:";
     info_i=choosen_object.fir;
     info_j=choosen_object.sec;
 }
