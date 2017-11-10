@@ -166,7 +166,7 @@ void main_menu_create()
 
 }
 
-bool read_directory(const std::string& name, vector<string>& v)
+bool read_directory(const std::string& name, vector<string>& v,string ttt)
 {
     std::string pattern(name);
     pattern.append("\\*");
@@ -174,7 +174,7 @@ bool read_directory(const std::string& name, vector<string>& v)
     HANDLE hFind;
     if ((hFind = FindFirstFile(pattern.c_str(), &data)) != INVALID_HANDLE_VALUE) {
         do {
-            if (data.cFileName=="elmos")
+            if (data.cFileName==ttt)
                 return(1);
         } while (FindNextFile(hFind, &data) != 0);
         FindClose(hFind);
@@ -186,8 +186,11 @@ void creat_feel()
 {
     vector<string> v;
     string way="C:\\";
-    if (!read_directory(way,v))
+    if (!read_directory(way,v,"elmost"))
         mkdir("C:\\elmos");
+    if (!read_directory(way,v,"elmost_log"))
+        mkdir("C:\\elmos_log");
+
     for (int i=0;i<feel_size;i++)
         for (int j=0;j<feel_size;j++)
         if (rand()%3)

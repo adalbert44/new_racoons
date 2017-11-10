@@ -95,6 +95,7 @@ void read(string way)
 void write(string way)
 {
     write_info(way);
+    way="C:\\elmos_log\\"+way;
     way+=".ec";
     ofstream out(way);
     for(int i = 1; i <= 30; i++)
