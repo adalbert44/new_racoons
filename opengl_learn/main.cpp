@@ -240,9 +240,9 @@ void creat_feel()
 
     input_info_background=Figure(w1/1.15,WinWid-w1/1.15,40,WinHei-h1*1.62+10,info_background,1.0);
     input_feel=Figure(w2-60,WinWid-w2+60,160,200,text_line,1.0);
-    input_ok=Button_do(Figure(w1-10,w1+l-10,200,310,ok_tex,1.0),&input_ok_do,light_ok,shade_circle);
-    input_R_ok=Button_do(Figure(w1-10,w1+l-10,200,310,ok_tex,1.0),&change_R,light_ok,shade_circle);
-    input_bad=Button_do(Figure(w1+l+10,w1+2*l+10,200,310,bad_tex,1.0),&input_bad_do,light_ok,shade_circle);
+    input_ok=Button_do(Figure(w1,w1+l-30,210,300,ok_tex,1.0),&input_ok_do,light_ok,shade_circle);
+    input_R_ok=Button_do(Figure(w1,w1+l-30,210,300,ok_tex,1.0),&change_R,light_ok,shade_circle);
+    input_bad=Button_do(Figure(w1+l+20,w1+2*l-10,210,300,bad_tex,1.0),&input_bad_do,light_ok,shade_circle);
 
     back_to_main=Button_do(Figure(WinWid-100,WinWid,WinHei-100,WinHei,back_button_tex,1.0),&back_to_main_do,light_down,shade_down);
 

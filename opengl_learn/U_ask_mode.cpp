@@ -28,7 +28,7 @@ void write_res()
     if (vec.size()==2)
     {
         window_message=1;
-        window_message_write="U=";
+        window_message_write="U = ";
         window_message_write+=parse_to_string(abs(vec[0]-vec[1]));
     }
 }
