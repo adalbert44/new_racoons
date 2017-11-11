@@ -436,6 +436,7 @@ void write_info(string way)
                         out << " #" << endl;
                     }*/
                 }
+
                 else
                 {
                     for(int i2 = 0; i2 <= length_maxURI; i2++)

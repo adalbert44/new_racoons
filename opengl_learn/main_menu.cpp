@@ -104,16 +104,12 @@ int create_lab()
     info_name="lab_work";
     now_file_name=info_name;
 
-    char *filename = new char[info_name.length() + 1];
-    strcpy(filename, info_name.c_str());
-    FILE* f = fopen(filename, "rb");
-
-    if (f == NULL)
-        write(info_name);
+    write(info_name);
 
     read(info_name);
     info_name="";
     clear_feel();
+
 
     input_text_mode=0;
     solve();
