@@ -30,16 +30,20 @@ int save_do()
 
 bool in_all_files(string st)
 {
-    ifstream in("all_files.txt");
-    bool ch=0;
-    while (in)
-    {
-        string s;
-        in>>s;
-        if (s==st) ch=1;
+    st+=".ec";
+    std::string pattern("C:\\elmos_log\\");
+    pattern.append("\\*");
+    WIN32_FIND_DATA data;
+    HANDLE hFind;
+    if ((hFind = FindFirstFile(pattern.c_str(), &data)) != INVALID_HANDLE_VALUE) {
+        do {
+            if (data.cFileName==st)
+                return(1);
+        } while (FindNextFile(hFind, &data) != 0);
+        FindClose(hFind);
     }
-    in.close();
-    return(ch);
+    return(0);
+
 }
 
 void add_all_files(string st)
@@ -71,6 +75,7 @@ void read(string way)
         return;
     }*/
 
+    way="C:\\elmos_log\\"+way;
     way+=".ec";
     ifstream in(way);
     int reb_size, first_i2, second_i2;
@@ -287,11 +292,8 @@ void write_info(string way)
             if(object[i][j].U / object[i][j].R > maxI)
                 maxI = object[i][j].U / object[i][j].R;
         }
-    length_maxURI = length_long_double(maxU);
-    if(length_long_double(maxR) > length_maxURI)
-        length_maxURI = length_long_double(maxR);
-    if(length_long_double(maxI) > length_maxURI)
-        length_maxURI = length_long_double(maxI);
+    length_maxURI = 10;
+
     length_maxURI = length_maxURI + 3;
     int table_size = length_maxURI + length_maxURI + text[1].length() + 6;
 
@@ -370,7 +372,7 @@ void write_info(string way)
                 {
                     numlist[i][j].object = number(i, j);
                     numlist[i][j].num = last[number(i, j)] + 1;
-                    last[number(i,j)] =+ 1;
+                    last[number(i,j)] ++;
                 }
                 if(numlist[i][j].num < 10)
                     out << "# " << name_of_object[number(i, j)] << "0" << numlist[i][j].num << " ";
@@ -386,7 +388,7 @@ void write_info(string way)
                     {
                         numlist[object[i][j].reb[0].first][object[i][j].reb[0].second].object = number(object[i][j].reb[0].first, object[i][j].reb[0].second);
                         numlist[object[i][j].reb[0].first][object[i][j].reb[0].second].num = last[number(object[i][j].reb[0].first, object[i][j].reb[0].second)] + 1;
-                        last[number(object[i][j].reb[0].first, object[i][j].reb[0].second)] =+ 1;
+                        last[number(object[i][j].reb[0].first, object[i][j].reb[0].second)] ++;
                     }
                     if(numlist[object[i][j].reb[0].first][object[i][j].reb[0].second].num < 10)
                         out << name_of_object[number(object[i][j].reb[0].first, object[i][j].reb[0].second)] << "0" << numlist[object[i][j].reb[0].first][object[i][j].reb[0].second].num << " I: ";
@@ -454,7 +456,7 @@ void write_info(string way)
                     {
                         numlist[object[i][j].reb[1].first][object[i][j].reb[1].second].object = number(object[i][j].reb[1].first, object[i][j].reb[1].second);
                         numlist[object[i][j].reb[1].first][object[i][j].reb[1].second].num = last[number(object[i][j].reb[1].first, object[i][j].reb[1].second)] + 1;
-                        last[number(object[i][j].reb[1].first, object[i][j].reb[1].second)] =+ 1;
+                        last[number(object[i][j].reb[1].first, object[i][j].reb[1].second)] ++;
                     }
                     if(numlist[object[i][j].reb[1].first][object[i][j].reb[1].second].num < 10)
                         out << name_of_object[number(object[i][j].reb[1].first, object[i][j].reb[1].second)] << "0" << numlist[object[i][j].reb[1].first][object[i][j].reb[1].second].num << " I: ";
@@ -498,7 +500,7 @@ void write_info(string way)
                         {
                             numlist[object[i][j].reb[p + 2].first][object[i][j].reb[p + 2].second].object = number(object[i][j].reb[p + 2].first, object[i][j].reb[p + 2].second);
                             numlist[object[i][j].reb[p + 2].first][object[i][j].reb[p + 2].second].num = last[number(object[i][j].reb[p + 2].first, object[i][j].reb[p + 2].second)] + 1;
-                            last[number(object[i][j].reb[p + 2].first, object[i][j].reb[p + 2].second)] =+ 1;
+                            last[number(object[i][j].reb[p + 2].first, object[i][j].reb[p + 2].second)] ++;
                         }
                         if(numlist[object[i][j].reb[p + 2].first][object[i][j].reb[p + 2].second].num < 10)
                             out << name_of_object[number(object[i][j].reb[p + 2].first, object[i][j].reb[p + 2].second)] << "0" << numlist[object[i][j].reb[p + 2].first][object[i][j].reb[p + 2].second].num << " I: ";

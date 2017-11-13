@@ -7,7 +7,7 @@ int back_to_main_do()
     in_feel=0;
     lab_mode_used=0;
     in_main_menu=1;
-
+    clear_feel();
 }
 
 int open_info()
@@ -53,10 +53,7 @@ int scan_path()
         cnt++;
 
     s="";
-    while (cnt--)
-    {
-        s+="..\\";
-    }
+
     s+=info_name;
 
     if (!scan(info_name))

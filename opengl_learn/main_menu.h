@@ -6,6 +6,7 @@
     #include "read_write.h"
     #include "get_power.h"
     #include "scan.h"
+    #include "read_write.h"
 
     void main_menu_draw();
     void main_menu_reaction(int button, int state);
