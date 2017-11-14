@@ -408,14 +408,20 @@ void mouse_pressed_motion(int x, int y)
 
     x/=kx;
     y/=ky;
+
+
     if (in_feel && U_ask_mode_used)
     {
         U_ask_mouse_pressed_motion(mousex,mousey,x,y);
+        mousex=x;
+        mousey=y;
         return;
     }
     if (in_feel && delete_mode_used)
     {
         delete_mode_mouse_pressed_motion(mousex,mousey,x,y);
+        mousex=x;
+        mousey=y;
         return;
     }
 

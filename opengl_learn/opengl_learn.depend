@@ -2068,7 +2068,7 @@
 1510601293 c:\users\Виктория\desktop\new_racoons\opengl_learn\basik_classes.h
 	"includes.h"
 
-1509365439 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\delete_mode_reaction.cpp
+1510660464 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\delete_mode_reaction.cpp
 	"delete_mode_reaction.h"
 
 1509365439 c:\users\Виктория\desktop\new_racoons\opengl_learn\delete_mode_reaction.h
@@ -2169,7 +2169,7 @@
 1509365441 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\window_message.h
 	"includes.h"
 
-1510601293 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\basik_classes.cpp
+1510660703 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\basik_classes.cpp
 	"basik_classes.h"
 	"object_menu_reaction.h"
 

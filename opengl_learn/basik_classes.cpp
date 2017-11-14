@@ -356,8 +356,8 @@ bool Figure :: in_circle()
     double x2_=(x2-startx)*scrol;
     double y1_=(y1-starty)*scrol;
     double y2_=(y2-starty)*scrol;
-
-    return(dist_((x2_+x1_)/double(2.0),(y2_+y1_)/double(2.0),double(mousex),double(mousey))<=(x2_-x1_)/2.0+10.0);
+    cout<<dist_((x2_+x1_)/double(2.0),(y2_+y1_)/double(2.0),double(mousex),double(mousey))<<'\n';
+    return(dist_((x2_+x1_)/double(2.0),(y2_+y1_)/double(2.0),double(mousex),double(mousey))<=abs(x2_-x1_)/2.0+10.0);
 }
 
 void Figure :: resize_(double len)

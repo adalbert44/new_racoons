@@ -125,10 +125,12 @@ bool can_delete(int i, int j)
 
 void delete_mode_mouse_pressed_motion(double x1, double y1, double x2, double y2)
 {
+
     for (int i=1;i<feel_size;i++)
         for (int j=1;j<feel_size;j++)
             if (can_delete(i,j) && object[i][j].f.in_circle())
             {
+
                 object[i][j].f.tex=choosen_point_tex;
                 to_del_point.pb({i,j});
             }
