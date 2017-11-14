@@ -99,9 +99,11 @@ void read(string way)
 
 void write(string way)
 {
+
     write_info(way);
     way="C:\\elmos_log\\"+way;
     way+=".ec";
+
     ofstream out(way);
     for(int i = 1; i <= 30; i++)
         for(int j = 1; j <= 30; j++)
@@ -115,6 +117,9 @@ void write(string way)
             out << endl;
         }
     out.close();
+
+
+
 }
 
 bool bad_way(string s)
@@ -197,7 +202,7 @@ int number(int x,int y)
         return(3);
     if((object[x][y].f.tex == left_menu_horizontal[1].tex) || (object[x][y].f.tex == left_menu_vertical[1].tex))
         return(4);
-    if((object[x][y].f.tex == left_menu_horizontal[2].tex) || (object[x][y].f.tex == left_menu_vertical[2].tex))
+    if((object[x][y].f.tex == left_menu_horizontal[2].tex) || (object[x][y].f.tex == left_menu_vertical[2].tex) || (object[x][y].f.tex == close_hor) || (object[x][y].f.tex == close_ver))
         return(5);
     if((object[x][y].f.tex == left_menu_horizontal[4].tex) || (object[x][y].f.tex == left_menu_vertical[4].tex))
         return(6);
@@ -228,11 +233,15 @@ void write_info(string way)
     setlocale(0,"UKR");
     way="C:\\elmos\\"+way;
     way+=".txt";
+
     ofstream out(way);
+
+
     long double maxU, maxI, maxR;
     int length_maxURI, last[7];
     MyType numlist[31][31];
-    string name_of_object[7], text[2];
+    string name_of_object[7], text[3];
+
     text[1] = "#                   #                   # ";
     text[2] = "# Назва:            # Сусідні обєкти:   # "; //1 + 15 + 2 + " I: "(4) + length_maxURI + 1 = 23 + length_maxURI
     name_of_object[0] = "Точка";
@@ -242,12 +251,14 @@ void write_info(string way)
     name_of_object[4] = "Вольтметр";
     name_of_object[5] = "Ключ";
     name_of_object[6] = "Реостат";
+
     for(int i = 0; i < 31; i++)
         for(int j = 0; j < 31; j++)
         {
             numlist[i][j].num = 0;
             numlist[i][j].object = 0;
         }
+
     for(int i = 0; i < 7; i++)
         last[i] = 0;
     out << "/__~_!__\!!+__/!!~!_!!+!!\_!/!~_!____!_+_!\_!!!__!!!!=__/!_!!___" << endl;
@@ -282,6 +293,7 @@ void write_info(string way)
     out << "!    -. !  !  _    `: ,  *@@#@@` :@@#@@_  _  ; .` ;  _  _  ; .: " << endl;
     out << "_    ;  '  !  !    `  ~  _  _@@@@#@ '  _  _  ` .. -  !  !  ; `` " << endl;
     out << "/~_~!_!_+,'\__\!~'!!!_+~_/_!/_',_!__!~'/,_/!'_,!!_!~!/_!\_'!,!_!" << endl;
+
     for(int i = 1; i <= 30; i++)
         for(int j = 1; j <= 30; j++)
         {
@@ -301,6 +313,7 @@ void write_info(string way)
     for(int i2 = 0; i2 <= table_size; i2++)
         out << "#";
     out << endl;
+
     for(int i = 1; i <= 30; i++)
         for(int j = 1; j <= 30; j++)
             if(number(i, j) != 99)
@@ -317,8 +330,10 @@ void write_info(string way)
                 for(int i2 = 0; i2 < 7 + length_maxURI; i2++)
                     out << " ";
                 out << "# ";
+
                 if((number(i, j) != 1) && (number(i, j) != 5))
                 {
+
                     string s = parse_to_string(object[i][j].R);
                     out << "R: " << s;
                     for(int i2 = 0; i2 <= length_maxURI - (s.length() + 3); i2++)
@@ -342,6 +357,7 @@ void write_info(string way)
                 else
                     if(number(i, j) != 5)
                     {
+
                         string s = parse_to_string(object[i][j].R);
                         out << "U: " << s;
                         for(int i2 = 0; i2 <= length_maxURI - (s.length() + 3); i2++)
@@ -364,10 +380,14 @@ void write_info(string way)
                     }
                     else
                     {
+
                         for(int i2 = 0; i2 <= length_maxURI; i2++)
                             out << " ";
                         out << " #" << endl;
                     }
+
+
+
                 if(numlist[i][j].num == 0)
                 {
                     numlist[i][j].object = number(i, j);
@@ -382,6 +402,8 @@ void write_info(string way)
                     out << " ";
                 out << "# ";
                 int reb_size = object[i][j].reb.size();
+
+
                 if(reb_size > 0)
                 {
                     if(numlist[object[i][j].reb[0].first][object[i][j].reb[0].second].num == 0)
@@ -395,7 +417,7 @@ void write_info(string way)
                         else
                         out << name_of_object[number(object[i][j].reb[0].first, object[i][j].reb[0].second)] << numlist[object[i][j].reb[0].first][object[i][j].reb[0].second].num << " I: ";
                     int z;
-                    if(abs(power[i][j][object[i][j].reb[0].first][object[i][j].reb[0].second]) > 1e+007)
+                    if(abs(power[i][j][object[i][j].reb[0].first][object[i][j].reb[0].second]) > mx_I)
                     {
                         out << "inf";
                         z = 3;
@@ -416,6 +438,7 @@ void write_info(string way)
                         out << " ";
                     out << "# ";
                 }
+
                 if((number(i, j) == 4) || (number(i, j) == 3))
                 {
                     /*string s = parse_to_string(object[i][j].U / object[i][j].R);
@@ -445,6 +468,10 @@ void write_info(string way)
                         out << " ";
                     out << " #" << endl;
                 }
+
+
+
+
                 out << "# X: " << i << "; Y: " << j << ";";
                 int length_xy = 11 + length_long_double(i) + length_long_double(j);
                 for(int i2 = 0; i2 <= 18 - length_xy; i2++)
@@ -458,25 +485,34 @@ void write_info(string way)
                         numlist[object[i][j].reb[1].first][object[i][j].reb[1].second].num = last[number(object[i][j].reb[1].first, object[i][j].reb[1].second)] + 1;
                         last[number(object[i][j].reb[1].first, object[i][j].reb[1].second)] ++;
                     }
+
                     if(numlist[object[i][j].reb[1].first][object[i][j].reb[1].second].num < 10)
                         out << name_of_object[number(object[i][j].reb[1].first, object[i][j].reb[1].second)] << "0" << numlist[object[i][j].reb[1].first][object[i][j].reb[1].second].num << " I: ";
                         else
                         out << name_of_object[number(object[i][j].reb[1].first, object[i][j].reb[1].second)] << numlist[object[i][j].reb[1].first][object[i][j].reb[1].second].num << " I: ";
                     int z;
-                    if(abs(power[i][j][object[i][j].reb[1].first][object[i][j].reb[1].second]) >= 1e+007)
+
+                    if(abs(power[i][j][object[i][j].reb[1].first][object[i][j].reb[1].second]) >= mx_I)
                     {
                         out << "inf";
                         z = 3;
                     }
                     else
                     {
+
                         string s = parse_to_string(abs(power[i][j][object[i][j].reb[1].first][object[i][j].reb[1].second]));
+
                         out << s;
                         z = s.length();
+
                     }
+
+
                     for(int i2 = 0; i2 < 15 + length_maxURI - (name_of_object[number(object[i][j].reb[1].first, object[i][j].reb[1].second)].length() + z); i2++)
                         out << " ";
                     out << " # ";
+
+
                 }
                 else
                 {
@@ -484,12 +520,14 @@ void write_info(string way)
                         out << " ";
                     out << "# ";
                 }
+
                 for(int i2 = 0; i2 <= length_maxURI; i2++)
                     out << " ";
                 out << " #" << endl;
                 reb_size = object[i][j].reb.size();
                 if(reb_size > 2)
                 {
+
                     for(int p = 0; p < reb_size - 2; p++)
                     {
                         out << "# ";
@@ -507,7 +545,7 @@ void write_info(string way)
                             else
                             out << name_of_object[number(object[i][j].reb[p + 2].first, object[i][j].reb[p + 2].second)] << numlist[object[i][j].reb[p + 2].first][object[i][j].reb[p + 2].second].num << " I: ";
                         int z;
-                        if(abs(power[i][j][object[i][j].reb[p + 2].first][object[i][j].reb[p + 2].second]) >= 1e+7)
+                        if(abs(power[i][j][object[i][j].reb[p + 2].first][object[i][j].reb[p + 2].second]) >= mx_I)
                         {
                             out << "inf";
                             z = 3;
@@ -525,6 +563,7 @@ void write_info(string way)
                             out << " ";
                         out << " #" << endl;
                     }
+
                 }
                 out << "#                   #";
                 for(int i2 = 0; i2 < 23 + length_maxURI; i2++)
@@ -536,6 +575,8 @@ void write_info(string way)
                 for(int i2 = 0; i2 <= table_size; i2++)
                     out << "#";
                 out << endl;
+
+
             }
     out.close();
 }

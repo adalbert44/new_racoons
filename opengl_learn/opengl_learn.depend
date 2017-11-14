@@ -2331,7 +2331,7 @@
 	"includes.h"
 	"main_menu.h"
 
-1510601295 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\scan.cpp
+1510641872 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\scan.cpp
 	"scan.h"
 
 1510601295 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\scan.h
@@ -2349,11 +2349,11 @@
 1510601296 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\window_message.cpp
 	"window_message.h"
 
-1510604673 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\main_menu.cpp
+1510642348 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\main_menu.cpp
 	"main_menu.h"
 	"choose_lab.h"
 
-1510606494 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\read_write.cpp
+1510648392 source:c:\users\Виктория\desktop\new_racoons\opengl_learn\read_write.cpp
 	"read_write.h"
 	<fstream>
 

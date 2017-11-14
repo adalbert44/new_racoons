@@ -89,10 +89,10 @@ bool intersect (line m, line n, pt & res) {
 vector<vector<int> > black_white(vector<vector<Color> > vec)
 {
     vector<vector<int> > res;
-    for (int i=0;i<vec.size();i++)
+    for (int i=0;i<(int)vec.size();i++)
     {
         res.pb({});
-        for (int j=0;j<vec[i].size();j++)
+        for (int j=0;j<(int)vec[i].size();j++)
             res[i].pb(0.2125*vec[i][j].R + 0.7154*vec[i][j].G + 0.0721*vec[i][j].B);
     }
     return(res);
@@ -196,7 +196,7 @@ void bfs(int i, int j, int c)
             if (vec[i-1][j] && !colour[i-1][j])
                 q.push({i-1,j});
 
-        if (i+1<vec.size())
+        if (i+1<(int)vec.size())
             if (vec[i+1][j] && !colour[i+1][j])
                 q.push({i+1,j});
 
@@ -204,7 +204,7 @@ void bfs(int i, int j, int c)
             if (vec[i][j-1]  && !colour[i][j-1])
                 q.push({i,j-1});
 
-        if (j+1<vec[i].size() )
+        if (j+1<(int)vec[i].size() )
             if (vec[i][j+1]  && !colour[i][j+1])
                 q.push({i,j+1});
 
@@ -238,9 +238,9 @@ ld dist_to_line(pt i, line j)
 
 bool endd(pair<int,int> i)
 {
-    if (i.fir==0 || i.fir==vec.size()-1)
+    if (i.fir==0 || i.fir==(int)vec.size()-1)
         return(1);
-    if (i.sec==0 || i.sec==vec[0].size()-1)
+    if (i.sec==0 || i.sec==(int)vec[0].size()-1)
         return(1);
 
     if (colour[i.fir][i.sec]!=colour[i.fir-1][i.sec]) return(1);
@@ -1362,9 +1362,6 @@ bool scan(string file)
 
     elements=new_elements;
 
-    for (auto i:elements)
-        cout<<i.name<<'\n';
-
 
     for (int i=0;i<colour.size();i++)
         for (int j=0;j<colour[i].size();j++)
@@ -1443,8 +1440,8 @@ bool scan(string file)
                     }
             }
 
-            for (int i=0;i<v.size();i++)
-                for (int j=i+1;j<v.size();j++)
+            for (int i=0;i<(int)v.size();i++)
+                for (int j=i+1;j<(int)v.size();j++)
                     rebers.pb(prov(v[i].sec,v[j].sec,v[i].fir,v[j].fir));
         }
     }

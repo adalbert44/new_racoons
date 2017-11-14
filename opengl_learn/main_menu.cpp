@@ -34,7 +34,7 @@ int create()
     in_feel=1;
     in_main_menu=0;
     now_file_name=info_name;
-    add_all_files(info_name);
+
     write(info_name);
     info_name="";
     input_text_mode=0;
